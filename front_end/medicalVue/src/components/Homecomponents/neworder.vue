@@ -86,7 +86,7 @@
       <tr v-for="product in neworder.commande" :key="product.id">
         <td>{{product.ref}}</td>
         <td>{{product.nom}}</td>
-        <td><q-input type="number" v-model="product.quantity"/></td>
+        <td><q-input type="number" min="1" v-model="product.quantity"/></td>
         <td>{{product.quantity*product.price}} Da</td>
       </tr>
     </table>
@@ -107,13 +107,13 @@ import { mapActions } from 'vuex'
 const stringOptions = [{
           ref: '23165485',
           nom: 'Google',
-          quantity: '2',
+          quantity: '1',
           price: '10'
         },
         {
           ref: '23165486',
           nom: 'Facebook',
-          quantity: '3',
+          quantity: '1',
           price: '200'
         },
         {
@@ -125,13 +125,13 @@ const stringOptions = [{
         {
           ref: '23165488',
           nom: 'Apple',
-          quantity: '5',
+          quantity: '1',
           price: '120'
         },
         {
           ref: '23165489',
           nom: 'Oracle',
-          quantity: '7',
+          quantity: '1',
           price: '310'
         }
 ]
@@ -175,6 +175,12 @@ export default {
     },
     onSubmit(){
       this.order(this.neworder)
+      this.$q.notify({
+          color: 'green-4',
+          textColor: 'white',
+          icon: 'cloud_done',
+          message: "SAHHHhhééééét rak commandit bien ga3"
+        })
     }
   }
 }
