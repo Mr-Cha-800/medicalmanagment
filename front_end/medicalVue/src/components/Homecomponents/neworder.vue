@@ -86,7 +86,7 @@
       <tr v-for="product in neworder.commande" :key="product.id">
         <td>{{product.ref}}</td>
         <td>{{product.nom}}</td>
-        <td><q-input type="number" min="1" v-model="product.quantity"/></td>
+        <td><q-input type="number" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>
         <td>{{product.quantity*product.price}} Da</td>
       </tr>
     </table>
