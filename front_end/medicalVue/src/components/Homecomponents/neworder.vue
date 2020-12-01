@@ -49,7 +49,6 @@
     <div class="text-h6">Commande</div>
     <div class="q-pa-md">
     <q-select
-      filled
       v-model="model"
       use-input
       use-chips
@@ -58,7 +57,6 @@
       @new-value="createValue"
       :options="filterOptions"
       @filter="filterFn"
-      style="width: 250px"
     />
   </div>
       <div class="q-pa-md ">
