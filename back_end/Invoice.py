@@ -1,4 +1,4 @@
-class Invoce:
+class Invoice:
   def __init__(self, id, fname, lname, phone_num, date, product_list):
     self.id = id
     self.fname = fname
