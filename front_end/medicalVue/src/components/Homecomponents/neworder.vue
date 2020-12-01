@@ -8,7 +8,6 @@
 
             <q-form
       @submit.prevent="onSubmit"
-      @reset="onReset"
       class="justify-center q-pa-lg"
     >
     <div class="text-h6">Informations de client</div>
@@ -92,9 +91,10 @@
     </table>
     </div>
       <div class="q-pa-md ">
-    <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer la facture" >      <template v-slot:loading>
+    <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer la facture" >
+      <template v-slot:loading>
         <q-spinner-hourglass class="on-left" />
-        Loading...
+        Chargement...
       </template>
     </q-btn>
       </div>
@@ -138,6 +138,7 @@ const stringOptions = [{
 export default {
   data(){
     return {
+      loading: false,
       neworder:{
         nom: '',
         prenom: '',
@@ -175,12 +176,18 @@ export default {
     },
     onSubmit(){
       this.order(this.neworder)
-      this.$q.notify({
-          color: 'green-4',
-          textColor: 'white',
-          icon: 'cloud_done',
-          message: "SAHHHhhééééét rak commandit bien ga3"
-        })
+      .then(response => {
+        if(response){
+          this.$q.notify({
+              color: 'green-4',
+              textColor: 'white',
+              icon: 'cloud_done',
+              message: "SAHHHhhééééét rak commandit bien ga3"
+            })
+          }
+      }).catch(error => {
+        console.log(error)
+      })
     }
   }
 }
