@@ -69,7 +69,7 @@
           >
             <q-item-section>
               <q-item-label v-html="scope.opt.nom" />
-              <q-item-label caption>{{ scope.opt.price }}</q-item-label>
+              <q-item-label caption>{{ scope.opt.ref }}</q-item-label>
             </q-item-section>
           </q-item>
         </template>
