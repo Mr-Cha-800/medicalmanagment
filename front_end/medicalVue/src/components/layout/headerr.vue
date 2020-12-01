@@ -5,21 +5,26 @@
             <q-toolbar-title>
                 <strong>Admin</strong> panel
             </q-toolbar-title>
-          <search/>
+            <q-btn no-caps flat>Nouvelle commande</q-btn>
+            <q-btn no-caps flat>Gestion de produit</q-btn>
+            <q-btn no-caps flat>Historique des achats</q-btn>
+          <!--<search/>-->
           <q-space ></q-space>
-          <q-btn flat round dense icon="menu" @click="leftDrawerOpen = !leftDrawerOpen" class="q-mr-sm" />
+          <q-btn flat round dense icon="settings" class="q-mr-sm" >
+            <q-tooltip>Reglage</q-tooltip>
+          </q-btn>
         </q-toolbar>
       </q-header>
-    <drawer :leftDrawerOpen="leftDrawerOpen"/>
+    <!--<drawer :leftDrawerOpen="leftDrawerOpen"/>-->
 </div>
 </template>
 <script>
-import search from '../HeaderComponents/search.vue'
-import drawer from '../HeaderComponents/drawerr.vue'
+// import search from '../HeaderComponents/search.vue'
+//import drawer from '../HeaderComponents/drawerr.vue'
 export default {
     components: {
-        search,
-        drawer
+       // search,
+        //drawer
     },
   data () {
     return {
