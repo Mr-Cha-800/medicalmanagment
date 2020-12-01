@@ -47,24 +47,20 @@
       </q-input>
     </div>
     <div class="text-h6">Commande</div>
-    <div class="q-gutter-sm full-width q-pa-md row">
-       <q-input
-        v-model="tel"
-        label="Produit"
-        lazy-rules
-        :rules="[ val => val && val.length > 0 || 'veuillez taper la reference du produit']"
-      >
-      </q-input>
-       <q-input
-        v-model="tel"
-        type="number"
-        label="Quantité"
-        min="1"
-        lazy-rules
-        :rules="[ val => val && val.length > 0 || 'veuillez taper la quantité']"
-      >
-      </q-input>
-    </div>
+    <div class="q-pa-md">
+    <q-select
+      filled
+      v-model="model"
+      use-input
+      use-chips
+      multiple
+      input-debounce="0"
+      @new-value="createValue"
+      :options="filterOptions"
+      @filter="filterFn"
+      style="width: 250px"
+    />
+  </div>
       <div class="q-pa-md ">
     <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer la facture" >      <template v-slot:loading>
         <q-spinner-hourglass class="on-left" />
@@ -77,10 +73,50 @@
 </template>
 
 <script>
+const stringOptions = [
+  'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
+]
 export default {
   data(){
     return {
+      neworder:{
+        nom: '',
+        prenom: '',
+        numId: '',
+        numPermis: '',
+        commande: [{
+          Idproduit: '',
+          prix: '',
+          quantity: ''
+          }
+        ]
+      },
+      model: null,
+      filterOptions: stringOptions
+    }
+  },
+  
+  methods: {
+    createValue (val, done) {
+      if (val.length > 2) {
+        if (!stringOptions.includes(val)) {
+          done(val, 'add-unique')
+        }
+      }
+    },
 
+    filterFn (val, update) {
+      update(() => {
+        if (val === '') {
+          this.filterOptions = stringOptions
+        }
+        else {
+          const needle = val.toLowerCase()
+          this.filterOptions = stringOptions.filter(
+            v => v.toLowerCase().indexOf(needle) > -1
+          )
+        }
+      })
     }
   }
 }
