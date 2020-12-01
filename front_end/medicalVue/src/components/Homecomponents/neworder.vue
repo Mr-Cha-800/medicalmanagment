@@ -168,7 +168,7 @@ export default {
         else {
           const needle = val.toLowerCase()
           this.filterOptions = stringOptions.filter(
-            v => v.nom.toLowerCase().indexOf(needle) > -1
+            v => v.nom.toLowerCase().indexOf(needle) > -1 || v.ref.toLowerCase().indexOf(needle) > -1 
           )
         }
       })
