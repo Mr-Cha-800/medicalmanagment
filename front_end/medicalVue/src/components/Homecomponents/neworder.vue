@@ -13,7 +13,7 @@
     >
     <div class="text-h6">Informations de client</div>
       <q-input
-        v-model="nom"
+        v-model="neworder.prenom"
         type="text"
         class="q-pa-md"
         label="Votre Prénom *"
@@ -22,7 +22,7 @@
       >
       </q-input>
       <q-input
-        v-model="nomvrai"
+        v-model="neworder.nom"
         type="text"
         class="q-pa-md"
         label="Votre Nom *"
@@ -32,7 +32,7 @@
       </q-input>
     <div class="q-gutter-sm justify-center q-pa-md">
        <q-input
-        v-model="tel"
+        v-model="neworder.numId"
         label="Numero carte Id"
         hint="facultatif"
       >
@@ -40,7 +40,7 @@
     </div>
     <div class="q-gutter-sm justify-center q-pa-md">
        <q-input
-        v-model="tel"
+        v-model="neworder.numPermis"
         label="Numero permis de conduire"
         hint="facultatif"
       >
@@ -49,7 +49,8 @@
     <div class="text-h6">Commande</div>
     <div class="q-pa-md">
     <q-select
-      v-model="model"
+      v-model="neworder.commande"
+      label="Nom produit"
       use-input
       use-chips
       multiple
@@ -57,8 +58,39 @@
       @new-value="createValue"
       :options="filterOptions"
       @filter="filterFn"
-    />
+      option-label = "nom"
+      emit-value
+      map-options
+    >
+        <template v-slot:option="scope">
+          <q-item
+            v-bind="scope.itemProps"
+            v-on="scope.itemEvents"
+          >
+            <q-item-section>
+              <q-item-label v-html="scope.opt.nom" />
+              <q-item-label caption>{{ scope.opt.price }}</q-item-label>
+            </q-item-section>
+          </q-item>
+        </template>
+    </q-select>
   </div>
+    <div class="q-pa-lg">
+    <table>
+      <tr>
+        <th>Ref</th>
+        <th>Nom</th>
+        <th>quantité</th>
+        <th>prix</th>
+      </tr>
+      <tr v-for="product in neworder.commande" :key="product.id">
+        <td>{{product.ref}}</td>
+        <td>{{product.nom}}</td>
+        <td><q-input type="number" v-model="product.quantity"/></td>
+        <td>{{product.quantity*product.price}} Da</td>
+      </tr>
+    </table>
+    </div>
       <div class="q-pa-md ">
     <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer la facture" >      <template v-slot:loading>
         <q-spinner-hourglass class="on-left" />
@@ -71,8 +103,37 @@
 </template>
 
 <script>
-const stringOptions = [
-  'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
+import { mapActions } from 'vuex'
+const stringOptions = [{
+          ref: '23165485',
+          nom: 'Google',
+          quantity: '2',
+          price: '10'
+        },
+        {
+          ref: '23165486',
+          nom: 'Facebook',
+          quantity: '3',
+          price: '200'
+        },
+        {
+          ref: '23165487',
+          nom: 'Twitter',
+          quantity: '1',
+          price: '700'
+        },
+        {
+          ref: '23165488',
+          nom: 'Apple',
+          quantity: '5',
+          price: '120'
+        },
+        {
+          ref: '23165489',
+          nom: 'Oracle',
+          quantity: '7',
+          price: '310'
+        }
 ]
 export default {
   data(){
@@ -82,12 +143,7 @@ export default {
         prenom: '',
         numId: '',
         numPermis: '',
-        commande: [{
-          Idproduit: '',
-          prix: '',
-          quantity: ''
-          }
-        ]
+        commande: null
       },
       model: null,
       filterOptions: stringOptions
@@ -95,6 +151,7 @@ export default {
   },
   
   methods: {
+    ...mapActions('order', ['order']),
     createValue (val, done) {
       if (val.length > 2) {
         if (!stringOptions.includes(val)) {
@@ -111,10 +168,13 @@ export default {
         else {
           const needle = val.toLowerCase()
           this.filterOptions = stringOptions.filter(
-            v => v.toLowerCase().indexOf(needle) > -1
+            v => v.nom.toLowerCase().indexOf(needle) > -1
           )
         }
       })
+    },
+    onSubmit(){
+      this.order(this.neworder)
     }
   }
 }
