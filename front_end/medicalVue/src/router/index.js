@@ -1,12 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+// product managmeent
 import NewOrder from '../views/NewOrder.vue'
 import ProductManagment from '../views/ProductManagment.vue'
 import modifierproduit from '../components/ProductManagmentComponents/modifier.vue'
 import creerproduit from '../components/ProductManagmentComponents/creer.vue'
 import chercheproduit from '../components/ProductManagmentComponents/recherche.vue'
+// history managment 
 import InvoiceHistory from '../views/InvoiceHistory.vue'
+import Invoicesearch from '../components/buyingHistoryComponents/recherche.vue'
 import Settings from '../views/Settings.vue'
 
 Vue.use(VueRouter)
@@ -54,6 +57,11 @@ const routes = [
     path: '/InvoiceHistory',
     name: 'InvoiceHistory',
     component: InvoiceHistory
+  },
+  {
+    path: '/InvoiceHistory/recherche',
+    name: 'Invoicesearch',
+    component: Invoicesearch
   },
   {
     path: '/Settings',

@@ -1,17 +1,17 @@
 <template>
   <div class="q-pa-xl q-gutter-xl">
     <search/>
-    <ProductManagment/>  
+    <productsearched/>  
   </div>
 </template>
 
 <script>
 import search from '../Homecomponents/search.vue'
-import ProductManagment from '../ProductManagmentComponents/productsearched.vue'
+import productsearched from '../ProductManagmentComponents/productsearched.vue'
 export default {
     components:{
         search,
-        ProductManagment
+        productsearched
     }
 }
 </script>
