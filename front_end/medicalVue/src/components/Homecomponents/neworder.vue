@@ -84,8 +84,8 @@
       </tr>
       <tr v-for="product in neworder.commande" :key="product.id">
         <td>{{product.ref}}</td>
-        <td>{{product.nom}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores minima velit repellat harum exercitationem deleniti, nisi, earum maxime aut et ratione ad, qui dicta doloremque repellendus soluta non odit quas. </td>
-        <td><q-input type="number" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>
+        <td style="width:100%">{{product.nom}}  </td>
+        <td style="width:10%"><q-input type="number" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>
         <td>{{product.quantity*product.price}} Da</td>
       </tr>
     </table>
