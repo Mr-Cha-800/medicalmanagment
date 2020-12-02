@@ -14,12 +14,14 @@
     <th>Description</th>
     <th>prix</th>
     <th></th>
+    <th></th>
   </tr>
   <tr>
     <td>Alfreds Futterkiste</td>
     <td>Maria Anders</td>
     <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>100 Da</td>
+    <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
@@ -27,6 +29,7 @@
     <td>Francisco Chang</td>
     <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>200 Da</td>
+    <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
@@ -34,6 +37,7 @@
     <td>Roland Mendel</td>
     <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>300 Da</td>
+    <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
@@ -41,6 +45,7 @@
     <td>Helen Bennett</td>
     <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>400 Da</td>
+    <td><q-btn round flat><q-icon color="blue-grey-5" name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
@@ -48,6 +53,7 @@
     <td>Yoshi Tannamuri</td>
     <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>500 Da</td>
+    <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
@@ -55,6 +61,7 @@
     <td>Giovanni Rovelli</td>
     <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>600 Da</td>
+    <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
 </table>
