@@ -40,7 +40,7 @@
     </div>
       <div class=" q-pr-lg q-pt-lg q-pb-lg q-gutter-md absolute-bottom-right ">
     <q-btn no-caps  push color="red-5" @click="$router.push({name: 'ProductManagment'})"  label="Annuler" />
-    <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  label="Terminé" >
+    <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  label="Modifier" >
       <template v-slot:loading>
         <q-spinner-hourglass class="on-left" />
         Chargement...

@@ -3,7 +3,7 @@
   <div class="q-pa-xl q-gutter-xl">
     <q-card class="my-card">
         <q-card-section class="bg-blue-grey-5 text-white">
-            <div class="text-h6">Nouveau produit</div>
+            <div class="text-h6">Ajouter un produit</div>
         </q-card-section>
 
         <q-separator />
@@ -13,34 +13,35 @@
       class="justify-center q-pa-lg"
     >
       <q-input
-        v-model="produit.nom"
-        type="text"
+        v-model="produit.refId"
+        type="number"
         class="q-pa-md"
-        label="le nom du produit *"
-        lazy-rules
-        :rules="[ val => val && val.length > 0 || 'veuillez taper le nom du produit']"
+        label="N° Réf. *"
+        lazy-rules 
+        :rules="[ val => val >= 1 || '1 ou plus' ]"
       >
       </q-input>
       <q-input
-        v-model="produit.descriptionProduit"
-        type="textarea"
+        v-model="produit.nom"
+        type="text"
         class="q-pa-md"
-        label="Description du produit *"
+        label="Désignation *"
         lazy-rules
-        :rules="[ val => val && val.length > 0 || 'veuillez remplir']"
+        :rules="[ val => val && val.length > 0 || 'veuillez taper la désignation']"
       >
       </q-input>
-    <div class="q-gutter-sm justify-center q-pa-md">
+    <div class="q-gutter-sm justify-center q-pa-md q-pb-xl">
        <q-input
         type="number"
         v-model="produit.montantProduit"
-        label="montant"
-        :rules="[ val => val && val.length > 0 || 'veuillez remplir']"
+        label="Prix unitaire"
+        :rules="[ val => val >= 1 || '1 ou plus' ]"
       >
       </q-input>
     </div>
-      <div class="q-pa-md ">
-    <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Ajouter nouveau produit" >
+      <div class=" q-pr-lg q-pt-xl q-pb-lg q-gutter-md absolute-bottom-right">
+    <q-btn no-caps  push color="red-5" @click="$router.push({name: 'ProductManagment'})"  label="Annuler" />
+    <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  label="Ajouter" >
       <template v-slot:loading>
         <q-spinner-hourglass class="on-left" />
         Chargement...
@@ -58,6 +59,7 @@ export default {
         return{
             loading: false,
             produit:{
+                refId: '',
                 nomProduit: '',
                 descriptionProduit: '',
                 montantProduit: '',
@@ -73,7 +75,7 @@ export default {
                 color: 'green-4',
                 textColor: 'white',
                 icon: 'done',
-                message: 'produit crée !'
+                message: 'Produit ajouté !'
             })
       }
     }
