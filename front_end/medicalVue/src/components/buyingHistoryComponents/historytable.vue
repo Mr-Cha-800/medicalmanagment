@@ -9,65 +9,72 @@
         <q-card-actions class="q-pa-xl">
 <table>
   <tr>
-    <th>ref Produit</th>
-    <th>Nom</th>
-    <th>Description</th>
-    <th>montant</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>N° Facture</th>
+    <th>Nom du client</th>
+    <th>Prénom du client</th>
+    <th>Date</th>
+    <th>Montant TTC</th>
+    <th>Visualiser</th>
+    <th>Imprimer</th>
+    <th>Supprimer</th>
   </tr>
   <tr>
     <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
-    <td>100 Da</td> 
-    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>voir</q-tooltip></q-btn></td>
+    <td>Maria </td>
+    <td>Chouchou</td>
+    <td>16 décembre 2020</td> 
+    <td>100 Da</td>
+    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green" class="fixed-center" name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Centro comercial Moctezuma</td>
     <td>Francisco Chang</td>
-    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
+    <td>Chouchou</td>
+    <td>16 décembre 2020</td> 
     <td>200 Da</td>
-    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>voir</q-tooltip></q-btn></td>
+    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Ernst Handel</td>
     <td>Roland Mendel</td>
-    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
+    <td>Chouchou</td>
+    <td>16 décembre 2020</td> 
     <td>300 Da</td>
-    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>voir</q-tooltip></q-btn></td>
+    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Island Trading</td>
     <td>Helen Bennett</td>
-    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
-    <td>400 Da</td>
-    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>voir</q-tooltip></q-btn></td>
+    <td>Chouchou</td>
+    <td>16 décembre 2020</td> 
+    <td>400 Da</td> 
+    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="blue-grey-5" name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Laughing Bacchus Winecellars</td>
     <td>Yoshi Tannamuri</td>
-    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
+    <td>Chouchou</td>
+    <td>16 décembre 2020</td> 
     <td>500 Da</td>
-    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>voir</q-tooltip></q-btn></td>
+    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Magazzini Alimentari Riuniti</td>
     <td>Giovanni Rovelli</td>
-    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
+    <td>Chouchou</td>
+    <td>16 décembre 2020</td> 
     <td>600 Da</td>
-    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>voir</q-tooltip></q-btn></td>
+    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
