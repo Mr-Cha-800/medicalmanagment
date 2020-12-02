@@ -9,17 +9,15 @@
         <q-card-actions class="q-pa-xl">
 <table>
   <tr>
-    <th>ref Produit</th>
-    <th>Nom</th>
-    <th>Description</th>
-    <th>montant</th>
+    <th>N° Réf.</th>
+    <th>Désignation</th>
+    <th>Prix unitaire</th>
     <th></th>
     <th></th>
   </tr>
   <tr>
     <td>Alfreds Futterkiste</td>
     <td>Maria Anders</td>
-    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>100 Da</td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 1 }})"  name="edit"/><q-tooltip>modifier</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
@@ -27,7 +25,6 @@
   <tr>
     <td>Centro comercial Moctezuma</td>
     <td>Francisco Chang</td>
-    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>200 Da</td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 2 }})" name="edit"/><q-tooltip>modifier</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
@@ -35,7 +32,6 @@
   <tr>
     <td>Ernst Handel</td>
     <td>Roland Mendel</td>
-    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>300 Da</td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 3 }})" name="edit"/><q-tooltip>modifier</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
@@ -43,7 +39,6 @@
   <tr>
     <td>Island Trading</td>
     <td>Helen Bennett</td>
-    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>400 Da</td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 4 }})" name="edit"/><q-tooltip>modifier</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
@@ -51,7 +46,6 @@
   <tr>
     <td>Laughing Bacchus Winecellars</td>
     <td>Yoshi Tannamuri</td>
-    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>500 Da</td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 5 }})" name="edit"/><q-tooltip>modifier</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
@@ -59,7 +53,6 @@
   <tr>
     <td>Magazzini Alimentari Riuniti</td>
     <td>Giovanni Rovelli</td>
-    <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>600 Da</td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 6 }})" name="edit"/><q-tooltip>modifier</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
