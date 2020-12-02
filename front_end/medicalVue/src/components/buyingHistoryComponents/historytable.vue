@@ -12,7 +12,7 @@
     <th>ref Produit</th>
     <th>Nom</th>
     <th>Description</th>
-    <th>prix</th>
+    <th>montant</th>
     <th></th>
     <th></th>
   </tr>
@@ -66,12 +66,45 @@
   </tr>
 </table>
         </q-card-actions>
+    <q-dialog v-model="dialog" persistent transition-show="flip-down" transition-hide="flip-up">
+      <q-card class="bg-blue-grey-8 text-white">
+        <q-card-section>
+          <div class="text-h6">Alert</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          Voulez vous vraiment supprimer ?
+        </q-card-section>
+
+        <q-card-section class="q-pt-none float-right">
+          <q-btn flat label="Cancel" v-close-popup />
+          <q-btn flat label="Supprimer" v-close-popup @click="deletees()"  />
+          </q-card-section>
+      </q-card>
+    </q-dialog>
         </q-card>
 </template>
 
 <script>
 export default {
-
+  data(){
+    return {
+      dialog: false
+    }
+  },
+  methods: {
+    deletee(){
+      this.dialog = true
+    },
+    deletees(){
+      this.$q.notify({
+          color: 'green-4',
+          textColor: 'white',
+          icon: 'done',
+          message: 'produit supprimé !'
+      })
+    }
+  }
 }
 </script>
 
