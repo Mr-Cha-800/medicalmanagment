@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import NewOrder from '../views/NewOrder.vue'
 import ProductManagment from '../views/ProductManagment.vue'
+import modifierproduit from '../components/ProductManagmentComponents/modifier.vue'
+import creerproduit from '../components/ProductManagmentComponents/creer.vue'
+import chercheproduit from '../components/ProductManagmentComponents/recherche.vue'
 import InvoiceHistory from '../views/InvoiceHistory.vue'
 import Settings from '../views/Settings.vue'
 
@@ -31,6 +34,21 @@ const routes = [
     path: '/ProductManagment',
     name: 'ProductManagment',
     component: ProductManagment
+  },
+  {
+    path: '/ProductManagment/edit/:id',
+    name: 'modifierproduit',
+    component: modifierproduit
+  },
+  {
+    path: '/ProductManagment/creer',
+    name: 'creerproduit',
+    component: creerproduit
+  },
+  {
+    path: '/ProductManagment/recherche',
+    name: 'chercheproduit',
+    component: chercheproduit
   },
   {
     path: '/InvoiceHistory',
