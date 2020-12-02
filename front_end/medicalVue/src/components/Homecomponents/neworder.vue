@@ -77,14 +77,14 @@
     <div class="q-pa-lg">
     <table>
       <tr>
-        <th>Ref</th>
-        <th>Nom</th>
-        <th>quantité</th>
-        <th>montant</th>
+        <th>N° Réf</th>
+        <th>Désignation</th>
+        <th>Quantité</th>
+        <th>Montant</th>
       </tr>
       <tr v-for="product in neworder.commande" :key="product.id">
         <td>{{product.ref}}</td>
-        <td>{{product.nom}}</td>
+        <td>{{product.nom}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores minima velit repellat harum exercitationem deleniti, nisi, earum maxime aut et ratione ad, qui dicta doloremque repellendus soluta non odit quas. </td>
         <td><q-input type="number" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>
         <td>{{product.quantity*product.price}} Da</td>
       </tr>
