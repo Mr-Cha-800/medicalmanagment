@@ -39,8 +39,8 @@
       </q-input>
     </div>
       <div class=" q-pr-lg q-pt-lg q-pb-lg q-gutter-md absolute-bottom-right ">
-    <q-btn no-caps  push color="red-5" @click="$router.push({name: 'ProductManagment'})" icon="clear" label="Annuler" />
-    <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Términé" >
+    <q-btn no-caps  push color="red-5" @click="$router.push({name: 'ProductManagment'})"  label="Annuler" />
+    <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  label="Terminé" >
       <template v-slot:loading>
         <q-spinner-hourglass class="on-left" />
         Chargement...
@@ -68,7 +68,7 @@ export default {
     methods:{
         onSubmit(){
             this.$router.replace({
-            name: 'chercheproduit'
+            name: 'ProductManagment'
           })
             this.$q.notify({
                 color: 'green-4',
