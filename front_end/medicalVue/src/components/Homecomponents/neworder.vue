@@ -15,7 +15,7 @@
         v-model="neworder.prenom"
         type="text"
         class="q-pa-md"
-        label="Votre Prénom *"
+        label="Prénom *"
         lazy-rules
         :rules="[ val => val && val.length > 0 || 'veuillez taper le prénom']"
       >
@@ -24,7 +24,7 @@
         v-model="neworder.nom"
         type="text"
         class="q-pa-md"
-        label="Votre Nom *"
+        label="Nom *"
         lazy-rules
         :rules="[ val => val && val.length > 0 || 'veuillez taper le nom']"
       >
@@ -32,7 +32,7 @@
     <div class="q-gutter-sm justify-center q-pa-md">
        <q-input
         v-model="neworder.numId"
-        label="Numero carte Id"
+        label="N° Carte Nationale/Permis de Conduire"
         hint="facultatif"
       >
       </q-input>
