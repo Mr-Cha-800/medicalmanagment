@@ -1,4 +1,4 @@
-// import axios from 'axios'
+import axios from 'axios'
 export default {
     namespaced: true,
     state:{
@@ -12,9 +12,24 @@ export default {
         }
     },
     actions:{
-        order({ commit }, order){
+        async order(_, order){
             console.log(order.commande)
-            commit('neworder', order)
+            return new Promise((resolve, reject) => {
+                axios.post('/neworder', {
+                    nom: order.nom,
+                    prenom: order.prenom,
+                    numId: order.numId,
+                    numPermis: order.numPermis,
+                    commande: order.commande
+                })
+                  .then(response => {
+                    resolve(response)
+                    // console.log(response)
+                  })
+                  .catch(error => {
+                    reject(error)
+                  })
+              })
         }
     }
 }
