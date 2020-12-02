@@ -1,7 +1,7 @@
 <template>
     <q-card class="my-card">
         <q-card-section class="bg-blue-grey-5 text-white">
-            <div class="text-h6">Nouvelle Commande</div>
+            <div class="text-h6">Nouvelle commande</div>
         </q-card-section>
 
         <q-separator />
@@ -10,29 +10,29 @@
       @submit.prevent="onSubmit"
       class="justify-center q-pa-lg"
     >
-    <div class="text-h6">Informations de client</div>
-      <q-input
-        v-model="neworder.prenom"
-        type="text"
-        class="q-pa-md"
-        label="Votre Prénom *"
-        lazy-rules
-        :rules="[ val => val && val.length > 0 || 'veuillez taper le prénom']"
-      >
-      </q-input>
+    <div class="text-h6">Informations du client</div>
       <q-input
         v-model="neworder.nom"
         type="text"
         class="q-pa-md"
-        label="Votre Nom *"
+        label="Nom *"
         lazy-rules
         :rules="[ val => val && val.length > 0 || 'veuillez taper le nom']"
+      >
+      </q-input>
+      <q-input
+        v-model="neworder.prenom"
+        type="text"
+        class="q-pa-md"
+        label="Prénom *"
+        lazy-rules
+        :rules="[ val => val && val.length > 0 || 'veuillez taper le prénom']"
       >
       </q-input>
     <div class="q-gutter-sm justify-center q-pa-md">
        <q-input
         v-model="neworder.numId"
-        label="Numero carte Id"
+        label="N° carte Id"
         hint="facultatif"
       >
       </q-input>
@@ -40,7 +40,7 @@
     <div class="q-gutter-sm justify-center q-pa-md">
        <q-input
         v-model="neworder.numPermis"
-        label="Numero permis de conduire"
+        label="N° permis de conduire"
         hint="facultatif"
       >
       </q-input>
