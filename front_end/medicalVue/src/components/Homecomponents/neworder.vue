@@ -74,7 +74,7 @@
         </template>
     </q-select>
   </div>
-    <div class="q-pa-lg">
+    <div class="q-pa-lg q-pb-xl">
     <table>
       <tr>
         <th style="width:20%">N° Réf.</th>
@@ -90,7 +90,7 @@
       </tr>
     </table>
     </div>
-      <div class="q-pa-md ">
+      <div class="q-pr-lg q-pt-xl q-pb-lg q-gutter-md absolute-bottom-right">
     <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer la facture" >
       <template v-slot:loading>
         <q-spinner-hourglass class="on-left" />

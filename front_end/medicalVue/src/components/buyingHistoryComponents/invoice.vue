@@ -28,30 +28,30 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="no">#</th>
+            <th class="totale">N° RÉF.</th>
             <th class="desc">DESCRIPTION</th>
             <th class="unit">PRIX UNITAIRE</th>
-            <th class="qty">QUANTITé</th>
-            <th class="total">TOTAL</th>
+            <th class="qty">QUANTITÉ</th>
+            <th class="total">MONTANT HT</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="no">01</td>
+            <td class="totale">01</td>
             <td class="desc"><h3>Chaise Roulante</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum architecto accusantium dolorum sunt.</td>
             <td class="unit">40.00 DA</td>
             <td class="qty">30</td>
             <td class="total">1,200.00 DA</td>
           </tr>
           <tr>
-            <td class="no">02</td>
-            <td class="desc"><h3>Béquile</h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam illo neque possimus optio distinctio ea.</td>
+            <td class="totale">02</td>
+            <td class="desc"><h3>Béquille</h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam illo neque possimus optio distinctio ea.</td>
             <td class="unit">40.00 DA</td>
             <td class="qty">80</td>
             <td class="total">3,200.00 DA</td>
           </tr>
           <tr>
-            <td class="no">03</td>
+            <td class="totale">03</td>
             <td class="desc"><h3>Bavettes</h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam illo neque possimus optio distinctio ea.</td>
             <td class="unit">40.00 DA</td>
             <td class="qty">20</td>
@@ -61,17 +61,17 @@
         <tfoot>
           <tr>
             <td colspan="2"></td>
-            <td colspan="2">SUBTOTAL</td>
+            <td colspan="2">TOTAL HT</td>
             <td>5,200.00 DA</td>
           </tr>
           <tr>
             <td colspan="2"></td>
-            <td colspan="2">TAX 25%</td>
+            <td colspan="2">TVA 19%</td>
             <td>1,300.00 DA</td>
           </tr>
           <tr>
             <td colspan="2"></td>
-            <td colspan="2">GRAND TOTAL</td>
+            <td colspan="2">TOTAL TTC</td>
             <td>6,500.00 DA</td>
           </tr>
         </tfoot>
@@ -243,7 +243,12 @@ table .total {
   background: #57B223;
   color: #FFFFFF;
 }
+table .totale {
+  background: #57B223;
+  color: #FFFFFF;
+  text-align: center;
 
+}
 table td.unit,
 table td.qty,
 table td.total {
