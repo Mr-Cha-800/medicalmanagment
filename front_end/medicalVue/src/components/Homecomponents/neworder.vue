@@ -32,7 +32,7 @@
     <div class="q-gutter-sm justify-center q-pa-md">
        <q-input
         v-model="neworder.numId"
-        label="N° carte Id"
+        label="N° de la carte d'identité"
         hint="facultatif"
       >
       </q-input>
@@ -40,7 +40,7 @@
     <div class="q-gutter-sm justify-center q-pa-md">
        <q-input
         v-model="neworder.numPermis"
-        label="N° permis de conduire"
+        label="N° de permis de conduire"
         hint="facultatif"
       >
       </q-input>
