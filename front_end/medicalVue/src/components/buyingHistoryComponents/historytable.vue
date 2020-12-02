@@ -15,12 +15,14 @@
     <th>montant</th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
   <tr>
     <td>Alfreds Futterkiste</td>
     <td>Maria Anders</td>
     <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
-    <td>100 Da</td>
+    <td>100 Da</td> 
+    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>voir</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
@@ -29,6 +31,7 @@
     <td>Francisco Chang</td>
     <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>200 Da</td>
+    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>voir</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
@@ -37,6 +40,7 @@
     <td>Roland Mendel</td>
     <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>300 Da</td>
+    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>voir</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
@@ -45,6 +49,7 @@
     <td>Helen Bennett</td>
     <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>400 Da</td>
+    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>voir</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="blue-grey-5" name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
@@ -53,6 +58,7 @@
     <td>Yoshi Tannamuri</td>
     <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>500 Da</td>
+    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>voir</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
@@ -61,6 +67,7 @@
     <td>Giovanni Rovelli</td>
     <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi explicabo illo amet, rem, tenetur ipsam vero dolores quae esse nihil quis molestias iusto voluptatibus veritatis beatae labore harum libero officiis?</td>
     <td>600 Da</td>
+    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>voir</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
     <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
