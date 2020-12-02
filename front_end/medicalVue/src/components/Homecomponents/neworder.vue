@@ -80,7 +80,7 @@
         <th>Ref</th>
         <th>Nom</th>
         <th>quantité</th>
-        <th>prix</th>
+        <th>montant</th>
       </tr>
       <tr v-for="product in neworder.commande" :key="product.id">
         <td>{{product.ref}}</td>

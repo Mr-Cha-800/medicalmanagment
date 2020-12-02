@@ -12,7 +12,7 @@
     <th>ref Produit</th>
     <th>Nom</th>
     <th>Description</th>
-    <th>prix</th>
+    <th>montant</th>
     <th></th>
     <th></th>
   </tr>

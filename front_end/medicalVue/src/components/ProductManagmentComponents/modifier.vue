@@ -33,8 +33,8 @@
     <div class="q-gutter-sm justify-center q-pa-md">
        <q-input
         type="number"
-        v-model="produit.prixProduit"
-        label="prix"
+        v-model="produit.montantProduit"
+        label="montant"
         :rules="[ val => val && val.length > 0 || 'veuillez taper la somme en DA']"
       >
       </q-input>
@@ -60,7 +60,7 @@ export default {
             produit:{
                 nomProduit: 'mr wasmo',
                 descriptionProduit: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, quaerat exercitationem nisi quae, repudiandae corrupti neque recusandae illum hic aspernatur delectus id vero earum illo ad itaque assumenda! Expedita, unde!',
-                prixProduit: '5000',
+                montantProduit: '5000',
             }
         }
     },

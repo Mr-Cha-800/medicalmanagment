@@ -11,7 +11,7 @@
   <tr>
     <th>Nom produit</th>
     <th>Nom client</th>
-    <th>Prix</th>
+    <th>montant</th>
   </tr>
   <tr>
     <td>Alfreds Futterkiste</td>
