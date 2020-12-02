@@ -83,7 +83,7 @@
     <q-dialog v-model="dialog" persistent transition-show="flip-down" transition-hide="flip-up">
       <q-card class="bg-blue-grey-8 text-white">
         <q-card-section>
-          <div class="text-h6">Alert</div>
+          <div class="text-h6">Alerte</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
