@@ -12,65 +12,65 @@
     <th>N° Réf.</th>
     <th>Désignation</th>
     <th>Prix unitaire</th>
-    <th></th>
-    <th></th>
+    <th>Modifier</th>
+    <th>Supprimer</th>
   </tr>
   <tr>
     <td>Alfreds Futterkiste</td>
     <td>Maria Anders</td>
     <td>100 Da</td>
-    <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 1 }})"  name="edit"/><q-tooltip>modifier</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
+    <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 1 }})"  name="edit"/><q-tooltip>Modifier</q-tooltip></q-btn></td>
+    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>Supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Centro comercial Moctezuma</td>
     <td>Francisco Chang</td>
     <td>200 Da</td>
-    <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 2 }})" name="edit"/><q-tooltip>modifier</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
+    <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 2 }})" name="edit"/><q-tooltip>Modifier</q-tooltip></q-btn></td>
+    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>Supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Ernst Handel</td>
     <td>Roland Mendel</td>
     <td>300 Da</td>
-    <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 3 }})" name="edit"/><q-tooltip>modifier</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
+    <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 3 }})" name="edit"/><q-tooltip>Modifier</q-tooltip></q-btn></td>
+    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>Supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Island Trading</td>
     <td>Helen Bennett</td>
     <td>400 Da</td>
-    <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 4 }})" name="edit"/><q-tooltip>modifier</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
+    <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 4 }})" name="edit"/><q-tooltip>Modifier</q-tooltip></q-btn></td>
+    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>Supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Laughing Bacchus Winecellars</td>
     <td>Yoshi Tannamuri</td>
     <td>500 Da</td>
-    <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 5 }})" name="edit"/><q-tooltip>modifier</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
+    <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 5 }})" name="edit"/><q-tooltip>Modifier</q-tooltip></q-btn></td>
+    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>Supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Magazzini Alimentari Riuniti</td>
     <td>Giovanni Rovelli</td>
     <td>600 Da</td>
-    <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 6 }})" name="edit"/><q-tooltip>modifier</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
+    <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: 6 }})" name="edit"/><q-tooltip>Modifier</q-tooltip></q-btn></td>
+    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>Supprimer</q-tooltip></q-btn></td>
   </tr>
 </table>
         </q-card-actions>
     <q-dialog v-model="dialog" persistent transition-show="flip-down" transition-hide="flip-up">
       <q-card class="bg-blue-grey-8 text-white">
         <q-card-section>
-          <div class="text-h6">Alert</div>
+          <div class="text-h6">Alerte</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          Voulez vous vraiment supprimer ?
+          Voulez vous vraiment Supprimer ?
         </q-card-section>
 
         <q-card-section class="q-pt-none float-right">
-          <q-btn flat label="Cancel" v-close-popup />
+          <q-btn flat label="Annuler" v-close-popup />
           <q-btn flat label="Supprimer" v-close-popup @click="deletees"  />
           </q-card-section>
       </q-card>
@@ -94,7 +94,7 @@ export default {
           color: 'green-4',
           textColor: 'white',
           icon: 'done',
-          message: 'produit supprimé !'
+          message: 'Produit supprimé !'
       })
     }
   }
