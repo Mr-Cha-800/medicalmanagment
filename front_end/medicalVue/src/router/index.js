@@ -11,6 +11,7 @@ import chercheproduit from '../components/ProductManagmentComponents/recherche.v
 import InvoiceHistory from '../views/InvoiceHistory.vue'
 import Invoicesearch from '../components/buyingHistoryComponents/recherche.vue'
 import Settings from '../views/Settings.vue'
+import Invoiceshow from '../components/buyingHistoryComponents/invoice.vue'
 
 Vue.use(VueRouter)
 
@@ -62,6 +63,14 @@ const routes = [
     path: '/InvoiceHistory/recherche',
     name: 'Invoicesearch',
     component: Invoicesearch
+  },
+  {
+    path: '/InvoiceHistory/invoice/:id',
+    name: 'Invoiceshow',
+    component: Invoiceshow,
+    meta: {
+      header: 1
+    }
   },
   {
     path: '/Settings',
