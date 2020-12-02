@@ -49,7 +49,7 @@
     <div class="q-pa-md">
     <q-select
       v-model="neworder.commande"
-      label="Nom produit"
+      label="Désignation/Référence du produit"
       use-input
       use-chips
       multiple
