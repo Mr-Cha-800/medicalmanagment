@@ -1,7 +1,7 @@
 <template>
   <q-card class="my-card">
         <q-card-section class="bg-blue-grey-5 text-white">
-            <div class="text-h6">Les produits</div>
+            <div class="text-h6">Liste des produits</div>
         </q-card-section>
 
         <q-separator />

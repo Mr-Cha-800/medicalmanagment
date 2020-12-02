@@ -77,7 +77,7 @@
     <div class="q-pa-lg">
     <table>
       <tr>
-        <th style="width:20%">N° Réf</th>
+        <th style="width:20%">N° Réf.</th>
         <th style="width:80%">Désignation</th>
         <th style="width:20%">Quantité</th>
         <th>Montant</th>
