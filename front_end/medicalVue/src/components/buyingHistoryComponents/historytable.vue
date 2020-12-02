@@ -24,9 +24,9 @@
     <td>Chouchou</td>
     <td>16 décembre 2020</td> 
     <td>100 Da</td>
-    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green" class="fixed-center" name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green" name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Centro comercial Moctezuma</td>
@@ -34,9 +34,9 @@
     <td>Chouchou</td>
     <td>16 décembre 2020</td> 
     <td>200 Da</td>
-    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Ernst Handel</td>
@@ -44,9 +44,9 @@
     <td>Chouchou</td>
     <td>16 décembre 2020</td> 
     <td>300 Da</td>
-    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Island Trading</td>
@@ -54,9 +54,9 @@
     <td>Chouchou</td>
     <td>16 décembre 2020</td> 
     <td>400 Da</td> 
-    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="blue-grey-5" name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat><q-icon color="blue-grey-5" name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Laughing Bacchus Winecellars</td>
@@ -64,9 +64,9 @@
     <td>Chouchou</td>
     <td>16 décembre 2020</td> 
     <td>500 Da</td>
-    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
   <tr>
     <td>Magazzini Alimentari Riuniti</td>
@@ -74,9 +74,9 @@
     <td>Chouchou</td>
     <td>16 décembre 2020</td> 
     <td>600 Da</td>
-    <td><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
-    <td><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: 3 }})" ><q-icon color="green"  name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat><q-icon color="blue-grey-5"  name="print"/><q-tooltip>imprimer</q-tooltip></q-btn></td>
+    <td class="text-center"><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>supprimer</q-tooltip></q-btn></td>
   </tr>
 </table>
         </q-card-actions>
