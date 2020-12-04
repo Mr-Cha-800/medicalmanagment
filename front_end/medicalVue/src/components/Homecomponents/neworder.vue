@@ -10,7 +10,7 @@
       @submit.prevent="onSubmit"
       class="justify-center q-pa-lg"
     >
-    <div class="text-h6">Informations du client</div>
+    <div class="text-h6">Informations de l'assuré</div>
       <q-input
         v-model="neworder.nom"
         type="text"
@@ -31,19 +31,35 @@
       </q-input>
     <div class="q-gutter-sm justify-center q-pa-md">
        <q-input
-        v-model="neworder.numId"
-        label="N° de la carte d'identité"
-        hint="facultatif"
+        v-model="neworder.ss"
+        label="N° sécurité sociale *"
+        mask="## #### #### ##"
+        fill-mask
+        hint="Aide: ## #### #### ##"
+        :rules="[val => !!val || 'Obligatoire',
+          val => val && val.length > 0  || 'veuillez remplir correctement']"
+        lazy-rules
       >
       </q-input>
     </div>
-    <div class="q-gutter-sm justify-center q-pa-md">
-       <q-input
-        v-model="neworder.numPermis"
-        label="N° de permis de conduire"
-        hint="facultatif"
-      >
-      </q-input>
+    <div class="q-gutter-xl row justify-between q-pa-md">
+      <q-select
+        class="col"
+        v-model="neworder.caisse"
+        :options="neworder.caisseoptions"
+        label="Caisse"
+        emit-value
+        map-options
+      />
+      <q-select
+        class="col"
+        v-if="neworder.caisse === 'CASNOS' || neworder.caisse === 'CNAS'"
+        v-model="neworder.wilaya"
+        :options="neworder.optionswilaya"
+        label="Wilaya"
+        emit-value
+        map-options
+      />
     </div>
     <div class="text-h6">Commande</div>
     <div class="q-pa-md">
@@ -142,9 +158,223 @@ export default {
       neworder:{
         nom: '',
         prenom: '',
-        numId: '',
+        ss: '',
         numPermis: '',
-        commande: null
+        commande: null,
+        wilaya: null,
+        optionswilaya:[
+          {
+              label:"ADRAR",
+              value:"ADRAR"
+          },
+          {
+              label:"CHLEF",
+              value:"CHLEF"
+          },
+          {
+              label:"LAGHOUAT",
+              value:"LAGHOUAT"
+          },
+          {
+              label:"OUM EL BOUGHI",
+              value:"OUM EL BOUGHI"
+          },
+          {
+              label:"BATNA",
+              value:"BATNA"
+          },
+          {
+              label:"BEJAIA",
+              value:"BEJAIA"
+          },
+          {
+              label:"BISKRA",
+              value:"BISKRA"
+          },
+          {
+              label:"BECHAR",
+              value:"BECHAR"
+          },
+          {
+              label:"BLIDA",
+              value:"BLIDA"
+          },
+          {
+              label:"BOUIRA",
+              value:"BOUIRA"
+          },
+          {
+              label:"TAMANRASSET",
+              value:"TAMANRASSET"
+          },
+          {
+              label:"TEBESSA",
+              value:"TEBESSA"
+          },
+          {
+              label:"TLEMCEN",
+              value:"TLEMCEN"
+          },
+          {
+              label:"TIARET",
+              value:"TIARET"
+          },
+          {
+              label:"TIZI OUZOU",
+              value:"TIZI OUZOU"
+          },
+          {
+              label:"ALGER",
+              value:"ALGER"
+          },
+          {
+              label:"DJELFA",
+              value:"DJELFA"
+          },
+          {
+              label:"JIJEL",
+              value:"JIJEL"
+          },
+          {
+              label:"SETIF",
+              value:"SETIF"
+          },
+          {
+              label:"SAIDA",
+              value:"SAIDA"
+          },
+          {
+              label:"SKIKDA",
+              value:"SKIKDA"
+          },
+          {
+              label:"SIDI BEL ABBES",
+              value:"SIDI BEL ABBES"
+          },
+          {
+              label:"ANNABA",
+              value:"ANNABA"
+          },
+          {
+              label:"GUELMA",
+              value:"GUELMA"
+          },
+          {
+              label:"CONSTANTINE",
+              value:"CONSTANTINE"
+          },
+          {
+              label:"MEDEA",
+              value:"MEDEA"
+          },
+          {
+              label:"MOSTAGANEM",
+              value:"MOSTAGANEM"
+          },
+          {
+              label:"M'SILA",
+              value:"M'SILA"
+          },
+          {
+              label:"MASCARA",
+              value:"MASCARA"
+          },
+          {
+              label:"OUARGLA",
+              value:"OUARGLA"
+          },
+          {
+              label:"ORAN",
+              value:"ORAN"
+          },
+          {
+              label:"EL BAYDH",
+              value:"EL BAYDH"
+          },
+          {
+              label:"ILLIZI",
+              value:"ILLIZI"
+          },
+          {
+              label:"BORDJ BOU ARRERIDJ",
+              value:"BORDJ BOU ARRERIDJ"
+          },
+          {
+              label:"BOUMERDES",
+              value:"BOUMERDES"
+          },
+          {
+              label:"EL TAREF",
+              value:"EL TAREF"
+          },
+          {
+              label:"TINDOUF",
+              value:"TINDOUF"
+          },
+          {
+              label:"TISSEMSILT",
+              value:"TISSEMSILT"
+          },
+          {
+              label:"EL OUED",
+              value:"EL OUED"
+          },
+          {
+              label:"KHENCHLA",
+              value:"KHENCHLA"
+          },
+          {
+              label:"SOUK AHRASS",
+              value:"SOUK AHRASS"
+          },
+          {
+              label:"TIPAZA",
+              value:"TIPAZA"
+          },
+          {
+              label:"MILA",
+              value:"MILA"
+          },
+          {
+              label:"AIN DEFLA",
+              value:"AIN DEFLA"
+          },
+          {
+              label:"NAAMA",
+              value:"NAAMA"
+          },
+          {
+              label:"AIN TEMOUCHENT",
+              value:"AIN TEMOUCHENT"
+          },
+          {
+              label:"GHARDAIA",
+              value:"GHARDAIA"
+          },
+          {
+              label:"RELIZANE",
+              value:"RELIZANE"
+          }
+        ],
+        caisse: '',
+        caisseoptions: [
+          {
+            label: '',
+            value: ''
+          },
+          {
+            label: 'CNAS',
+            value: 'CNAS'
+          },
+          {
+            label: 'CASNOS',
+            value: 'CASNOS'
+          },
+          {
+            label: 'MILITAIRE',
+            value: 'MILITAIRE'
+          }
+        ]
       },
       model: null,
       filterOptions: stringOptions
@@ -188,6 +418,16 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    }
+  },
+  watch: {
+    neworder: {
+      deep: true,
+      handler (val) {
+        if (val.caisse === 'MILITAIRE' || val.caisse === '') {
+          val.wilaya = ''
+        }
+      }
     }
   }
 }
