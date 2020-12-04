@@ -469,6 +469,11 @@ export default {
         if (val.caisse === 'MILITAIRE' || val.caisse === '') {
           val.wilaya = ''
         }
+        if ((val.nom || val.prenom ) && this.fill === true){
+        this.patient.nom = this.neworder.nom
+        this.patient.prenom = this.neworder.prenom
+
+        }
       }
     },
     fill: function(){
