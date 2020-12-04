@@ -33,12 +33,12 @@
        <q-input
         v-model="neworder.ss"
         label="N° sécurité sociale *"
-        mask="## #### #### ##"
+        mask="# #   # # # #   # # # #    # #"
         fill-mask
-        hint="Aide: ## #### #### ##"
+        lazy-rules
+        hint="Aide: XX XXXX XXXX XX"
         :rules="[val => !!val || 'Obligatoire',
           val => val && val.length > 0  || 'veuillez remplir correctement']"
-        lazy-rules
       >
       </q-input>
     </div>
@@ -60,6 +60,36 @@
         emit-value
         map-options
       />
+    </div>
+    <div class="text-h6">Informations du patient</div>
+    <q-input
+        v-model="patient.nom"
+        type="text"
+        class="q-pa-md"
+        label="Nom *"
+        lazy-rules
+        :rules="[ val => val && val.length > 0 || 'veuillez taper le nom']"
+      >
+      </q-input>
+      <q-input
+        v-model="patient.prenom"
+        type="text"
+        class="q-pa-md"
+        label="Prénom *"
+        lazy-rules
+        :rules="[ val => val && val.length > 0 || 'veuillez taper le prénom']"
+      >
+      </q-input>
+    <div class="q-gutter-sm justify-center q-pa-md">
+      <q-input format="DD-MM-YYYY" formatModel="string" v-model="patient.datenaiss" label="Date de naissance" >
+      <template v-slot:append>
+        <q-icon name="event" class="cursor-pointer">
+          <q-popup-proxy ref="qDateProxyc" transition-show="scale" transition-hide="scale">
+            <q-date v-model="patient.datenaiss" mask="DD-MM-YYYY"  @input="() => $refs.qDateProxyc.hide()" />
+          </q-popup-proxy>
+        </q-icon>
+      </template>
+    </q-input>
     </div>
     <div class="text-h6">Commande</div>
     <div class="q-pa-md">
@@ -375,6 +405,11 @@ export default {
             value: 'MILITAIRE'
           }
         ]
+      },
+      patient:{
+        nom: '',
+        prenom: '',
+        datenaiss: null
       },
       model: null,
       filterOptions: stringOptions
