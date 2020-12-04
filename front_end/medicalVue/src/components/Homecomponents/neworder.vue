@@ -61,7 +61,15 @@
         map-options
       />
     </div>
-    <div class="text-h6">Informations du patient</div>
+    <div class="row">
+      <div class="col"><div class="text-h6">Informations du patient</div> </div>
+      <div class="col">
+      <q-toggle
+        v-model="fill"
+        color="blue-grey-5"
+        label="Remplissage automatique"
+      /></div>
+    </div>
     <q-input
         v-model="patient.nom"
         type="text"
@@ -81,17 +89,13 @@
       >
       </q-input>
     <div class="q-gutter-sm justify-center q-pa-md">
-      <q-input format="DD-MM-YYYY" formatModel="string" v-model="patient.datenaiss" label="Date de naissance" >
-      <template v-slot:append>
-        <q-icon name="event" class="cursor-pointer">
-          <q-popup-proxy ref="qDateProxyc" transition-show="scale" transition-hide="scale">
-            <q-date v-model="patient.datenaiss" mask="DD-MM-YYYY"  @input="() => $refs.qDateProxyc.hide()" />
-          </q-popup-proxy>
-        </q-icon>
-      </template>
+      <q-input 
+        lazy-rules
+        :rules="[ val => val && val.length > 0 || 'veuillez taper le prénom']" format="DD-MM-YYYY" type="date" formatModel="string" v-model="patient.datenaiss" label="Date de naissance" >
+     
     </q-input>
     </div>
-    <div class="text-h6">Commande</div>
+    <div class="text-h6">Produit</div>
     <div class="q-pa-md">
     <q-select
       v-model="neworder.commande"
@@ -184,6 +188,7 @@ const stringOptions = [{
 export default {
   data(){
     return {
+      fill: false,
       loading: false,
       neworder:{
         nom: '',
@@ -409,7 +414,7 @@ export default {
       patient:{
         nom: '',
         prenom: '',
-        datenaiss: null
+        datenaiss: ''
       },
       model: null,
       filterOptions: stringOptions
@@ -462,6 +467,16 @@ export default {
         if (val.caisse === 'MILITAIRE' || val.caisse === '') {
           val.wilaya = ''
         }
+      }
+    },
+    fill: function(){
+      if(this.fill === true) {
+        this.patient.nom = this.neworder.nom
+        this.patient.prenom = this.neworder.prenom
+      }
+      if(this.fill === false) {
+        this.patient.nom = ''
+        this.patient.prenom = ''
       }
     }
   }
