@@ -1,7 +1,7 @@
 <template>
     <q-card class="my-card">
         <q-card-section class="bg-blue-grey-5 text-white">
-            <div class="text-h6">Nouvelle commande</div>
+            <div class="text-h6">Nouveau devis</div>
         </q-card-section>
 
         <q-separator />
@@ -161,7 +161,7 @@
     </table>
     </div>
       <div class="q-pr-lg q-pt-xl q-pb-lg q-gutter-md absolute-bottom-right">
-    <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer la facture" >
+    <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer le devis" >
       <template v-slot:loading>
         <q-spinner-hourglass class="on-left" />
         Chargement...

@@ -10,7 +10,7 @@
    </div>
    <div class="row q-pa-md justify-center full-height full-width text-center">
     <div class="col-md-5 col-sm-6 col-xs-12 q-pa-md">
-        <neworder/>
+        <newdevis/>
     </div>
     <div class="col-md-5 col-sm-6 col-xs-12 q-pa-md">
         <buyinghistory/>
@@ -20,13 +20,13 @@
 </template>
 <script>
 import buyinghistory from '../components/Homecomponents/buyinghistory'
-import neworder from '../components/Homecomponents/neworder'
+import newdevis from '../components/Homecomponents/newdevis'
 import search from '../components/Homecomponents/search'
 export default {
     name: 'Home',
     components: { 
         buyinghistory,
-        neworder,
+        newdevis,
         search
         }
 

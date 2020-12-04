@@ -5,6 +5,7 @@
             <q-toolbar-title>
             <q-btn  @click="$router.push({name: 'Home'})" flat><strong>Admin</strong>  panel</q-btn>
             </q-toolbar-title>
+            <!--<q-btn no-caps @click="$router.push({name: 'NewDevis'})" flat>Nouveau devis</q-btn>-->
             <q-btn no-caps @click="$router.push({name: 'NewOrder'})" flat>Nouvelle commande</q-btn>
             <q-btn no-caps @click="$router.push({name: 'ProductManagment'})" flat>Gestion des produits</q-btn>
             <q-btn no-caps @click="$router.push({name: 'InvoiceHistory'})" flat>Historique des achats</q-btn>

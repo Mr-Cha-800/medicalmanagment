@@ -5,9 +5,13 @@
         <img src="../../../public/logo.png">
       </div>
       <div id="company">
+        <h3 style="font-size:30px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b><br>
+        <i style="font-size:20px">Agrément ministère de la santé N°332 du 02-02-2020</i></h3>
+      </div>
+      <!-- <div id="company">
         <h3 style="font-size:30px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b></h3>
         <h2 style="font-size:20px"><i>Agrément ministère de la santé N°332 du 02-02-2020</i></h2>
-      </div>
+      </div> -->
     </header>
     <br>
     <main>

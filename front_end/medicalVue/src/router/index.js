@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 // product managmeent
 import NewOrder from '../views/NewOrder.vue'
+import NewDevis from '../views/NewDevis.vue'
 import ProductManagment from '../views/ProductManagment.vue'
 import modifierproduit from '../components/ProductManagmentComponents/modifier.vue'
 import creerproduit from '../components/ProductManagmentComponents/creer.vue'
@@ -33,6 +34,11 @@ const routes = [
     path: '/NewOrder',
     name: 'NewOrder',
     component: NewOrder
+  },
+  {
+    path: '/NewDevis',
+    name: 'NewDevis',
+    component: NewDevis
   },
   {
     path: '/ProductManagment',
