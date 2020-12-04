@@ -5,24 +5,28 @@
         <img src="../../../public/logo.png">
       </div>
       <div id="company">
-        <h2 class="name">Medical Hadja</h2>
-        <div>455 Bab E-Dhaya, Sidi Bel Abbes, Algérie</div>
-        <div>(602) 519-0450</div>
-        <div><a href="mailto:contact@MedicalHadja.com">contact@MedicalHadja.com</a></div>
+        <h3 style="font-size:30px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b></h3>
+        <h2 style="font-size:20px"><i>Agrément ministère de la santé N°332 du 02-02-2020</i></h2>
       </div>
     </header>
+    <br>
     <main>
       <div id="details" class="clearfix">
         <div id="client">
-          <div class="to">Facture pour :</div>
-          <h2 class="name">Mohamed Flen</h2>
-          <div class="address">796 Sidi Djillali, Sidi Bel Abbes, Algérie </div>
-          <div class="email"><a href="mailto:mohamed@gmail.com">mohamed@gmail.com</a></div>
+          <div><b style="font-size:15px">N° RC : 22/00-0171155A20</b></div>
+          <div><b style="font-size:15px">N° Art imp : 2284.4529.401</b></div>
+          <div><b style="font-size:15px">NIF : 182224500652142</b></div>
+          <div><img class="img" style="width:25px;height:25px" src="../../../public/phone.png" >
+              <rect width="50" height="50" style="fill:black;"/>
+          <p>
+          <b>06 97 07 94 54</b>
+          <br>
+          <b>07 74 85 40 90</b>
+          </p> 
+          </div>
         </div>
         <div id="invoice">
-          <h1>Facture N° 3215648</h1>
-          <div class="date">Date de la facture: 02/12/2020</div>
-          <div class="date">Dernier délai de paiment: 01/01/2021</div>
+          <div><b>Sidi Bel Abbès le 30-11-2020</b></div>
         </div>
       </div>
       <table border="0" cellspacing="0" cellpadding="0">
@@ -118,11 +122,6 @@ export default {
   clear: both;
 }
 
-a {
-  color: #0087C3;
-  text-decoration: none;
-}
-
 body {
   position: relative;
   width: 21cm;  
@@ -135,34 +134,34 @@ body {
   font-family: SourceSansPro;
 }
 
-header {
-  padding: 10px 0;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #AAAAAA;
-}
-
 #logo {
   float: left;
-  margin-top: 8px;
+  margin-top: 20px;
 }
 
 #logo img {
   height: 70px;
+  margin-right: 20px;
+}
+
+.img{
+    float: left;
+    margin-right:1rem;
 }
 
 #company {
-  float: right;
-  text-align: right;
+  float: left;
+  text-align: left;
 }
 
 
 #details {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 #client {
   padding-left: 6px;
-  border-left: 6px solid #0087C3;
+  border-left: 6px;
   float: left;
 }
 
@@ -191,7 +190,7 @@ h2.name {
 
 #invoice .date {
   font-size: 1.1em;
-  color: #777777;
+  color: #000000;
 }
 
 table {
