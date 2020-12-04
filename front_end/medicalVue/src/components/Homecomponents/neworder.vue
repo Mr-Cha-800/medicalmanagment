@@ -91,7 +91,8 @@
     <div class="q-gutter-sm justify-center q-pa-md">
       <q-input 
         lazy-rules
-        :rules="[ val => val && val.length > 0 || 'veuillez taper le prénom']" format="DD-MM-YYYY" type="date" formatModel="string" v-model="patient.datenaiss" label="Date de naissance" >
+        hint="Date de naissance"
+        :rules="[ val => val && val.length > 0 || 'veuillez taper le prénom']" format="DD-MM-YYYY" type="date" formatModel="string" v-model="patient.datenaiss">
      
     </q-input>
     </div>
