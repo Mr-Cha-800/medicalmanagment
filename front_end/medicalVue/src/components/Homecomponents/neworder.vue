@@ -33,7 +33,7 @@
        <q-input
         v-model="neworder.ss"
         label="N° sécurité sociale *"
-        mask="# #   # # # #   # # # #    # #"
+        mask="## #### #### ##"
         fill-mask
         lazy-rules
         hint="Aide: XX XXXX XXXX XX"
