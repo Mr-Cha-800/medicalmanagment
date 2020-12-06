@@ -85,7 +85,7 @@ export default {
             return new Promise((resolve, reject) => {
                 axios.delete('/produits/'+ id)
                   .then(response => {
-                      dispatch('getproducts')
+                      dispatch('getallproducts')
                     resolve(response)
                     // console.log(response)
                   })
