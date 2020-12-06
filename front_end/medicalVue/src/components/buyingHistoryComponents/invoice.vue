@@ -1,6 +1,6 @@
 <!-- A L'IMPREMENTE MAHECH TEMCHIIIIIII AWÉÉÉÉÉÉÉ-->
 <template>
-    <body class="q-pa-md">
+    <body class="q-pl-md q-pr-md q-pb-md">
     <header class="clearfix">
       <div id="logo">
         <img src="../../../public/logo.png">
