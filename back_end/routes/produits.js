@@ -26,7 +26,11 @@ Router.get('/',(req,res)=>{
          console.log(err);
      })
  });
- 
+
+ // Rechercher un produit
+ Router.post('/recherche',(req,res)=>{
+     mysqlConnection.query('SELECT * FROM produits WHERE DesignationLIKE')
+ });
  // Ajouter un nouveau produit
  Router.post('/',(req,res)=>{
      mysqlConnection.query('INSERT INTO produits VALUES(?,?,?)',[req.body.NumRef,req.body.Designation,req.body.PrixU],(err,rows,fields)=>{
