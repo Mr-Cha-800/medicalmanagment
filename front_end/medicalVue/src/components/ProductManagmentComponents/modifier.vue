@@ -43,7 +43,7 @@
     <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  label="Modifier" >
       <template v-slot:loading>
         <q-spinner-hourglass class="on-left" />
-        Chargement...
+      
       </template>
     </q-btn>
       </div>
