@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
     data(){
         return{
@@ -61,13 +62,18 @@ export default {
             produit:{
                 refId: '',
                 nomProduit: '',
-                descriptionProduit: '',
                 montantProduit: '',
             }
         }
     },
     methods:{
+      ...mapActions('product',['newproduct']),
       onSubmit(){
+        this.loading = true
+        this.newproduct(this.produit)
+        .then(Response => {
+          if(Response){
+            this.loading = false
             this.$router.replace({
             name: 'ProductManagment'
           })
@@ -77,6 +83,18 @@ export default {
                 icon: 'done',
                 message: 'Produit ajouté !'
             })
+          }
+        })
+        .catch(err => {
+            this.loading = false
+          console.log(err)
+            this.$q.notify({
+                color: 'red-4',
+                textColor: 'white',
+                icon: 'clear',
+                message: 'Produit non ajouté !'
+            })
+        })
       }
     }
 }
