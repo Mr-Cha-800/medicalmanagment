@@ -43,7 +43,7 @@
     <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  label="Modifier" >
       <template v-slot:loading>
         <q-spinner-hourglass class="on-left" />
-        Chargement...
+      
       </template>
     </q-btn>
       </div>
@@ -53,20 +53,26 @@
 </template>
 
 <script>
+import { mapActions,mapGetters } from 'vuex'
 export default {
     data(){
         return{
             loading: false,
             produit:{
-                Ref: '56452323',
-                nomProduit: 'mr wasmo',
-                descriptionProduit: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, quaerat exercitationem nisi quae, repudiandae corrupti neque recusandae illum hic aspernatur delectus id vero earum illo ad itaque assumenda! Expedita, unde!',
-                montantProduit: '5000',
+                Ref: '',
+                nomProduit: '',
+                montantProduit: '',
             }
         }
     },
     methods:{
+      ...mapActions('product',['modifyproduct', 'showproduct']),
         onSubmit(){
+          this.loading = true
+          this.modifyproduct(this.produit)
+        .then(Response => {
+          if(Response){
+            this.loading = false
             this.$router.replace({
             name: 'ProductManagment'
           })
@@ -74,9 +80,30 @@ export default {
                 color: 'green-4',
                 textColor: 'white',
                 icon: 'done',
-                message: 'Modifié !'
+                message: 'Produit modifié !'
             })
+          }
+        })
+        .catch(err => {
+            this.loading = false
+          console.log(err)
+            this.$q.notify({
+                color: 'red-4',
+                textColor: 'white',
+                icon: 'clear',
+                message: 'Produit non modifié !'
+            })
+        })
         }
+    },
+    created(){
+      this.showproduct(this.$route.params.id)
+      this.produit.Ref = this.showoneproduct.NumRef
+      this.produit.nomProduit = this.showoneproduct.Designation
+      this.produit.montantProduit = this.showoneproduct.PrixU
+    },
+    computed:{
+      ...mapGetters('product',['showoneproduct'])
     }
 }
 </script>

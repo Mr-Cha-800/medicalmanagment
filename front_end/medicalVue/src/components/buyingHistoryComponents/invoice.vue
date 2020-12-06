@@ -1,5 +1,6 @@
+<!-- A L'IMPREMENTE MAHECH TEMCHIIIIIII AWÉÉÉÉÉÉÉ-->
 <template>
-    <body class="q-pa-md">
+    <body class="q-pl-md q-pr-md q-pb-md">
     <header class="clearfix">
       <div id="logo">
         <img src="../../../public/logo.png">
@@ -20,18 +21,55 @@
           <div><b style="font-size:15px">N° RC : 22/00-0171155A20</b></div>
           <div><b style="font-size:15px">N° Art imp : 2284.4529.401</b></div>
           <div><b style="font-size:15px">NIF : 182224500652142</b></div>
-          <div><img class="img" style="width:25px;height:25px" src="../../../public/phone.png" >
-              <rect width="50" height="50" style="fill:black;"/>
-          <p>
+          <div><div style="float:left;width:20%"><img class="img" style="margin-top:9px;width:25px;height:25px" src="../../../public/phone.png" ></div>
+          <div style="margin-left:20%"> <p>
           <b>06 97 07 94 54</b>
           <br>
           <b>07 74 85 40 90</b>
-          </p> 
-          </div>
+          </p> </div></div>
         </div>
         <div id="invoice">
-          <div><b>Sidi Bel Abbès le 30-11-2020</b></div>
+          <div><b style="font-size:20px">Sidi Bel Abbès le {{date1 }}</b></div>
         </div>
+      </div>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="facture">FACTURE N°: </th> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
+            <th class="dossier">DOSSIER : </th><!--la meme chose hnaya pour le dossier-->
+          </tr>
+        </thead>
+      </table>
+      <div>
+          <div><b style="font-size:20px">L'ASSURÉ :</b></div>
+      </div>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="nom" colspan="2">NOM ET PRÉNOM : </th> <!--hnaya dir variable lel nom wel prénom-->
+          </tr>
+          <tr>
+            <th classe="securite_sociale">N° SÉCURITÉ SOCIALE :</th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
+            <th classe="caisse"> CAISSE :</th> <!--hnaya dir variable lel CAISSE-->
+          </tr>
+        </thead>
+      </table>
+      <div>
+          <div><b style="font-size:20px">PATIENT :</b></div>
+      </div>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="nom" colspan="2">NOM ET PRÉNOM : </th> <!--hnaya dir variable lel nom wel prénom-->
+          </tr>
+          <tr>
+            <th classe="securite_sociale">DATE ET LIEU DE NAISSANCE :</th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
+            <th classe="caisse"> À :</th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
+          </tr>
+        </thead>
+      </table>
+      <div>
+          <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
@@ -40,7 +78,7 @@
             <th class="desc">DESCRIPTION</th>
             <th class="unit">PRIX UNITAIRE</th>
             <th class="qty">QUANTITÉ</th>
-            <th class="total">MONTANT HT</th>
+            <th class="total">PRIX TOTAL</th>
           </tr>
         </thead>
         <tbody>
@@ -58,36 +96,29 @@
             <td class="qty">80</td>
             <td class="total">3,200.00 DA</td>
           </tr>
-          <tr>
-            <td class="totale">03</td>
-            <td class="desc"><h3>Bavettes</h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam illo neque possimus optio distinctio ea.</td>
-            <td class="unit">40.00 DA</td>
-            <td class="qty">20</td>
-            <td class="total">800.00 DA</td>
-          </tr>
+
         </tbody>
         <tfoot>
           <tr>
             <td colspan="2"></td>
-            <td colspan="2">TOTAL HT</td>
+            <td colspan="2">MONTANT H.T</td>
             <td>5,200.00 DA</td>
           </tr>
           <tr>
             <td colspan="2"></td>
-            <td colspan="2">TVA 19%</td>
+            <td colspan="2">TVA 9%</td><!-- DE PRÉFERENCE DIR TVA VARIABLE BEH IDA TBEDLET Y9AD YBEDELHA-->
             <td>1,300.00 DA</td>
           </tr>
           <tr>
             <td colspan="2"></td>
-            <td colspan="2">TOTAL TTC</td>
+            <td colspan="2">MONTANT T.T.C</td>
             <td>6,500.00 DA</td>
           </tr>
         </tfoot>
       </table>
-      <div id="thanks">Merci !</div>
+      <div id="thanks">Arrêter  la présente facture à la somme</div>
       <div id="notices">
-        <div>Remarque:</div>
-        <div class="notice">Une charge financière de 1,5% sera prélevée sur les soldes impayés après 30 jours.</div>
+        Une charge financière de 1,5% sera prélevée sur les soldes impayés après 30 jours.
       </div>
     </main>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">
@@ -100,15 +131,19 @@
 </template>
 
 <script>
+import { date } from 'quasar'
+let timeStamp = Date.now()
+let formattedString = date.formatDate(timeStamp, 'DD-MM-YYYY')
 export default {
     data(){
         return{
-            hi: ''
+            hi: '',
+            date1: formattedString
         }
     },
     methods:{
         printili(){
-            window.print();
+          window.print()
         }
     }
 }
@@ -119,6 +154,7 @@ export default {
   font-family: SourceSansPro;
   src: url('../../../public/SourceSansPro-Regular.ttf');
 }
+
 
 .clearfix:after {
   content: "";
@@ -222,7 +258,7 @@ table td {
 }
 
 table td h3{
-  color: #57B223;
+  color: #000000;
   font-size: 1.2em;
   font-weight: normal;
   margin: 0 0 0.2em 0;
@@ -243,12 +279,10 @@ table .unit {
 }
 
 table .total {
-  background: #57B223;
-  color: #FFFFFF;
+  color: #000000;
 }
 table .totale {
-  background: #57B223;
-  color: #FFFFFF;
+  color: #000000;
   text-align: center;
 
 }
@@ -258,9 +292,9 @@ table td.total {
   font-size: 1.2em;
 }
 
-table tbody tr:last-child td {
-  border: none;
-}
+// table tbody tr:last-child td {
+//   border: none;
+// }
 
 table tfoot td {
   padding: 10px 20px;
@@ -276,10 +310,11 @@ table tfoot tr:first-child td {
 }
 
 table tfoot tr:last-child td {
-  color: #57B223;
+  color: #000000;
+  font-weight: bold;
   font-size: 1.4em;
-  border-top: 1px solid #57B223; 
-
+  border-top: 1px solid #AAAAAA; 
+  border-bottom: 1px solid #AAAAAA;
 }
 
 table tfoot tr td:first-child {
@@ -287,13 +322,8 @@ table tfoot tr td:first-child {
 }
 
 #thanks{
-  font-size: 2em;
-  margin-bottom: 20px;
-}
-
-#notices{
-  padding-left: 6px;
-  border-left: 6px solid #0087C3;  
+  font-size: 1.2em;
+  margin-bottom: 10px;
 }
 
 #notices .notice {
