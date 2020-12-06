@@ -38,11 +38,18 @@ Router.get('/',(req,res)=>{
  });
  
  // Modifier les informations d'un produit 
- 
- 
+Router.patch('/',(req,res)=>{
+    mysqlConnection.query('UPDATE produits SET Designation=?,PrixU=? WHERE NumRef=?',[req.body.Designation,req.body.PrixU,req.body.NumRef],(err,rows,fields)=>{
+        if(!err)
+        res.json(rows);
+        else
+        console.log(err);
+    })
+});
+
  // Supprimer un produit
- Router.delete(':id',(req,res)=>{
-     mysqlConnection.query('DELETE FROM produits WHERE NumRef = ? ',[req.params.id],(err,rows,fields)=>{
+ Router.delete('/',(req,res)=>{
+     mysqlConnection.query('DELETE FROM produits WHERE NumRef = ? ',[req.body.NumRef],(err,rows,fields)=>{
          if(!err)
          res.send(rows)
          else
