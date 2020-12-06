@@ -68,7 +68,7 @@ export default {
         async modifyproduct(_, product){
             return new Promise((resolve, reject) => {
                 axios.patch('/produits', {
-                    NumRef: product.refId,
+                    NumRef: product.Ref,
                     Designation: product.nomProduit,
                     PrixU: product.montantProduit
                 })

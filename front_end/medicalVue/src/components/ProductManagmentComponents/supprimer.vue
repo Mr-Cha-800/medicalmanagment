@@ -44,7 +44,6 @@ export default {
                 this.deleteproduct(this.id)
                 .then(Response => {
                 if(Response){
-                    this.loading = false
                     this.$q.notify({
                         color: 'green-4',
                         textColor: 'white',
@@ -54,7 +53,6 @@ export default {
                 }
                 })
                 .catch(err => {
-                    this.loading = false
                 console.log(err)
                     this.$q.notify({
                         color: 'red-4',
