@@ -67,7 +67,7 @@ export default {
         },
         async modifyproduct(_, product){
             return new Promise((resolve, reject) => {
-                axios.patch('/produits', {
+                axios.patch('/produits/' + product.Ref, {
                     NumRef: product.Ref,
                     Designation: product.nomProduit,
                     PrixU: product.montantProduit
@@ -83,9 +83,7 @@ export default {
         },
         async deleteproduct({ dispatch }, id){
             return new Promise((resolve, reject) => {
-                axios.delete('/produits', {
-                    NumRef: id,
-                })
+                axios.delete('/produits/'+ id)
                   .then(response => {
                       dispatch('getproducts')
                     resolve(response)
