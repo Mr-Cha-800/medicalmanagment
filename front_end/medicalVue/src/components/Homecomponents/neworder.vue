@@ -31,12 +31,25 @@
       </q-input>
     <div class="q-gutter-sm justify-center q-pa-md">
        <q-input
-        v-model="neworder.ss"
+        v-model="neworder.securitesociale"
         label="N° sécurité sociale *"
         mask="## #### #### ##"
         fill-mask
         lazy-rules
         hint="Aide: XX XXXX XXXX XX"
+        :rules="[val => !!val || 'Obligatoire',
+          val => val && val.length > 0  || 'veuillez remplir correctement']"
+      >
+      </q-input>
+    </div>
+    <div class="q-gutter-sm justify-center q-pa-md">
+       <q-input
+        v-model="neworder.tel"
+        label="N° de téléphone "
+        mask="## ## ## ## ##"
+        fill-mask
+        lazy-rules
+        hint="Aide: XX XX XX XX XX"
         :rules="[val => !!val || 'Obligatoire',
           val => val && val.length > 0  || 'veuillez remplir correctement']"
       >
@@ -213,7 +226,8 @@ export default {
       neworder:{
         nom: '',
         prenom: '',
-        ss: '',
+        securitesociale: '',
+        tel: '',
         numPermis: '',
         commande: null,
         wilaya: null,

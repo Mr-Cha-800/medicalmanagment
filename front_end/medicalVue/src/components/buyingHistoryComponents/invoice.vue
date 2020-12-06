@@ -142,7 +142,9 @@ export default {
         }
     },
     methods:{
-        
+        printili(){
+          window.print()
+        }
     }
 }
 </script>
