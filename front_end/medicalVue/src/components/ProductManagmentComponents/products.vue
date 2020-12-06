@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions,mapGetters } from 'vuex'
 import supprimer from './supprimer'
 export default {
   components:{ supprimer },
@@ -44,7 +44,7 @@ export default {
     this.getallproducts()
   },
   computed:{
-    ...mapActions('product', ['getproducts'])
+    ...mapGetters('product', ['getproducts'])
   }
 }
 </script>
