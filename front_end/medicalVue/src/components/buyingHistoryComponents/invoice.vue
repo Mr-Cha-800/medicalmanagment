@@ -245,7 +245,7 @@ table td {
   padding: 10px;
   background: #EEEEEE;
   text-align: center;
-  border-bottom: 1px solid #FFFFFF;
+  border-bottom: 1px solid #000000;
 }
 
 table th {
