@@ -7,7 +7,6 @@
         </q-card-section>
 
         <q-separator />
-
             <q-form
       @submit.prevent="onSubmit"
       class="justify-center q-pa-lg "
@@ -94,13 +93,16 @@ export default {
                 message: 'Produit non modifié !'
             })
         })
+        },
+        fill(){
+        this.produit.Ref = this.showoneproduct[0].NumRef
+        this.produit.nomProduit = this.showoneproduct[0].Designation
+        this.produit.montantProduit = this.showoneproduct[0].PrixU
         }
     },
     created(){
       this.showproduct(this.$route.params.id)
-      this.produit.Ref = this.showoneproduct.NumRef
-      this.produit.nomProduit = this.showoneproduct.Designation
-      this.produit.montantProduit = this.showoneproduct.PrixU
+      this.fill()
     },
     computed:{
       ...mapGetters('product',['showoneproduct'])
