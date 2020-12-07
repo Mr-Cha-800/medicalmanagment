@@ -4,7 +4,7 @@ export default {
     state:{
         order: {},
         product: {},
-        products: []
+        products: {}
     },
     getters:{
         showoneproduct(state){
@@ -67,10 +67,10 @@ export default {
         },
         async modifyproduct(_, product){
             return new Promise((resolve, reject) => {
-                axios.patch('/produits/' + product.Ref, {
-                    NumRef: product.Ref,
-                    Designation: product.nomProduit,
-                    PrixU: product.montantProduit
+                axios.patch('/produits/' + product.NumRef, {
+                    NumRef: product.NumRef,
+                    Designation: product.Designation,
+                    PrixU: product.PrixU
                 })
                   .then(response => {
                     resolve(response)

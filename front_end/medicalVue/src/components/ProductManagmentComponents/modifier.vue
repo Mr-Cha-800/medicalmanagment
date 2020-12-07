@@ -12,7 +12,7 @@
       class="justify-center q-pa-lg "
     >
       <q-input
-        v-model="produit.Ref"
+        v-model="showoneproduct[0].NumRef"
         type="text"
         class="q-pa-md"
         label="N° Réf."
@@ -20,7 +20,7 @@
       >
       </q-input>
       <q-input
-        v-model="produit.nomProduit"
+        v-model="showoneproduct[0].Designation"
         type="text"
         class="q-pa-md"
         label="Désignation *"
@@ -31,10 +31,9 @@
     <div class="q-gutter-sm justify-center q-pa-md q-pb-xl">
        <q-input
         type="number"
-        v-model="produit.montantProduit"
+        v-model="showoneproduct[0].PrixU"
         label="Prix unitaire"
-        :rules="[ val => val && val.length > 0 || 'Veuillez taper la somme en DA']"
-      >
+        :rules="[val => !!val || 'Veuillez remplir']">
       </q-input>
     </div>
       <div class=" q-pr-lg q-pt-lg q-pb-lg q-gutter-md absolute-bottom-right ">
@@ -68,7 +67,7 @@ export default {
       ...mapActions('product',['modifyproduct', 'showproduct']),
         onSubmit(){
           this.loading = true
-          this.modifyproduct(this.produit)
+          this.modifyproduct(this.showoneproduct[0])
         .then(Response => {
           if(Response){
             this.loading = false
@@ -95,9 +94,10 @@ export default {
         })
         },
         fill(){
-        this.produit.Ref = this.showoneproduct[0].NumRef
-        this.produit.nomProduit = this.showoneproduct[0].Designation
-        this.produit.montantProduit = this.showoneproduct[0].PrixU
+            this.produit.Ref = this.showoneproduct[0].NumRef
+            this.produit.nomProduit = this.showoneproduct[0].Designation
+            this.produit.montantProduit = this.showoneproduct[0].PrixU
+        
         }
     },
     created(){

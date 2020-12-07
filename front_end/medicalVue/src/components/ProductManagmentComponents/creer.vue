@@ -14,11 +14,11 @@
     >
       <q-input
         v-model="produit.refId"
-        type="number"
+        type="text"
         class="q-pa-md"
         label="N° Réf. *"
         lazy-rules 
-        :rules="[ val => val >= 1 || '1 ou plus' ]"
+        :rules="[ val => !!val || 'Obligatoire' ]"
       >
       </q-input>
       <q-input
