@@ -10,23 +10,33 @@ const mysqlConnection = require('../connect');
 Router.get('/',(req,res)=>{
     mysqlConnection.query('SELECT * FROM produits',(err,rows,fields)=>{
         if(!err)
-        res.send(rows)
+        res.send(rows);
         else
         console.log(err);
     })
  });
  
+  // Rechercher un produit
+  Router.post('/recherche/',(req,res)=>{
+    mysqlConnection.query('SELECT * FROM produits WHERE NumRef LIKE ? OR Designation LIKE ?',[req.body.Search,req.body.Search],(err,rows,fields)=>{
+        if(!err)
+        res.send(rows);
+        else
+        console.log(err);
+    })
+ });
  
  // Renvoyer les informations d'un seul produit
  Router.get('/:id',(req,res)=>{
-     mysqlConnection.query('SELECT * FROM produits WHERE NumRef = ? ',[req.params.id],(err,rows,fields)=>{
+     mysqlConnection.query('SELECT * FROM produits WHERE NumRef = ?',[req.body.id],(err,rows,fields)=>{
          if(!err)
-         res.send(rows)
+         res.send(rows);
          else
          console.log(err);
      })
  });
- 
+
+
  // Ajouter un nouveau produit
  Router.post('/',(req,res)=>{
      mysqlConnection.query('INSERT INTO produits VALUES(?,?,?)',[req.body.NumRef,req.body.Designation,req.body.PrixU],(err,rows,fields)=>{
