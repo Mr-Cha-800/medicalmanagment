@@ -53,7 +53,7 @@ export default {
               })
         },
         async showproduct({ commit }, id){
-            return new Promise((resolve, reject) => {
+            return await new Promise((resolve, reject) => {
                 axios.get('/produits/'+ id)
                   .then(response => {
                       commit('showproduct', response.data)

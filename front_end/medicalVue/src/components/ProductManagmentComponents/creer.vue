@@ -22,7 +22,7 @@
       >
       </q-input>
       <q-input
-        v-model="produit.nom"
+        v-model="produit.nomProduit"
         type="text"
         class="q-pa-md"
         label="Désignation *"
