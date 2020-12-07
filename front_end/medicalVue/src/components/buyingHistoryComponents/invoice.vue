@@ -117,7 +117,7 @@
       </table>
       <div id="thanks">Arrêter  la présente facture à la somme</div>
       <div id="notices">
-        Une charge financière de 1,5% sera prélevée sur les soldes impayés après 30 jours.
+        {{NumberToLetter}}
       </div>
     </main>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">
@@ -133,17 +133,23 @@
 import { date } from 'quasar'
 let timeStamp = Date.now()
 let formattedString = date.formatDate(timeStamp, 'DD-MM-YYYY')
+import { NumberToLetter } from 'convertir-nombre-lettre';
+
 export default {
     data(){
         return{
             hi: '',
-            date1: formattedString
+            date1: formattedString,
+            NumberToLetter: NumberToLetter(65000)
         }
     },
     methods:{
         printili(){
           window.print()
         }
+    },
+    created(){
+        console.log(NumberToLetter(65000))
     }
 }
 </script>
