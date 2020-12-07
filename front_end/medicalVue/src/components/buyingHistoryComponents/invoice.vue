@@ -45,11 +45,11 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="nom" colspan="2">NOM ET PRÉNOM : </th> <!--hnaya dir variable lel nom wel prénom-->
+            <th class="desc" colspan="2">NOM ET PRÉNOM : </th> <!--hnaya dir variable lel nom wel prénom-->
           </tr>
           <tr>
-            <th classe="securite_sociale">N° SÉCURITÉ SOCIALE :</th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
-            <th classe="caisse"> CAISSE :</th> <!--hnaya dir variable lel CAISSE-->
+            <th class="desc">N° SÉCURITÉ SOCIALE :</th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
+            <th class="desc"> CAISSE :</th> <!--hnaya dir variable lel CAISSE-->
           </tr>
         </thead>
       </table>
@@ -59,11 +59,11 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="nom" colspan="2">NOM ET PRÉNOM : </th> <!--hnaya dir variable lel nom wel prénom-->
+            <th class="desc" colspan="2">NOM ET PRÉNOM : </th> <!--hnaya dir variable lel nom wel prénom-->
           </tr>
           <tr>
-            <th classe="securite_sociale">DATE ET LIEU DE NAISSANCE :</th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
-            <th classe="caisse"> À :</th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
+            <th class="desc">DATE ET LIEU DE NAISSANCE :</th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
+            <th class="desc"> À :</th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
           </tr>
         </thead>
       </table>
