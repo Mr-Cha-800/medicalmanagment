@@ -14,7 +14,6 @@
         <h2 style="font-size:20px"><i>Agrément ministère de la santé N°332 du 02-02-2020</i></h2>
       </div> -->
     </header>
-    <br>
     <main>
       <div id="details" class="clearfix">
         <div id="client">
@@ -84,14 +83,14 @@
         <tbody>
           <tr>
             <td class="totale">01</td>
-            <td class="desc"><h3>Chaise Roulante</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum architecto accusantium dolorum sunt.</td>
+            <td class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum architecto accusantium dolorum sunt.</td>
             <td class="unit">40.00 DA</td>
             <td class="qty">30</td>
             <td class="total">1,200.00 DA</td>
           </tr>
           <tr>
             <td class="totale">02</td>
-            <td class="desc"><h3>Béquille</h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam illo neque possimus optio distinctio ea.</td>
+            <td class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam illo neque possimus optio distinctio ea.</td>
             <td class="unit">40.00 DA</td>
             <td class="qty">80</td>
             <td class="total">3,200.00 DA</td>
@@ -237,7 +236,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 table th,
@@ -245,7 +244,7 @@ table td {
   padding: 10px;
   background: #EEEEEE;
   text-align: center;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #AAAAAA;
 }
 
 table th {
@@ -302,7 +301,7 @@ table tfoot td {
   border-bottom: none;
   font-size: 1.2em;
   white-space: nowrap; 
-  border-top: 1px solid #AAAAAA; 
+  border-top: 1px solid #000000; 
 }
 
 table tfoot tr:first-child td {
@@ -312,9 +311,9 @@ table tfoot tr:first-child td {
 table tfoot tr:last-child td {
   color: #000000;
   font-weight: bold;
-  font-size: 1.4em;
-  border-top: 1px solid #AAAAAA; 
-  border-bottom: 1px solid #AAAAAA;
+  font-size: 1.2em;
+  border-top: 1px solid #000000; 
+  border-bottom: 1px solid #000000;
 }
 
 table tfoot tr td:first-child {
