@@ -93,6 +93,22 @@ export default {
                     reject(error)
                   })
               })
+        },
+        async searchproducts({ commit }, search){
+            return new Promise((resolve, reject) => {
+                axios.post('/produits/recherche', {
+                  Search : search
+                })
+                  .then(response => {
+                    console.log(response.data)
+                      commit('getallproducts', response.data)
+                    resolve(response)
+                    // console.log(response)
+                  })
+                  .catch(error => {
+                    reject(error)
+                  })
+              })
         }
     }
 }

@@ -102,7 +102,7 @@ export default {
     },
     created(){
       this.showproduct(this.$route.params.id)
-      this.fill()
+   //   this.fill()
     },
     computed:{
       ...mapGetters('product',['showoneproduct'])

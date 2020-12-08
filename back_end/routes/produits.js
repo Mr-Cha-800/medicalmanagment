@@ -28,7 +28,7 @@ Router.get('/',(req,res)=>{
  
  // Renvoyer les informations d'un seul produit
  Router.get('/:id',(req,res)=>{
-     mysqlConnection.query('SELECT * FROM produits WHERE NumRef = ?',[req.body.id],(err,rows,fields)=>{
+     mysqlConnection.query('SELECT * FROM produits WHERE NumRef = ?',[req.params.id],(err,rows,fields)=>{
          if(!err)
          res.send(rows);
          else
