@@ -17,7 +17,7 @@ Router.get('/',(req,res)=>{
  });
  
   // Rechercher un produit
-  Router.post('/recherche/',(req,res)=>{
+  Router.post('/recherche',(req,res)=>{
     mysqlConnection.query('SELECT * FROM produits WHERE NumRef LIKE ? OR Designation LIKE ?',[req.body.Search,req.body.Search],(err,rows,fields)=>{
         if(!err)
         res.send(rows);
