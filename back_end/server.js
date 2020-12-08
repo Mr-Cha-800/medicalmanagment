@@ -9,10 +9,10 @@ var cors = require('cors')
 var app = express();
 app.use(bodyparser.json());
 
+app.use(cors())
 app.use('/produits',produits);
 
 
-app.use(cors())
 
 
 app.listen(3000);
