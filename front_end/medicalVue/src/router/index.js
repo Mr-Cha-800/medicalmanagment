@@ -14,6 +14,9 @@ import Invoicesearch from '../components/buyingHistoryComponents/recherche.vue'
 import Settings from '../views/Settings.vue'
 import Invoiceshow from '../components/buyingHistoryComponents/invoice.vue'
 
+// Gestiondevis
+import Gestiondevis from '../views/Gestiondevis.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -69,6 +72,11 @@ const routes = [
     path: '/InvoiceHistory/recherche',
     name: 'Invoicesearch',
     component: Invoicesearch
+  },
+  {
+    path: '/Gestiondevis',
+    name: 'Gestiondevis',
+    component: Gestiondevis
   },
   {
     path: '/InvoiceHistory/invoice/:id',

@@ -9,6 +9,7 @@
             <q-btn no-caps @click="$router.push({name: 'NewOrder'})" flat>Nouvelle commande</q-btn>
             <q-btn no-caps @click="$router.push({name: 'ProductManagment'})" flat>Gestion des produits</q-btn>
             <q-btn no-caps @click="$router.push({name: 'InvoiceHistory'})" flat>Historique des achats</q-btn>
+            <q-btn no-caps @click="$router.push({name: 'Gestiondevis'})" flat>Gestion de devis</q-btn>
           <!--<search/>-->
           <q-space ></q-space>
           <q-btn flat round dense icon="settings" @click="$router.push({name: 'Settings'})" class="q-mr-sm" >
