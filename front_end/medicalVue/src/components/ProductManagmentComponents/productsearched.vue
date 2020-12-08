@@ -38,7 +38,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('product', ['getallproducts'])
+    ...mapActions('product', ['getallproducts', 'searchproducts'])
   },
   created(){
     this.getallproducts()

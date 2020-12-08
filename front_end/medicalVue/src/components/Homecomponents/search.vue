@@ -28,9 +28,6 @@ export default {
             this.searchproducts(this.search)
             .then(Response => {
                     if(Response){
-                    this.$router.replace({
-                    name: 'chercheproduit'
-                })
                     this.$q.notify({
                         color: 'green-4',
                         textColor: 'white',

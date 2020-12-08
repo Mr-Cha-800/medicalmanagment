@@ -96,13 +96,11 @@ export default {
         },
         async searchproducts({ commit }, search){
           search = '%'+search+'%'
-          console.log(search)
             return new Promise((resolve, reject) => {
                 axios.post('/produits/recherche', {
                   Search : search
                 })
                   .then(response => {
-                    console.log(response.data)
                       commit('getallproducts', response.data)
                     resolve(response)
                     // console.log(response)

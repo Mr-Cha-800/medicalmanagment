@@ -186,7 +186,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 const stringOptions = [{
           ref: '23165485',
           nom: 'Google',
@@ -458,6 +458,7 @@ export default {
   
   methods: {
     ...mapActions('order', ['order']),
+    ...mapActions('product', ['getallproducts']),
     createValue (val, done) {
       if (val.length > 2) {
         if (!stringOptions.includes(val)) {
@@ -519,6 +520,12 @@ export default {
         this.patient.prenom = ''
       }
     }
+  },
+  computed:{
+    ...mapGetters('product', ['getproducts'])
+  },
+  created(){
+    this.getallproducts()
   }
 }
 </script>
