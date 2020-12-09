@@ -8,21 +8,20 @@
         </q-card-section>
 
         <q-separator />
-
       <q-card-section horizontal>
         <q-card-section v-if="!edit" class="">
-          <div class="text-h6 q-mt-sm q-mb-xs">N° RC : 22/00-0171155A20</div>
+          <div class="text-h6 q-mt-sm q-mb-xs">N° RC : {{getallinfo[0].NumRegistreComm}}</div>
           <div class="text-caption text-grey">
-           N° Art imp : 2284.4529.401
+           N° Art imp : {{getallinfo[0].NumArtImp }}
           </div>
           <div class="text-caption text-grey">
-           NIF : 182224500652142
+           NIF : {{ getallinfo[0].NumIdFisc}}
           </div>
           <div class="text-caption text-grey">
-           06 97 07 94 54 
+           {{getallinfo[0].TelOne}} 
           </div>
             <div class="text-caption text-grey">
-            07 74 85 40 90
+            {{getallinfo[0].TelTwo}}
           </div>
         </q-card-section>
         </q-card-section>
@@ -32,7 +31,7 @@
       class="justify-center q-pa-lg"
     >
       <q-input
-        v-model="info.NregistreComm"
+        v-model="info.NumRegistreComm"
         type="text"
         class=""
         label="Numéro de registre de commerce *"
@@ -41,7 +40,7 @@
       >
       </q-input>
       <q-input
-        v-model="info.NartImp"
+        v-model="info.NumArtImp"
         type="text"
         class=""
         label="N° d'art d'imposition *"
@@ -50,7 +49,7 @@
       >
       </q-input>
       <q-input
-        v-model="info.NIF"
+        v-model="info.NumIdFisc"
         type="text"
         class=""
         label="N° d'identification fiscale *"
@@ -60,7 +59,7 @@
       </q-input>
     <div class="q-gutter-sm justify-center ">
        <q-input
-        v-model="info.tel"
+        v-model="info.TelOne"
         label="Téléphone"
         mask="(##) ## ## ## ##"
         fill-mask
@@ -71,7 +70,7 @@
     </div>
     <div class="q-gutter-sm justify-center q-pb-xl">
        <q-input
-        v-model="info.tell"
+        v-model="info.TelTwo"
         label="Téléphone"
         mask="(##) ## ## ## ##"
         fill-mask
@@ -104,57 +103,55 @@
 </template>
 
 <script>
-// import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   data () {
     return {
       edit: false,
       info:{
-        NregistreComm: '',
-        NartImp: '',
-        NIF: '',
-        tel: '',
-        tell: '',
+        NumRegistreComm: '',
+        NumArtImp: '',
+        NumIdFisc: '',
+        TelOne: '',
+        TelTwo: '',
       }
     }
   },
   methods: {
+    ...mapActions('company', ['setinfo','modifyinfo']),
+    ...mapGetters('company', ['getinfo']),
     onSubmit () {
-        this.update({
-          id: this.getuserinfo.id,
-          nom: this.nom,
-          nomvrai: this.nomvrai,
-          tel: this.tel,
-          wilaya: this.wilayaselect,
-          password: this.password
-        })
-          .then(() => {
-            this.$q.notify({
-              color: 'green-4',
-              textColor: 'white',
-              icon: 'cloud_done',
-              message: 'Validé'
-            })
-            this.edit = false
-            this.setuser()
+       this.edit = false
+      this.modifyinfo(this.info)
+          .then(response => {
+            if(response){
+              this.$q.notify({
+                color: 'green-4',
+                textColor: 'white',
+                icon: 'cloud_done',
+                message: 'Modifié'
+              })
+              this.setinfo()
+            }
           })
       
     },
     fill () {
       this.edit = true
-      this.nom = this.getuserinfo.name
-      this.nomvrai = this.getuserinfo.nom
-      this.tel = this.getuserinfo.num_de_tel
-      this.wilayaselect = this.getuserinfo.wilaya
+      this.info.NumRegistreComm = this.getallinfo[0].NumRegistreComm
+      this.info.NumArtImp = this.getallinfo[0].NumArtImp
+      this.info.NumIdFisc = this.getallinfo[0].NumIdFisc
+      this.info.TelOne = this.getallinfo[0].TelOne
+      this.info.TelTwo = this.getallinfo[0].TelTwo
     }
   },
   computed: {
-    /* getuserinfo () {
-      return this.getuser()
-    }*/
+    getallinfo () {
+      return this.getinfo()
+    }
   },
   created () {
-  //  this.setuser()
+    this.setinfo()
   }
 }
 </script>
