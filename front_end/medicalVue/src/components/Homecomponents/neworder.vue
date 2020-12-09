@@ -138,18 +138,18 @@
       @new-value="createValue"
       :options="filterOptions"
       @filter="filterFn"
-      option-label = "nom"
+      option-label = "Designation"
       emit-value
       map-options
     >
-        <template v-slot:option="scope">
+       <template v-slot:option="scope">
           <q-item
             v-bind="scope.itemProps"
             v-on="scope.itemEvents"
           >
             <q-item-section>
-              <q-item-label v-html="scope.opt.nom" />
-              <q-item-label caption>{{ scope.opt.ref }}</q-item-label>
+              <q-item-label v-html="scope.opt.Designation" />
+              <q-item-label caption>{{ scope.opt.NumRef }}</q-item-label>
             </q-item-section>
           </q-item>
         </template>
@@ -165,11 +165,11 @@
         <th>Montant</th>
       </tr>
       <tr v-for="product in neworder.commande" :key="product.id">
-        <td>{{product.ref}}</td>
-        <td style="width:80%">{{product.nom}}  </td>
-        <td>{{product.price}} Da</td>
+        <td>{{product.NumRef}}</td>
+        <td style="width:80%">{{product.Designation}}  </td>
+        <td>{{product.PrixU}} Da</td>
         <td style="width:20%"><q-input type="number" min="1" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>
-        <td>{{product.quantity*product.price}} Da</td>
+        <td>{{product.quantity*product.PrixU}} Da</td>
       </tr>
     </table>
     </div>
@@ -187,37 +187,37 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-const stringOptions = [{
-          ref: '23165485',
-          nom: 'Google',
-          quantity: '1',
-          price: '10'
+/*const stringOptions = [{
+          NumRef: '23165485',
+          Designation: 'Google',
+          PrixU: '100',
+          quantity: '1'
         },
         {
-          ref: '23165486',
-          nom: 'Facebook',
-          quantity: '1',
-          price: '200'
+          NumRef: '23165486',
+          Designation: 'Facebook',
+          PrixU: '200',
+          quantity: '1'
         },
         {
-          ref: '23165487',
-          nom: 'Twitter',
-          quantity: '1',
-          price: '700'
+          NumRef: '23165487',
+          Designation: 'Twitter',
+          PrixU: '300',
+          quantity: '1'
         },
         {
-          ref: '23165488',
-          nom: 'Apple',
-          quantity: '1',
-          price: '120'
+          NumRef: '23165488',
+          Designation: 'Apple',
+          PrixU: '400',
+          quantity: '1'
         },
         {
-          ref: '23165489',
-          nom: 'Oracle',
-          quantity: '1',
-          price: '310'
+          NumRef: '23165489',
+          Designation: 'Oracle',
+          PrixU: '500',
+          quantity: '1'
         }
-]
+]*/
 export default {
   data(){
     return {
@@ -452,7 +452,7 @@ export default {
         lieunaissance: ''
       },
       model: null,
-      filterOptions: stringOptions
+      filterOptions: this.getproducts
     }
   },
   
@@ -461,21 +461,22 @@ export default {
     ...mapActions('product', ['getallproducts']),
     createValue (val, done) {
       if (val.length > 2) {
-        if (!stringOptions.includes(val)) {
+        if (!this.getproducts.includes(val)) {
           done(val, 'add-unique')
         }
       }
     },
 
     filterFn (val, update) {
+      let vm = this.getproducts
       update(() => {
         if (val === '') {
-          this.filterOptions = stringOptions
+          this.filterOptions = vm
         }
         else {
           const needle = val.toLowerCase()
-          this.filterOptions = stringOptions.filter(
-            v => v.nom.toLowerCase().indexOf(needle) > -1 || v.ref.toLowerCase().indexOf(needle) > -1 
+          this.filterOptions = vm.filter(
+            v => v.Designation.toLowerCase().indexOf(needle) > -1 || v.NumRef.toLowerCase().indexOf(needle) > -1 
           )
         }
       })
