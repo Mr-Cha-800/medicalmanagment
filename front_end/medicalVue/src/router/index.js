@@ -16,6 +16,8 @@ import Invoiceshow from '../components/buyingHistoryComponents/invoice.vue'
 
 // Gestiondevis
 import Gestiondevis from '../views/Gestiondevis.vue'
+import devisshow from '../components/buyingHistoryComponents/devis.vue'
+import bonlivraison from '../components/buyingHistoryComponents/bonLivraison.vue'
 
 Vue.use(VueRouter)
 
@@ -79,9 +81,25 @@ const routes = [
     component: Gestiondevis
   },
   {
+    path: '/Gestiondevis/devis/:id',
+    name: 'devisshow',
+    component: devisshow,
+    meta: {
+      header: 1
+    }
+  },
+  {
     path: '/InvoiceHistory/invoice/:id',
     name: 'Invoiceshow',
     component: Invoiceshow,
+    meta: {
+      header: 1
+    }
+  },
+  {
+    path: '/InvoiceHistory/bonlivraison/:id',
+    name: 'bonlivraison',
+    component: bonlivraison,
     meta: {
       header: 1
     }

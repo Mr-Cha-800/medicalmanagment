@@ -17,14 +17,14 @@
     <main>
       <div id="details" class="clearfix">
         <div id="client">
-          <div><b style="font-size:15px">N° RC : {{getinfo[0].NumRegistreComm}}</b></div>
-          <div><b style="font-size:15px">N° Art imp : {{getinfo[0].NumArtImp}}</b></div>
-          <div><b style="font-size:15px">NIF : {{getinfo[0].NumIdFisc}}</b></div>
+          <div><b style="font-size:15px">N° RC : 45645456</b></div>
+          <div><b style="font-size:15px">N° Art imp : 656646 </b></div>
+          <div><b style="font-size:15px">NIF : 45646464</b></div>
           <div><div style="float:left;width:20%"><img class="img" style="margin-top:9px;width:25px;height:25px" src="../../../public/phone.png" ></div>
           <div style="margin-left:20%"> <p>
-          <b> {{getinfo[0].TelOne}}</b>
+          <b>456464656 </b>
           <br>
-          <b>{{getinfo[0].TelTwo}} </b>
+          <b> 545645464</b>
           </p> </div></div>
         </div>
         <div id="invoice">
@@ -34,8 +34,8 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="facture">FACTURE N°: {{getorder[0].idfact}}/{{getorder[0].factyear}} </th> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
-            <th class="dossier">DOSSIER : {{getorder[0].ID}}/{{getorder[0].year}}</th><!--la meme chose hnaya pour le dossier-->
+            <th class="facture">FACTURE N°: </th> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
+            <th class="dossier">DOSSIER :</th><!--la meme chose hnaya pour le dossier-->
           </tr>
         </thead>
       </table>
@@ -45,11 +45,11 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="desc" colspan="2">NOM ET PRÉNOM : {{getorder[0].nom}}  {{getorder[0].prenom}} </th> <!--hnaya dir variable lel nom wel prénom-->
+            <th class="desc" colspan="2">NOM ET PRÉNOM :  </th> <!--hnaya dir variable lel nom wel prénom-->
           </tr>
           <tr>
-            <th class="desc">N° SÉCURITÉ SOCIALE : {{getorder[0].NumSecSocial}}</th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
-            <th class="desc"> CAISSE : {{getorder[0].Caisse}} {{getorder[0].Wilaya}}</th> <!--hnaya dir variable lel CAISSE-->
+            <th class="desc">N° SÉCURITÉ SOCIALE : </th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
+            <th class="desc"> CAISSE : </th> <!--hnaya dir variable lel CAISSE-->
           </tr>
         </thead>
       </table>
@@ -59,11 +59,11 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr> 
-            <th class="desc" colspan="2">NOM ET PRÉNOM : {{getorder[0].patient_nom}} {{getorder[0].patient_prenom}}</th> <!--hnaya dir variable lel nom wel prénom-->
+            <th class="desc" colspan="2">NOM ET PRÉNOM : </th> <!--hnaya dir variable lel nom wel prénom-->
           </tr>
           <tr>
-            <th class="desc">DATE ET LIEU DE NAISSANCE : {{getorder[0].patient_datenaiss}}</th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
-            <th class="desc"> À : {{getorder[0].patient_lieunaiss}}</th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
+            <th class="desc">DATE ET LIEU DE NAISSANCE :</th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
+            <th class="desc"> À : </th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
           </tr>
         </thead>
       </table>
@@ -81,12 +81,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="produit in getorder" :key="produit.id">
-            <td class="totale">{{produit.NumRef}}</td>
-            <td class="desc">{{produit.Designation}}</td>
-            <td class="unit">{{produit.PrixU}} DA</td>
-            <td class="qty">{{produit.quantity}}</td>
-            <td class="total">{{produit.montant}} DA</td>
+          <tr>
+            <td class="totale">123</td>
+            <td class="desc">bonjour bonjour</td>
+            <td class="unit">5000 DA</td>
+            <td class="qty">2</td>
+            <td class="total">10000 DA</td>
           </tr>
 
         </tbody>
@@ -114,7 +114,7 @@
       </div>
     </main>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">
-      <q-btn fab icon="west"  @click="$router.push({name: 'InvoiceHistory'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
+      <q-btn fab icon="west"  @click="$router.push({name: 'Gestiondevis'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ><q-tooltip anchor="top middle">Imprimer</q-tooltip></q-btn>
@@ -145,8 +145,8 @@ export default {
         }
     },
     created(){
-      this.setinfo()
-      this.setoneorder(this.$route.params.id)
+     // this.setinfo()
+      // this.setoneorder(this.$route.params.id)
         console.log(NumberToLetter(65000))
     },
     computed:{
