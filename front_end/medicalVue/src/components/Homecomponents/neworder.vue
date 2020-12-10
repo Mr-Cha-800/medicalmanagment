@@ -482,7 +482,8 @@ export default {
       })
     },
     onSubmit(){
-      this.order(this.neworder)
+      console.log(this.neworder)
+      /*this.order(this.neworder)
       .then(response => {
         if(response){
           this.$q.notify({
@@ -494,7 +495,7 @@ export default {
           }
       }).catch(error => {
         console.log(error)
-      })
+      })*/
     }
   },
   watch: {

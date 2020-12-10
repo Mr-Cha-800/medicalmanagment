@@ -39,7 +39,7 @@ Router.get('/',(req,res)=>{
 
  // Ajouter un nouveau produit
  Router.post('/',(req,res)=>{
-     mysqlConnection.query('INSERT INTO produits VALUES(?,?,?)',[req.body.NumRef,req.body.Designation,req.body.PrixU],(err,rows,fields)=>{
+     mysqlConnection.query('INSERT INTO produits VALUES(?,?,?,?)',[req.body.NumRef,req.body.Designation,req.body.PrixU,1],(err,rows,fields)=>{
          if(!err)
          res.json(rows);
          else
