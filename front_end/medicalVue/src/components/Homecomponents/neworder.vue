@@ -186,37 +186,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-/*const stringOptions = [{
-          NumRef: '23165485',
-          Designation: 'Google',
-          PrixU: '100',
-          quantity: '1'
-        },
-        {
-          NumRef: '23165486',
-          Designation: 'Facebook',
-          PrixU: '200',
-          quantity: '1'
-        },
-        {
-          NumRef: '23165487',
-          Designation: 'Twitter',
-          PrixU: '300',
-          quantity: '1'
-        },
-        {
-          NumRef: '23165488',
-          Designation: 'Apple',
-          PrixU: '400',
-          quantity: '1'
-        },
-        {
-          NumRef: '23165489',
-          Designation: 'Oracle',
-          PrixU: '500',
-          quantity: '1'
-        }
-]*/
+
 export default {
   data(){
     return {
@@ -484,6 +454,9 @@ export default {
       this.order(this.neworder)
       .then(response => {
         if(response){
+            this.$router.replace({
+            name: 'Gestiondevis'
+          })
           this.$q.notify({
               color: 'green-4',
               textColor: 'white',

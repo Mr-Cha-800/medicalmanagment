@@ -46,6 +46,12 @@ Router.post('/',(req,res)=>{
                            }
                     })
                 }
+                mysqlConnection.query('UPDATE devis_facture SET identifier=? WHERE identifier=?',[0,x],(err,rows,fields)=>{
+                    if(!err)
+                    res.json(rows);
+                    else
+                    console.log(err);
+                })
                 res.send(rows);
             }
             else
