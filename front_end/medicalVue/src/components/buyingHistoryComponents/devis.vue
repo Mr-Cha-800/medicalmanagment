@@ -17,14 +17,14 @@
     <main>
       <div id="details" class="clearfix">
         <div id="client">
-          <div><b style="font-size:15px">N° RC : 45645456</b></div>
-          <div><b style="font-size:15px">N° Art imp : 656646 </b></div>
-          <div><b style="font-size:15px">NIF : 45646464</b></div>
+          <div><b style="font-size:15px">N° RC : 20202 200202 02020</b></div>
+          <div><b style="font-size:15px">N° Art imp : 02020 20 20 20 20</b></div>
+          <div><b style="font-size:15px">NIF : 20 202 0 2 02 0 20</b></div>
           <div><div style="float:left;width:20%"><img class="img" style="margin-top:9px;width:25px;height:25px" src="../../../public/phone.png" ></div>
           <div style="margin-left:20%"> <p>
-          <b>456464656 </b>
+          <b> 05 025 2 22 326</b>
           <br>
-          <b> 545645464</b>
+          <b>  05 32 329 8 79 </b>
           </p> </div></div>
         </div>
         <div id="invoice">
