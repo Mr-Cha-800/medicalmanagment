@@ -13,14 +13,21 @@ export default {
     },
     actions:{
         async order(_, order){
-            console.log(order.commande)
             return new Promise((resolve, reject) => {
-                axios.post('/neworder', {
+                axios.post('/factures', {
                     nom: order.nom,
                     prenom: order.prenom,
-                    numId: order.numId,
-                    numPermis: order.numPermis,
-                    commande: order.commande
+                    numsecsocial: order.securitesociale,
+                    numtel: order.tel,
+                    caisse: order.caisse,
+                    wilaya: order.wilaya,
+                    commande: order.commande,
+                    year: order.year,
+                    patientnom: order.patient.nom,
+                    patientprenom: order.patient.prenom,
+                    patientdatenaiss: order.patient.datenaiss,
+                    patientlieunaiss: order.patient.lieunaissance,
+                    montanttotal: order.montanttotal
                 })
                   .then(response => {
                     resolve(response)

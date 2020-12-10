@@ -5,7 +5,6 @@
         </q-card-section>
 
         <q-separator />
-
             <q-form
       @submit.prevent="onSubmit"
       class="justify-center q-pa-lg"
@@ -85,7 +84,7 @@
       </div>
     </div>
     <q-input
-        v-model="patient.nom"
+        v-model="neworder.patient.nom"
         type="text"
         class="q-pa-md"
         label="Nom *"
@@ -94,7 +93,7 @@
       >
       </q-input>
       <q-input
-        v-model="patient.prenom"
+        v-model="neworder.patient.prenom"
         type="text"
         class="q-pa-md"
         label="Prénom *"
@@ -111,10 +110,10 @@
         type="date"
         class="col"
         formatModel="string" 
-        v-model="patient.datenaiss">
+        v-model="neworder.patient.datenaiss">
     </q-input>
       <q-input
-        v-model="patient.lieunaissance"
+        v-model="neworder.patient.lieunaissance"
         type="text"
         class="col"
         hint="Lieu de naissance *"
@@ -443,13 +442,13 @@ export default {
             label: 'MILITAIRE',
             value: 'MILITAIRE'
           }
-        ]
-      },
-      patient:{
-        nom: '',
-        prenom: '',
-        datenaiss: '',
-        lieunaissance: ''
+        ],
+        patient:{
+          nom: '',
+          prenom: '',
+          datenaiss: '',
+          lieunaissance: ''
+        }
       },
       model: null,
       filterOptions: this.getproducts
@@ -482,8 +481,7 @@ export default {
       })
     },
     onSubmit(){
-      console.log(this.neworder)
-      /*this.order(this.neworder)
+      this.order(this.neworder)
       .then(response => {
         if(response){
           this.$q.notify({
@@ -495,7 +493,7 @@ export default {
           }
       }).catch(error => {
         console.log(error)
-      })*/
+      })
     }
   },
   watch: {
@@ -506,20 +504,20 @@ export default {
           val.wilaya = ''
         }
         if ((val.nom || val.prenom ) && this.fill === true){
-        this.patient.nom = this.neworder.nom
-        this.patient.prenom = this.neworder.prenom
+        this.neworder.patient.nom = this.neworder.nom
+        this.neworder.patient.prenom = this.neworder.prenom
 
         }
       }
     },
     fill: function(){
       if(this.fill === true) {
-        this.patient.nom = this.neworder.nom
-        this.patient.prenom = this.neworder.prenom
+        this.neworder.patient.nom = this.neworder.nom
+        this.neworder.patient.prenom = this.neworder.prenom
       }
       if(this.fill === false) {
-        this.patient.nom = ''
-        this.patient.prenom = ''
+        this.neworder.patient.nom = ''
+        this.neworder.patient.prenom = ''
       }
     }
   },
