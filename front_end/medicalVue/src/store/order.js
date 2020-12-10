@@ -8,6 +8,9 @@ export default {
     getters:{
         getallorders(state){
             return state.orders
+        },
+        getorder(state){
+            return state.order
         }
     },
     mutations:{
@@ -16,6 +19,9 @@ export default {
         },
         setallorders(state, orders){
             state.orders = orders
+        },
+        setorder(state, order){
+            state.order = order
         }
     },
     actions:{
@@ -58,6 +64,19 @@ export default {
                   })
               })
         },
+        async setoneorder({ commit },id){
+            return new Promise((resolve, reject) => {
+                axios.get('/factures/'+ id)
+                  .then(response => {
+                      commit('setorder', response.data)
+                    resolve(response)
+                    // console.log(response)
+                  })
+                  .catch(error => {
+                    reject(error)
+                  })
+              })
+        }
 
     }
 }

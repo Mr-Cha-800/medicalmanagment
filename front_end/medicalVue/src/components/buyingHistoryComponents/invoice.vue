@@ -17,14 +17,14 @@
     <main>
       <div id="details" class="clearfix">
         <div id="client">
-          <div><b style="font-size:15px">N° RC : 22/00-0171155A20</b></div>
-          <div><b style="font-size:15px">N° Art imp : 2284.4529.401</b></div>
-          <div><b style="font-size:15px">NIF : 182224500652142</b></div>
+          <div><b style="font-size:15px">N° RC : {{getinfo[0].NumRegistreComm}}</b></div>
+          <div><b style="font-size:15px">N° Art imp : {{getinfo[0].NumArtImp}}</b></div>
+          <div><b style="font-size:15px">NIF : {{getinfo[0].NumIdFisc}}</b></div>
           <div><div style="float:left;width:20%"><img class="img" style="margin-top:9px;width:25px;height:25px" src="../../../public/phone.png" ></div>
           <div style="margin-left:20%"> <p>
-          <b>06 97 07 94 54</b>
+          <b> {{getinfo[0].TelOne}}</b>
           <br>
-          <b>07 74 85 40 90</b>
+          <b>{{getinfo[0].TelTwo}} </b>
           </p> </div></div>
         </div>
         <div id="invoice">
@@ -34,8 +34,8 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="facture">FACTURE N°: </th> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
-            <th class="dossier">DOSSIER : </th><!--la meme chose hnaya pour le dossier-->
+            <th class="facture">FACTURE N°: {{getorder[0].idfact}}/{{getorder[0].factyear}} </th> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
+            <th class="dossier">DOSSIER : {{getorder[0].ID}}/{{getorder[0].year}}</th><!--la meme chose hnaya pour le dossier-->
           </tr>
         </thead>
       </table>
@@ -45,11 +45,11 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="desc" colspan="2">NOM ET PRÉNOM : </th> <!--hnaya dir variable lel nom wel prénom-->
+            <th class="desc" colspan="2">NOM ET PRÉNOM : {{getorder[0].nom}}  {{getorder[0].prenom}} </th> <!--hnaya dir variable lel nom wel prénom-->
           </tr>
           <tr>
-            <th class="desc">N° SÉCURITÉ SOCIALE :</th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
-            <th class="desc"> CAISSE :</th> <!--hnaya dir variable lel CAISSE-->
+            <th class="desc">N° SÉCURITÉ SOCIALE : {{getorder[0].NumSecSocial}}</th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
+            <th class="desc"> CAISSE : {{getorder[0].Caisse}} {{getorder[0].Wilaya}}</th> <!--hnaya dir variable lel CAISSE-->
           </tr>
         </thead>
       </table>
@@ -58,12 +58,12 @@
       </div>
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
-          <tr>
-            <th class="desc" colspan="2">NOM ET PRÉNOM : </th> <!--hnaya dir variable lel nom wel prénom-->
+          <tr> 
+            <th class="desc" colspan="2">NOM ET PRÉNOM : {{getorder[0].patient_nom}} {{getorder[0].patient_prenom}}</th> <!--hnaya dir variable lel nom wel prénom-->
           </tr>
           <tr>
-            <th class="desc">DATE ET LIEU DE NAISSANCE :</th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
-            <th class="desc"> À :</th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
+            <th class="desc">DATE ET LIEU DE NAISSANCE : {{getorder[0].patient_datenaiss}}</th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
+            <th class="desc"> À : {{getorder[0].patient_lieunaiss}}</th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
           </tr>
         </thead>
       </table>
@@ -81,19 +81,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="totale">01</td>
-            <td class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum architecto accusantium dolorum sunt.</td>
-            <td class="unit">40.00 DA</td>
-            <td class="qty">30</td>
-            <td class="total">1,200.00 DA</td>
-          </tr>
-          <tr>
-            <td class="totale">02</td>
-            <td class="desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam illo neque possimus optio distinctio ea.</td>
-            <td class="unit">40.00 DA</td>
-            <td class="qty">80</td>
-            <td class="total">3,200.00 DA</td>
+          <tr v-for="produit in getorder" :key="produit.id">
+            <td class="totale">{{produit.NumRef}}</td>
+            <td class="desc">{{produit.Designation}}</td>
+            <td class="unit">{{produit.PrixU}} DA</td>
+            <td class="qty">{{produit.quantity}}</td>
+            <td class="total">{{produit.montant}} DA</td>
           </tr>
 
         </tbody>
@@ -130,6 +123,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 import { date } from 'quasar'
 let timeStamp = Date.now()
 let formattedString = date.formatDate(timeStamp, 'DD-MM-YYYY')
@@ -144,12 +138,20 @@ export default {
         }
     },
     methods:{
+      ...mapActions('company',['setinfo']),
+      ...mapActions('order',['setoneorder']),
         printili(){
           window.print()
         }
     },
     created(){
+      this.setinfo()
+      this.setoneorder(this.$route.params.id)
         console.log(NumberToLetter(65000))
+    },
+    computed:{
+      ...mapGetters('company', ['getinfo']),
+      ...mapGetters('order', ['getorder'])
     }
 }
 </script>
