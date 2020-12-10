@@ -2,13 +2,20 @@ import axios from 'axios'
 export default {
     namespaced: true,
     state:{
-        order: {}
+        order: {},
+        orders: []
     },
     getters:{
+        getallorders(state){
+            return state.orders
+        }
     },
     mutations:{
         neworder(state, order){
             state.order = order
+        },
+        setallorders(state, orders){
+            state.orders = orders
         }
     },
     actions:{
@@ -37,6 +44,20 @@ export default {
                     reject(error)
                   })
               })
-        }
+        },
+        async setorders({ commit }){
+            return new Promise((resolve, reject) => {
+                axios.get('/factures')
+                  .then(response => {
+                      commit('setallorders', response.data)
+                    resolve(response)
+                    // console.log(response)
+                  })
+                  .catch(error => {
+                    reject(error)
+                  })
+              })
+        },
+
     }
 }

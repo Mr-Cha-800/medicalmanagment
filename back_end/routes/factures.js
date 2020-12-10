@@ -8,7 +8,7 @@ const mysqlConnection = require('../connect');
 
 // Renvoyer la liste des produits
 Router.get('/',(req,res)=>{
-    mysqlConnection.query('SELECT * FROM companyinfo',(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier,achat WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact GROUP BY devis_facture.ID',(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
