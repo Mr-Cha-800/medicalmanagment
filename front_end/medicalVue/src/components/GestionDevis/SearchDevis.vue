@@ -1,7 +1,7 @@
 <template>
     <q-card class="my-card">
         <q-card-section class="bg-blue-grey-5 text-white">
-            <div class="text-h6">Recherche dans l'historique des factures</div>
+            <div class="text-h6">Recherche dans l'historique des devis</div>
         </q-card-section>
         <q-card-section class="">
     <form @submit.prevent="onSubmit">
@@ -16,7 +16,8 @@
 </template>
 
 <script>
-export default {
+import { mapActions } from 'vuex'
+export default { 
     name: 'search',
     data(){
         return {
@@ -24,17 +25,27 @@ export default {
         }
     },
     methods:{
+        ...mapActions('devis', ['searchdevis']),
         onSubmit(){
-            this.$router.replace({
-            name: 'Invoicesearch'
-          })
-            this.$q.notify({
-                color: 'green-4',
-                textColor: 'white',
-                icon: 'search',
-                message: 'Voici les résultats !'
+            this.searchdevis(this.search)
+            .then(Response => {
+                    if(Response){
+                    this.$q.notify({
+                        color: 'green-4',
+                        textColor: 'white',
+                        icon: 'search',
+                        message: 'Voici les résultats !'
+                    })
+                }
+            }).catch(err => {
+                console.log(err)
             })
         }
+    },
+    watch:{
+    search: function(){
+        this.onSubmit()
+    }
     }
 }
 </script>

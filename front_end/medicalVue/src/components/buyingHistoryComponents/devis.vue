@@ -84,7 +84,7 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale">{{produit.NumRef}}</td>
             <td class="desc">{{produit.Designation}}</td>
-            <td class="unit">{{produit.PrixU}} DA</td>
+            <td class="unit">{{produit.price}} DA</td>
             <td class="qty">{{produit.quantity}}</td>
             <td class="total">{{produit.montant}} DA</td>
           </tr>

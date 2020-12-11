@@ -173,7 +173,7 @@
     </table>
     </div>
       <div class="q-pr-lg q-pt-xl q-pb-lg q-gutter-md absolute-bottom-right">
-    <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer la facture" >
+    <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer le devis" >
       <template v-slot:loading>
         <q-spinner-hourglass class="on-left" />
         Chargement...
@@ -461,7 +461,7 @@ export default {
               color: 'green-4',
               textColor: 'white',
               icon: 'cloud_done',
-              message: "SAHHHhhééééét rak commandit bien ga3"
+              message: "Devis Fait"
             })
           }
       }).catch(error => {

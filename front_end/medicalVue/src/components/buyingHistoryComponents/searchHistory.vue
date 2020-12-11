@@ -26,9 +26,9 @@ export default {
         }
     },
     methods:{
-        ...mapActions('devis', ['searchdevis']),
+        ...mapActions('order', ['searchfacture']),
         onSubmit(){
-            this.searchdevis(this.search)
+            this.searchfacture(this.search)
             .then(Response => {
                     if(Response){
                     this.$q.notify({
@@ -44,9 +44,9 @@ export default {
         }
     },
     watch:{
-    search: function(){
-        this.onSubmit()
-    }
+        search: function(){
+            this.onSubmit()
+        }
     }
 }
 </script>

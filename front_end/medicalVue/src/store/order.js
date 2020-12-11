@@ -76,6 +76,22 @@ export default {
                     reject(error)
                   })
               })
+        },
+        async searchfacture({ commit }, search){
+          search = '%'+search+'%'
+            return new Promise((resolve, reject) => {
+                axios.post('/factures/recherche', {
+                  Search : search
+                })
+                  .then(response => {
+                    commit('setallorders', response.data)
+                    resolve(response)
+                    // console.log(response)
+                  })
+                  .catch(error => {
+                    reject(error)
+                  })
+              })
         }
 
     }
