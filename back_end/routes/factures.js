@@ -106,7 +106,7 @@ Router.post('/',(req,res)=>{
 
   // Rechercher une facture
   Router.post('/recherche',(req,res)=>{
-    mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier,achat  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID AND devis_facture.etat = ?',[req.body.Search,req.body.Search,req.body.Search,'finalisé'],(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID AND devis_facture.etat = ?',[req.body.Search,req.body.Search,req.body.Search,'finalisé'],(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
@@ -115,7 +115,7 @@ Router.post('/',(req,res)=>{
  });
   // Rechercher un devis
   Router.post('/recherche/devis',(req,res)=>{
-    mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier,achat  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID',[req.body.Search,req.body.Search,req.body.Search],(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID',[req.body.Search,req.body.Search,req.body.Search],(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
