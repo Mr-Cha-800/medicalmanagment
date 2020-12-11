@@ -16,3 +16,5 @@ mysqlConnection.connect((err)=>{
     else
     console.log('Fail \n '+JSON.stringify(err,undefined,2));
 });
+
+module.exports = mysqlConnection;
