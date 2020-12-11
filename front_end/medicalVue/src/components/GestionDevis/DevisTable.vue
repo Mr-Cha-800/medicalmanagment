@@ -13,6 +13,7 @@
     <th>Nom du client</th>
     <th>Prénom du client</th>
     <th>Date</th>
+    <th>Num téléphone</th>
     <th>Montant TTC</th>
     <th>Opérations</th>
     <th>etat</th>
@@ -24,6 +25,7 @@
     <td>{{devis.nom}}</td>
     <td>{{devis.prenom}}</td>
     <td>{{devis.datee}}</td> 
+    <td>{{devis.NumTel}}</td> 
     <td>{{devis.montant}} Da</td>
     <td class="text-center">
       <q-btn round flat @click="$router.push({name: 'devisshow', params: { id: devis.idfact }})" ><q-icon color="green" name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn>

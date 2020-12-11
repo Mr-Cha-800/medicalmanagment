@@ -85,8 +85,8 @@
             <td class="totale">{{produit.NumRef}}</td>
             <td class="desc">{{produit.Designation}}</td>
             <td class="unit">{{produit.price}} DA</td>
-            <td class="qty">{{produit.quantity}}</td>
-            <td class="total">{{produit.montant}} DA</td>
+            <td class="qty">{{produit.quantities}}</td>
+            <td class="total">{{produit.quantities*produit.price}} DA</td>
           </tr>
 
         </tbody>
@@ -98,7 +98,7 @@
           </tr>
           <tr>
             <td colspan="2"></td>
-            <td colspan="2">TVA 9%</td><!-- DE PRÉFERENCE DIR TVA VARIABLE BEH IDA TBEDLET Y9AD YBEDELHA-->
+            <td colspan="2">TVA {{getinfo[0].Tva}}%</td><!-- DE PRÉFERENCE DIR TVA VARIABLE BEH IDA TBEDLET Y9AD YBEDELHA-->
             <td>1,300.00 DA</td>
           </tr>
           <tr>
