@@ -25,7 +25,7 @@ Router.get('/',(req,res)=>{
         console.log(err);
     })
  });
-// Renvoyer la liste d'une seule facture
+// Renvoyer la liste une seule facture
 Router.get('/:id',(req,res)=>{
     mysqlConnection.query('SELECT devis_facture.ID as idfact,devis_facture.Annee as factyear,devis_facture.montant_total as montant, patient_nom,patient_prenom,patient_datenaiss,patient_lieunaiss, dossier.*, achat.*,produits.*  FROM devis_facture,dossier,achat,produits WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact AND devis_facture.ID = ? AND produits.NumRef = achat.id_produit',[req.params.id],(err,rows,fields)=>{
         if(!err)
@@ -36,7 +36,7 @@ Router.get('/:id',(req,res)=>{
  });
  
 
- // Modifier les informations 
+ // Modifier les informations du magasin
 Router.patch('/modify',(req,res)=>{
     mysqlConnection.query('UPDATE companyinfo SET NumRegistreComm=?,NumArtImp=?,NumIdFisc=? ,TelOne=? ,TelTwo=?  WHERE Id=?',[req.body.NumRegistreComm,req.body.NumArtImp,req.body.NumIdFisc,req.body.TelOne,req.body.TelTwo,req.body.Id],(err,rows,fields)=>{
         if(!err)
@@ -100,7 +100,7 @@ Router.post('/',(req,res)=>{
 });
 
 
-  // Rechercher un produit
+  // Rechercher une facture
   Router.post('/recherche',(req,res)=>{
     mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier,achat  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID AND devis_facture.etat = ?',[req.body.Search,req.body.Search,req.body.Search,'finalisé'],(err,rows,fields)=>{
         if(!err)
@@ -109,7 +109,7 @@ Router.post('/',(req,res)=>{
         console.log(err);
     })
  });
-  // Rechercher un produit
+  // Rechercher un devis
   Router.post('/recherche/devis',(req,res)=>{
     mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier,achat  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID',[req.body.Search,req.body.Search,req.body.Search],(err,rows,fields)=>{
         if(!err)
