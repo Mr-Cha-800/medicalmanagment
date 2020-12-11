@@ -24,6 +24,7 @@ export default {
                     NumRegistreComm: info.NumRegistreComm,
                     NumArtImp: info.NumArtImp,
                     NumIdFisc: info.NumIdFisc,
+                    Tva: info.Tva,
                     TelOne: info.TelOne,
                     TelTwo: info.TelTwo,
                     Id: 1

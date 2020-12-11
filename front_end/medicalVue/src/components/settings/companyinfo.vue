@@ -18,10 +18,13 @@
            NIF : {{ getallinfo[0].NumIdFisc}}
           </div>
           <div class="text-caption text-grey">
-           {{getallinfo[0].TelOne}} 
+           TVA : {{ getallinfo[0].Tva}} %
+          </div>
+          <div class="text-caption text-grey">
+          Téléphone 1 :  {{getallinfo[0].TelOne}} 
           </div>
             <div class="text-caption text-grey">
-            {{getallinfo[0].TelTwo}}
+          Téléphone 2 :  {{getallinfo[0].TelTwo}}
           </div>
         </q-card-section>
         </q-card-section>
@@ -57,6 +60,16 @@
         :rules="[ val => val && val.length > 0 || 'veuillez remplir']"
       >
       </q-input>
+    <div class="q-gutter-sm justify-center ">
+       <q-input
+        v-model="info.Tva"
+        type="number"
+        min="1"
+        label="TVA"
+        :rules="[val => !!val || 'Obligatoire']"
+      >
+      </q-input>
+    </div>
     <div class="q-gutter-sm justify-center ">
        <q-input
         v-model="info.TelOne"
@@ -112,6 +125,7 @@ export default {
         NumRegistreComm: '',
         NumArtImp: '',
         NumIdFisc: '',
+        Tva: '',
         TelOne: '',
         TelTwo: '',
       }
@@ -141,6 +155,7 @@ export default {
       this.info.NumRegistreComm = this.getallinfo[0].NumRegistreComm
       this.info.NumArtImp = this.getallinfo[0].NumArtImp
       this.info.NumIdFisc = this.getallinfo[0].NumIdFisc
+      this.info.Tva = this.getallinfo[0].Tva
       this.info.TelOne = this.getallinfo[0].TelOne
       this.info.TelTwo = this.getallinfo[0].TelTwo
     }
