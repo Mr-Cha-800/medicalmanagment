@@ -3,9 +3,12 @@ import App from './App.vue'
 import './quasar'
 import store from './store'
 import router from './router'
+import * as moment from 'moment'
+import 'moment/locale/fr'
 
+Vue.use(require('vue-moment'))
+moment.locale('fr')
 Vue.config.productionTip = false
-
 new Vue({
   router,
   store,

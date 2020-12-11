@@ -11,7 +11,7 @@
       true-value="Payé"
       v-model="devis"
     />
-    <DevisTable/>
+    <DevisTable :deviss="devis"/>
     <q-page-sticky position="bottom-right" class="q-pa-xl" :offset="[18, 18]">
       <q-btn fab icon="add"  @click="$router.push({name: 'NewOrder'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">nouvelle commande</q-tooltip></q-btn>
     </q-page-sticky>
@@ -24,7 +24,7 @@ import SearchDevis from '../components/GestionDevis/SearchDevis.vue'
 export default {
     data(){
         return {
-            devis: "Payé"
+            devis: "Non-Payé"
         }
     },
   components:{

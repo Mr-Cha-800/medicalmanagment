@@ -8,7 +8,7 @@ const mysqlConnection = require('../connect');
 
 // Renvoyer la liste des factures
 Router.get('/',(req,res)=>{
-    mysqlConnection.query('SELECT devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier,achat WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact GROUP BY devis_facture.ID',(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier,achat WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact GROUP BY devis_facture.ID',(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
@@ -16,9 +16,18 @@ Router.get('/',(req,res)=>{
     })
  });
  
+// Renvoyer la liste des devis
+Router.get('/devis',(req,res)=>{
+    mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier,achat WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact AND devis_facture.etat = ? GROUP BY devis_facture.ID',['finalisé'],(err,rows,fields)=>{
+        if(!err)
+        res.send(rows);
+        else
+        console.log(err);
+    })
+ });
 // Renvoyer la liste d'une seule facture
 Router.get('/:id',(req,res)=>{
-    mysqlConnection.query('SELECT devis_facture.ID as idfact,devis_facture.Annee as factyear,devis_facture.montant_total as montant, patient_nom,patient_prenom,patient_datenaiss,patient_lieunaiss, dossier.*, achat.*,produits.*  FROM devis_facture,dossier,achat,produits WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact AND devis_facture.ID = ? AND produits.NumRef = achat.id_produit',[req.params.id],(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.ID as idfact,devis_facture.Annee as factyear,devis_facture.montant_total as montant, patient_nom,patient_prenom,patient_datenaiss,patient_lieunaiss, dossier.*, achat.*,produits.*  FROM devis_facture,dossier,achat,produits WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact AND devis_facture.ID = ? AND produits.NumRef = achat.id_produit',(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
@@ -40,6 +49,16 @@ Router.patch('/modify',(req,res)=>{
  // Ajouter un devis 
 Router.post('/',(req,res)=>{
     var montanttotal = 0;
+    let date_ob = new Date();
+        // adjust 0 before single digit date
+    let date = ("0" + date_ob.getDate()).slice(-2);
+
+    // current month
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+    // current year
+    let year = date_ob.getFullYear();
+    let datee = year + "-" + month + "-" + date
     for(var k=0; k < req.body.commande.length; k++) {
         montanttotal = montanttotal + req.body.commande[k].PrixU*req.body.commande[k].quantity
     }
@@ -47,7 +66,7 @@ Router.post('/',(req,res)=>{
     var yearr  = new Date().getFullYear()
     mysqlConnection.query('INSERT INTO dossier (nom, prenom, NumSecSocial, NumTel, Caisse, Wilaya, year) VALUES(?,?,?,?,?,?,?)',[req.body.nom,req.body.prenom,req.body.numsecsocial,req.body.numtel,req.body.caisse,req.body.wilaya,yearr],(err,rows,fields)=>{
         if(!err) {
-        mysqlConnection.query('INSERT INTO devis_facture (Annee, foreignID, foreignyear, patient_nom, patient_prenom, patient_datenaiss, patient_lieunaiss, etat, montant_total, identifier) VALUES (?,(Select ID from dossier where NumTel = ? ),(Select year from dossier where NumTel = ? ),?,?,?,?,?,?,?)',[yearr,req.body.numtel,req.body.numtel,req.body.patientnom,req.body.patientprenom,req.body.patientdatenaiss,req.body.patientlieunaiss,'non-finalisé',montanttotal,x],(err,rows,fields)=>{
+        mysqlConnection.query('INSERT INTO devis_facture (Annee, foreignID,datee, foreignyear, patient_nom, patient_prenom, patient_datenaiss, patient_lieunaiss, etat, montant_total, identifier) VALUES (?,(Select ID from dossier where NumTel = ? ),?,(Select year from dossier where NumTel = ? ),?,?,?,?,?,?,?)',[yearr,req.body.numtel,datee,req.body.numtel,req.body.patientnom,req.body.patientprenom,req.body.patientdatenaiss,req.body.patientlieunaiss,'non-finalisé',montanttotal,x],(err,rows,fields)=>{
             if(!err){
                 for(var k=0; k < req.body.commande.length; k++) {
                     mysqlConnection.query('INSERT INTO achat (id_fact,id_produit,quantity,montant,price) VALUES ((Select ID from devis_facture where identifier = ? ),?,?,?,?)',[x,req.body.commande[k].NumRef,req.body.commande[k].quantity,req.body.commande[k].PrixU,req.body.commande[k].PrixU],(err,rows,fields)=>{
@@ -70,5 +89,25 @@ Router.post('/',(req,res)=>{
     })
 });
 
+ // Supprimer un devis
+ Router.delete('/devis/:id',(req,res)=>{
+    mysqlConnection.query('DELETE d,p FROM devis_facture d JOIN achat p ON d.ID = p.id_fact WHERE d.ID = ? ',[req.params.id],(err,rows,fields)=>{
+        if(!err)
+        res.send(rows)
+        else
+        console.log(err);
+    })
+});
+
+
+  // Rechercher un produit
+  Router.post('/recherche',(req,res)=>{
+    mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier,achat  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID',[req.body.Search,req.body.Search,req.body.Search],(err,rows,fields)=>{
+        if(!err)
+        res.send(rows);
+        else
+        console.log(err);
+    })
+ });
 
 module.exports = Router;

@@ -1,7 +1,7 @@
 <template>
   <q-card class="my-card">
         <q-card-section class="bg-blue-grey-5 text-white">
-            <div class="text-h6">Historique des achats</div>
+            <div class="text-h6">Historique des devis</div>
         </q-card-section>
 
         <q-separator />
@@ -9,52 +9,50 @@
         <q-card-actions class="q-pa-xl">
 <table>
   <tr>
-    <th>N° Facture</th>
+    <th>N° Devis</th>
     <th>Nom du client</th>
     <th>Prénom du client</th>
     <th>Date</th>
     <th>Montant TTC</th>
-    <th>Visualiser</th>
+    <th>Opérations</th>
     <th>etat</th>
-    <th>Supprimer</th>
+    <th></th>
   </tr>
-  <tr v-for="devis in getallorders" :key="devis.id">
-    <td>{{devis.idfact}}</td>
+  <template  v-for="devis in getallorders" >
+  <tr v-if="(deviss === 'Non-Payé' && devis.etat === 'non-finalisé') || (deviss === 'Payé' && devis.etat === 'finalisé') " :key="devis.id">
+    <td>{{devis.idfact}}/{{devis.Annee}}</td>
     <td>{{devis.nom}}</td>
     <td>{{devis.prenom}}</td>
-    <td>16 décembre 2020</td> 
+    <td>{{devis.datee}}</td> 
     <td>{{devis.montant}} Da</td>
-    <td class="text-center"><q-btn round flat @click="$router.push({name: 'devisshow', params: { id: devis.idfact }})" ><q-icon color="green" name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn><q-btn round flat @click="$router.push({name: 'bonlivraison', params: { id: devis.idfact }})" ><q-icon color="blue-grey-5" name="print"/><q-tooltip>Imprimer</q-tooltip></q-btn></td>
+    <td class="text-center">
+      <q-btn round flat @click="$router.push({name: 'devisshow', params: { id: devis.idfact }})" ><q-icon color="green" name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn>
+      <supprimerDevis :id="devis.idfact" />
+      </td>
     <td>{{devis.etat}}</td>
-    <td class="text-center"><q-btn round flat><q-icon color="red" @click="deletee"  name="delete"/><q-tooltip>Supprimer</q-tooltip></q-btn></td>
+    <td v-if="devis.etat === 'non-finalisé'" class="text-center"><q-btn  flat >Finaliser</q-btn>
+      </td>
+      <td v-else></td>
   </tr>
+  </template>
 </table>
         </q-card-actions>
-    <q-dialog v-model="dialog" persistent transition-show="flip-down" transition-hide="flip-up">
-      <q-card class="bg-blue-grey-8 text-white">
-        <q-card-section>
-          <div class="text-h6">Alerte</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          Voulez vous vraiment Supprimer ?
-        </q-card-section>
-
-        <q-card-section class="q-pt-none float-right">
-          <q-btn flat label="Cancel" v-close-popup />
-          <q-btn flat label="Supprimer" v-close-popup @click="deletees()"  />
-          </q-card-section>
-      </q-card>
-    </q-dialog>
         </q-card>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import supprimerDevis from './supprimerDevis'
 export default {
+  components:{ supprimerDevis },
   data(){
     return {
       dialog: false
+    }
+  },
+  props:{
+    deviss:{
+      type: String
     }
   },
   methods: {
