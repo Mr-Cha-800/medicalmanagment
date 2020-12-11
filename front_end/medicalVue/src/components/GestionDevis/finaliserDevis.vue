@@ -1,26 +1,24 @@
 <template>
-  <q-btn round flat>
-      <q-icon color="red" @click="deletee"  name="delete"/>
-      <q-tooltip>Supprimer</q-tooltip>
-    <q-dialog v-model="dialog" persistent transition-show="flip-down" transition-hide="flip-up">
+  <q-btn @click="show" flat >Finaliser
+      <q-dialog v-model="dialog" persistent transition-show="flip-down" transition-hide="flip-up">
       <q-card class="bg-blue-grey-8 text-white">
         <q-card-section>
           <div class="text-h6">Alerte</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          Voulez vous vraiment Supprimer ?
+          Voulez vous vraiment finaliser ?
         </q-card-section>
 
         <q-card-section class="q-pt-none float-right">
           <q-btn flat label="Annuler" v-close-popup />
-          <q-btn flat label="Supprimer" v-close-popup @click="deletees()"  />
+          <q-btn flat label="Finaliser" v-close-popup @click="finaliser()"  />
           </q-card-section>
       </q-card>
     </q-dialog>
   </q-btn>
-    
 </template>
+
 
 <script>
 import { mapActions } from 'vuex'
@@ -37,19 +35,19 @@ export default {
         },
     },
     methods: {
-        ...mapActions('devis', ['deletedevis']),
-            deletee(){
+        ...mapActions('devis', ['finaliserdevis']),
+            show(){
             this.dialog = true
             },
-            deletees(){
-                this.deletedevis(this.id)
+            finaliser(){
+                this.finaliserdevis(this.id)
                 .then(Response => {
                 if(Response){
                     this.$q.notify({
                         color: 'green-4',
                         textColor: 'white',
                         icon: 'done',
-                        message: 'Devis supprimé !'
+                        message: 'Devis finalisé !'
                     })
                 }
                 })
@@ -59,7 +57,7 @@ export default {
                         color: 'red-4',
                         textColor: 'white',
                         icon: 'clear',
-                        message: 'Devis non supprimé ! Veuillez réessayer'
+                        message: 'Devis non finalisé ! Veuillez réessayer'
                     })
                 })
         }

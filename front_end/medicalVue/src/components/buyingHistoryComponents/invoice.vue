@@ -120,7 +120,7 @@
       <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ><q-tooltip anchor="top middle">Imprimer</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[180, 18]">
-      <printactions :id="getorder[0].idfact"/>
+      <printactions v-if="getorder[0].etat === 'finalisé'" :id="getorder[0].idfact"/>
       </q-page-sticky>
   </body>
 </template>

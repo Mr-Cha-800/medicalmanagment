@@ -56,6 +56,21 @@ export default {
                     reject(error)
                   })
               })
+        },
+        async finaliserdevis({ dispatch }, productId){
+            return new Promise((resolve, reject) => {
+                axios.patch('/factures/finaliser', {
+                    Id: productId
+                })
+                  .then(response => {
+                    dispatch('setdevis')
+                    resolve(response)
+                    // console.log(response)
+                  })
+                  .catch(error => {
+                    reject(error)
+                  })
+              })
         }
     }
 }

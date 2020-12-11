@@ -32,7 +32,8 @@
       <supprimerDevis :id="devis.idfact" />
       </td>
     <td>{{devis.etat}}</td>
-    <td v-if="devis.etat === 'non-finalisé'" class="text-center"><q-btn  flat >Finaliser</q-btn>
+    <td v-if="devis.etat === 'non-finalisé'"  class="text-center">
+      <finaliserdevis :id="devis.idfact"/>
       </td>
       <td v-else></td>
   </tr>
@@ -44,9 +45,10 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import finaliserdevis from './finaliserDevis'
 import supprimerDevis from './supprimerDevis'
 export default {
-  components:{ supprimerDevis },
+  components:{ finaliserdevis, supprimerDevis },
   data(){
     return {
       dialog: false
@@ -58,7 +60,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('devis', ['setdevis']),
+    ...mapActions('devis', ['setdevis','finaliserdevis']),
     deletee(){
       this.dialog = true
     },
