@@ -18,7 +18,7 @@ import Invoiceshow from '../components/buyingHistoryComponents/invoice.vue'
 import Gestiondevis from '../views/Gestiondevis.vue'
 import devisshow from '../components/buyingHistoryComponents/devis.vue'
 import bonlivraison from '../components/buyingHistoryComponents/bonLivraison.vue'
-
+import test from '../components/settings/test'
 Vue.use(VueRouter)
 
 const routes = [
@@ -108,6 +108,14 @@ const routes = [
     path: '/Settings',
     name: 'Settings',
     component: Settings
+  },
+  {
+    path: '/test/:id',
+    name: 'test',
+    component: test,
+    meta: {
+      header: 1
+    }
   },
 ]
 

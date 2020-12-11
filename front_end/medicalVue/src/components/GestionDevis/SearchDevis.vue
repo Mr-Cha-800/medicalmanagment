@@ -28,15 +28,7 @@ export default {
         ...mapActions('devis', ['searchdevis']),
         onSubmit(){
             this.searchdevis(this.search)
-            .then(Response => {
-                    if(Response){
-                    this.$q.notify({
-                        color: 'green-4',
-                        textColor: 'white',
-                        icon: 'search',
-                        message: 'Voici les résultats !'
-                    })
-                }
+            .then(() => {
             }).catch(err => {
                 console.log(err)
             })
