@@ -120,21 +120,7 @@
       <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ><q-tooltip anchor="top middle">Imprimer</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[180, 18]">
-   
-      <q-fab
-        v-model="fab2"
-        external-label
-        id="printPageButton"
-        vertical-actions-align="left"
-        color="blue-grey-5"
-        icon="keyboard_arrow_down"
-        direction="down"
-        :hide-label="hideLabels"
-      >
-        <q-fab-action id="printPageButton" :hide-label="hideLabels" external-label color="blue-grey-5" @click="onClick" icon="mail" label="Devis" />
-        <q-fab-action id="printPageButton" :hide-label="hideLabels" external-label color="blue-grey-5" @click="onClick" icon="airplay" label="Facture" />
-        <q-fab-action id="printPageButton" :hide-label="hideLabels" external-label color="blue-grey-5" @click="onClick" icon="alarm" label="Bon Livraison" />
-      </q-fab>   
+      <printactions :id="getorder[0].idfact"/>
       </q-page-sticky>
   </body>
 </template>
@@ -145,8 +131,9 @@ import { date } from 'quasar'
 let timeStamp = Date.now()
 let formattedString = date.formatDate(timeStamp, 'DD-MM-YYYY')
 import { NumberToLetter } from 'convertir-nombre-lettre';
-
+import printactions from '../layout/printactions'
 export default {
+    components:{printactions},
     data(){
         return{
             hi: '',
