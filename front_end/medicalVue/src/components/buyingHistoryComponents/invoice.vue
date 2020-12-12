@@ -90,24 +90,21 @@
           </tr>
 
         </tbody>
-        <tfoot>
+      </table>
+        <table style="width:30%;float:right">
           <tr>
-            <td colspan="2"></td>
             <td colspan="2">MONTANT H.T</td>
             <td>{{getorder[0].montants}},00 DA</td>
           </tr>
           <tr>
-            <td colspan="2"></td>
             <td colspan="2">TVA {{getinfo[0].Tva}}%</td><!-- DE PRÉFERENCE DIR TVA VARIABLE BEH IDA TBEDLET Y9AD YBEDELHA-->
             <td>{{(getorder[0].montants* getinfo[0].Tva)/100}},00 DA</td>
           </tr>
           <tr>
-            <td colspan="2"></td>
             <td colspan="2">MONTANT T.T.C</td>
             <td>{{((getorder[0].montants* getinfo[0].Tva)/100)+getorder[0].montants}},00 DA</td>
           </tr>
-        </tfoot>
-      </table>
+        </table>
       <div id="thanks">Arrêter  la présente facture à la somme</div>
        <h6> {{nummm}} et {{nummmm}} Dinars Algériens</h6>
     </main>
