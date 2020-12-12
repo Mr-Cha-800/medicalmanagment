@@ -7,21 +7,24 @@
         color="blue-grey-5"
         icon="keyboard_arrow_down"
         direction="down"
-        :hide-label="hideLabels"
       >
-        <q-fab-action id="devisshow" :hide-label="hideLabels" external-label color="blue-grey-5" @click="$router.push({name: 'devisshow', params: { id: id }})"  icon="mail" label="Devis" />
-        <q-fab-action id="printPageButton" :hide-label="hideLabels" external-label color="blue-grey-5" @click="$router.push({name: 'Invoiceshow', params: { id: id }})"  icon="airplay" label="Facture" />
-        <q-fab-action id="printPageButton" :hide-label="hideLabels" external-label color="blue-grey-5" @click="$router.push({name: 'bonlivraison', params: { id: id }})"  icon="alarm" label="Bon Livraison" />
+        <q-fab-action id="devisshow" external-label color="blue-grey-5" @click="$router.push({name: 'devisshow', params: { id: id }})"  icon="request_quote" label="Devis" />
+        <q-fab-action id="printPageButton"  external-label color="blue-grey-5" @click="$router.push({name: 'Invoiceshow', params: { id: id }})"  icon="receipt_long" label="Facture" />
+        <q-fab-action id="printPageButton"  external-label color="blue-grey-5" @click="$router.push({name: 'bonlivraison', params: { id: id }})"  icon="receipt" label="Bon Livraison" />
       </q-fab>  
 </template>
 
 <script>
 export default {
-props:{
+  props:{
     id:{
-        type: String
     }
-}
+  },
+  data(){
+    return {
+      fab2: true
+    }
+  }
 }
 </script>
 

@@ -10,8 +10,8 @@
 <table>
   <tr>
     <th>N° Facture</th>
-    <th>Nom du client</th>
-    <th>Prénom du client</th>
+    <th>Nom</th>
+    <th>Prénom</th>
     <th>Date</th>
     <th>Montant TTC</th>
     <th>Visualiser</th>

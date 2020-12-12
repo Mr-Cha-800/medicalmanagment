@@ -90,23 +90,6 @@
           </tr>
 
         </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="2"></td>
-            <td colspan="2">MONTANT H.T</td>
-            <td>5,200.00 DA</td>
-          </tr>
-          <tr>
-            <td colspan="2"></td>
-            <td colspan="2">TVA {{getinfo[0].Tva}}%</td><!-- DE PRÉFERENCE DIR TVA VARIABLE BEH IDA TBEDLET Y9AD YBEDELHA-->
-            <td>1,300.00 DA</td>
-          </tr>
-          <tr>
-            <td colspan="2"></td>
-            <td colspan="2">MONTANT T.T.C</td>
-            <td>6,500.00 DA</td>
-          </tr>
-        </tfoot>
       </table>
       <div id="thanks">Arrêter  la présente facture à la somme</div>
       <div id="notices">
