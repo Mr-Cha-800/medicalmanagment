@@ -69,8 +69,6 @@
         fill-mask
         lazy-rules
         hint="Aide: XX XXXX XXXX XX"
-        :rules="[val => !!val || 'Obligatoire',
-          val => val && val.length > 0  || 'veuillez remplir correctement']"
       >
       </q-input>
     </div>
