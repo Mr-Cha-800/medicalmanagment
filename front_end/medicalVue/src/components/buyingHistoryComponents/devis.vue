@@ -94,24 +94,22 @@
           <tr>
             <td colspan="2"></td>
             <td colspan="2">MONTANT H.T</td>
-            <td>5,200.00 DA</td>
+            <td>{{getorder[0].montants}},00 DA</td>
           </tr>
           <tr>
             <td colspan="2"></td>
             <td colspan="2">TVA {{getinfo[0].Tva}}%</td><!-- DE PRÉFERENCE DIR TVA VARIABLE BEH IDA TBEDLET Y9AD YBEDELHA-->
-            <td>1,300.00 DA</td>
+            <td>{{(getorder[0].montants* getinfo[0].Tva)/100}},00 DA</td>
           </tr>
           <tr>
             <td colspan="2"></td>
             <td colspan="2">MONTANT T.T.C</td>
-            <td>6,500.00 DA</td>
+            <td>{{((getorder[0].montants* getinfo[0].Tva)/100)+getorder[0].montants}},00 DA</td>
           </tr>
         </tfoot>
       </table>
       <div id="thanks">Arrêter  la présente facture à la somme</div>
-      <div id="notices">
-        {{NumberToLetter}}
-      </div>
+       <h6> {{nummm}} et {{nummmm}} Dinars Algériens</h6>
     </main>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="west"  @click="$router.push({name: 'Gestiondevis'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
@@ -138,7 +136,9 @@ export default {
         return{
             hi: '',
             date1: formattedString,
-            NumberToLetter: NumberToLetter(65000)
+            NumberToLetter: NumberToLetter(65000),
+            nummm: null,
+            nummmm: null
         }
     },
     methods:{
@@ -152,6 +152,9 @@ export default {
       this.setinfo()
       this.setoneorder(this.$route.params.id)
         console.log(NumberToLetter(65000))
+      this.nummm = NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))
+      this.nummmm = NumberToLetter((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
+    
     },
     computed:{
       ...mapGetters('company', ['getinfo']),

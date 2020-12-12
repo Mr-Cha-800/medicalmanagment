@@ -109,9 +109,7 @@
         </tfoot>
       </table>
       <div id="thanks">Arrêter  la présente facture à la somme</div>
-      <div id="notices">
-       <h4> {{nummm}} et {{nummmm}} Dinars Algériens</h4>
-      </div>
+       <h6> {{nummm}} et {{nummmm}} Dinars Algériens</h6>
     </main>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="west"  @click="$router.push({name: 'InvoiceHistory'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
@@ -126,6 +124,7 @@
 </template>
 
 <script>
+var writtenNumber = require('written-number');
 import { mapActions, mapGetters } from 'vuex'
 import { date } from 'quasar'
 let timeStamp = Date.now()
@@ -139,6 +138,7 @@ export default {
             hi: '',
             date1: formattedString,
             NumberToLetterz: NumberToLetter(20),
+            teste: writtenNumber(1234.22, {lang: 'fr'}),
             nummm: null,
             nummmm: null
         }
@@ -154,7 +154,7 @@ export default {
       this.setinfo()
       this.setoneorder(this.$route.params.id)
       this.nummm = NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))
-      this.nummmm = NumberToLetter((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(1))*10);
+      this.nummmm = NumberToLetter((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
     
     },
     computed:{
