@@ -91,7 +91,7 @@ export default {
                 color: 'red-4',
                 textColor: 'white',
                 icon: 'clear',
-                message: 'Produit non ajouté !'
+                message: 'Produit non ajouté ! Vueillez changer la valeur du Référence'
             })
         })
       }

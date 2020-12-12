@@ -27,7 +27,7 @@ Router.get('/',(req,res)=>{
  });
 // Renvoyer la liste une seule facture
 Router.get('/:id',(req,res)=>{
-    mysqlConnection.query('SELECT devis_facture.ID as idfact,devis_facture.Annee as factyear,devis_facture.montant_total as montant, patient_nom,patient_prenom,patient_datenaiss,patient_lieunaiss, dossier.*, achat.*,produits.*, achat.quantity as quantities  FROM devis_facture,dossier,achat,produits WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact AND devis_facture.ID = ? AND produits.NumRef = achat.id_produit',[req.params.id],(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.etat as etat, devis_facture.ID as idfact,devis_facture.Annee as factyear,devis_facture.montant_total as montants, patient_nom,patient_prenom,patient_datenaiss,patient_lieunaiss, dossier.*, achat.*,produits.*, achat.quantity as quantities  FROM devis_facture,dossier,achat,produits WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact AND devis_facture.ID = ? AND produits.NumRef = achat.id_produit',[req.params.id],(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
@@ -112,4 +112,13 @@ Router.post('/',(req,res)=>{
         console.log(err);
     })
  });
+  // finaliser le devis
+Router.patch('/finaliser',(req,res)=>{
+    mysqlConnection.query('UPDATE devis_facture SET etat=?  WHERE ID=?',['finalisé',req.body.Id],(err,rows,fields)=>{
+        if(!err)
+        res.json(rows);
+        else
+        console.log(err);
+    })
+});
 module.exports = Router;

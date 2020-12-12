@@ -43,7 +43,7 @@ Router.get('/',(req,res)=>{
          if(!err)
          res.json(rows);
          else
-         console.log(err);
+         return res.status('404').send({ message: err.message });
      })
  });
  

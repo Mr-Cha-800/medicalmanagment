@@ -10,8 +10,8 @@
 <table>
   <tr>
     <th>N° Devis</th>
-    <th>Nom du client</th>
-    <th>Prénom du client</th>
+    <th>Nom</th>
+    <th>Prénom</th>
     <th>Date</th>
     <th>Num téléphone</th>
     <th>Montant TTC</th>
@@ -24,7 +24,7 @@
     <td>{{devis.idfact}}/{{devis.Annee}}</td>
     <td>{{devis.nom}}</td>
     <td>{{devis.prenom}}</td>
-    <td>{{devis.datee}}</td> 
+    <td>{{dateme(devis.datee)}}</td> 
     <td>{{devis.NumTel}}</td> 
     <td>{{devis.montant}} Da</td>
     <td class="text-center">
@@ -32,7 +32,8 @@
       <supprimerDevis :id="devis.idfact" />
       </td>
     <td>{{devis.etat}}</td>
-    <td v-if="devis.etat === 'non-finalisé'" class="text-center"><q-btn  flat >Finaliser</q-btn>
+    <td v-if="devis.etat === 'non-finalisé'"  class="text-center">
+      <finaliserdevis :id="devis.idfact"/>
       </td>
       <td v-else></td>
   </tr>
@@ -43,10 +44,12 @@
 </template>
 
 <script>
+import { date } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
+import finaliserdevis from './finaliserDevis'
 import supprimerDevis from './supprimerDevis'
 export default {
-  components:{ supprimerDevis },
+  components:{ finaliserdevis, supprimerDevis },
   data(){
     return {
       dialog: false
@@ -58,7 +61,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('devis', ['setdevis']),
+    ...mapActions('devis', ['setdevis','finaliserdevis']),
     deletee(){
       this.dialog = true
     },
@@ -69,6 +72,9 @@ export default {
           icon: 'done',
           message: 'devis supprimé !'
       })
+    },
+    dateme(datee){
+      return date.formatDate(datee, 'DD MMM YYYY')
     }
   },
   created(){
