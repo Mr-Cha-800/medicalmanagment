@@ -26,15 +26,7 @@ export default {
         ...mapActions('product', ['searchproducts']),
         onSubmit(){
             this.searchproducts(this.search)
-            .then(Response => {
-                    if(Response){
-                    this.$q.notify({
-                        color: 'green-4',
-                        textColor: 'white',
-                        icon: 'search',
-                        message: 'Voici les résultats !'
-                    })
-                }
+            .then(() => {
             }).catch(err => {
                 console.log(err)
             })

@@ -21,7 +21,7 @@
     <td>{{devis.idfact}}/{{devis.Annee}}</td>
     <td>{{devis.nom}}</td>
     <td>{{devis.prenom}}</td>
-    <td>{{devis.datee}}</td> 
+    <td>{{dateme(devis.datee)}}</td> 
     <td>{{devis.montant}} Da</td>
     <td class="text-center"><q-btn round flat @click="$router.push({name: 'Invoiceshow', params: { id: devis.idfact }})" ><q-icon color="green" name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn></td>
     <td class="text-center"> <supprimerDevis :id="devis.idfact" /></td>
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { date } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 import supprimerDevis from '../GestionDevis/supprimerDevis'
 export default {
@@ -69,6 +70,9 @@ export default {
           icon: 'done',
           message: 'devis supprimé !'
       })
+    },
+    dateme(datee){
+      return date.formatDate(datee, 'DD MMM YYYY')
     }
   },
   created(){

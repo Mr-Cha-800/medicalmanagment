@@ -10,8 +10,8 @@
 <table>
   <tr>
     <th>N° Devis</th>
-    <th>Nom du client</th>
-    <th>Prénom du client</th>
+    <th>Nom</th>
+    <th>Prénom</th>
     <th>Date</th>
     <th>Num téléphone</th>
     <th>Montant TTC</th>
@@ -24,7 +24,7 @@
     <td>{{devis.idfact}}/{{devis.Annee}}</td>
     <td>{{devis.nom}}</td>
     <td>{{devis.prenom}}</td>
-    <td>{{devis.datee}}</td> 
+    <td>{{dateme(devis.datee)}}</td> 
     <td>{{devis.NumTel}}</td> 
     <td>{{devis.montant}} Da</td>
     <td class="text-center">
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { date } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 import finaliserdevis from './finaliserDevis'
 import supprimerDevis from './supprimerDevis'
@@ -71,6 +72,9 @@ export default {
           icon: 'done',
           message: 'devis supprimé !'
       })
+    },
+    dateme(datee){
+      return date.formatDate(datee, 'DD MMM YYYY')
     }
   },
   created(){
