@@ -30,19 +30,6 @@
       </q-input>
     <div class="q-gutter-sm justify-center q-pa-md">
        <q-input
-        v-model="neworder.securitesociale"
-        label="N° sécurité sociale *"
-        mask="## #### #### ##"
-        fill-mask
-        lazy-rules
-        hint="Aide: XX XXXX XXXX XX"
-        :rules="[val => !!val || 'Obligatoire',
-          val => val && val.length > 0  || 'veuillez remplir correctement']"
-      >
-      </q-input>
-    </div>
-    <div class="q-gutter-sm justify-center q-pa-md">
-       <q-input
         v-model="neworder.tel"
         label="N° de téléphone "
         mask="## ## ## ## ##"
@@ -72,6 +59,20 @@
         emit-value
         map-options
       />
+    </div>
+    <div class="q-gutter-sm justify-center q-pa-md">
+       <q-input
+        v-if="neworder.caisse === 'CASNOS' || neworder.caisse === 'CNAS' || neworder.caisse ==='MILITAIRE'"
+        v-model="neworder.securitesociale"
+        label="N° sécurité sociale *"
+        mask="## #### #### ##"
+        fill-mask
+        lazy-rules
+        hint="Aide: XX XXXX XXXX XX"
+        :rules="[val => !!val || 'Obligatoire',
+          val => val && val.length > 0  || 'veuillez remplir correctement']"
+      >
+      </q-input>
     </div>
     <div class="row">
       <div class="col"><div class="text-h6">Informations du patient</div> </div>
