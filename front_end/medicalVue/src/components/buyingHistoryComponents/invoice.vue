@@ -106,7 +106,7 @@
           </tr>
         </table>
       <div id="thanks">Arrêter  la présente facture à la somme</div>
-       <h6> {{nummm}} et {{nummmm}} Dinars Algériens</h6>
+       <h6> {{nummm}} Dinars et <p v-if="nummmm !== 'zéro'">{{nummmm}}</p> </h6>
     </main>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="west"  @click="$router.push({name: 'InvoiceHistory'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
@@ -136,8 +136,8 @@ export default {
             date1: formattedString,
             NumberToLetterz: NumberToLetter(20),
             teste: writtenNumber(1234.22, {lang: 'fr'}),
-            nummm: null,
-            nummmm: null
+           // nummm: null,
+           // nummmm: null
         }
     },
     methods:{
@@ -150,13 +150,20 @@ export default {
     created(){
       this.setinfo()
       this.setoneorder(this.$route.params.id)
-      this.nummm = NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))
-      this.nummmm = NumberToLetter((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
+      // this.nummm = NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))
+      // this.nummmm = NumberToLetter((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
     
     },
     computed:{
       ...mapGetters('company', ['getinfo']),
-      ...mapGetters('order', ['getorder'])
+      ...mapGetters('order', ['getorder']),
+      nummm(){
+        return NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))
+      },
+      nummmm(){
+        return  NumberToLetter((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
+    
+      }
     }
 }
 </script>

@@ -106,7 +106,7 @@
           </tr>
         </table>
       <div id="thanks">Arrêter la présente facture à la somme</div>
-       <h6> {{nummm}} et {{nummmm}} Dinars Algériens</h6>
+       <h6> {{nummm}} Dinars<template v-if="nummmm !== 'zéro'"> et  {{nummmm}}</template></h6>
     </main>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="west"  @click="$router.push({name: 'Gestiondevis'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
