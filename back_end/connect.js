@@ -3,9 +3,8 @@ const mysql = require('mysql');
 // Établir la connexion avec la base de données
 var mysqlConnection = mysql.createConnection({
     host:'127.0.0.1',
-    port:'8889',
     user: 'root',
-    password: 'root',
+    password: '',
     database: 'medical',
     multipleStatements: true
 });
