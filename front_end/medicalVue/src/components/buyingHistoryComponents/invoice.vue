@@ -107,7 +107,7 @@
         </table>
         <table>
           <tr>
-      <div id="thanks">Arréter la présente facture à la somme</div>
+      <div id="thanks">Arrété la présente facture à la somme</div>
           </tr>
        <div class="text-h6"><b> {{(nummm).toUpperCase()}} DINARS<template v-if="nummmm !== 'zéro'"> ET  {{nummmm.toUpperCase()}}</template></b></div>
         </table>
