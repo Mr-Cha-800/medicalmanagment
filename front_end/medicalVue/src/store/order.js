@@ -28,6 +28,7 @@ export default {
         async order(_, order){
             return new Promise((resolve, reject) => {
                 axios.post('/factures', {
+                    id:order.id,
                     nom: order.nom,
                     prenom: order.prenom,
                     numsecsocial: order.securitesociale,

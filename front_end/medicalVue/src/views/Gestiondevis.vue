@@ -12,13 +12,12 @@
       v-model="devis"
     />
     <DevisTable :deviss="devis"/>
-    <q-page-sticky position="bottom-right" class="q-pa-xl" :offset="[18, 18]">
-      <q-btn fab icon="add"  @click="$router.push({name: 'NewOrder'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">nouvelle commande</q-tooltip></q-btn>
-    </q-page-sticky>
+    <neworderbutton/>
   </div>
 </template>
 
 <script>
+import neworderbutton from '../components/layout/newOrderButton.vue'
 import DevisTable from '../components/GestionDevis/DevisTable.vue'
 import SearchDevis from '../components/GestionDevis/SearchDevis.vue'
 export default {
@@ -28,6 +27,7 @@ export default {
         }
     },
   components:{
+    neworderbutton,
     DevisTable,
     SearchDevis
   }

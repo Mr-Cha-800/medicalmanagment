@@ -1,4 +1,6 @@
 <template>
+
+  <div class="q-pa-xl q-gutter-xl">
     <q-card class="my-card">
         <q-card-section class="bg-blue-grey-5 text-white">
             <div class="text-h6">Nouvelle commande</div>
@@ -181,6 +183,7 @@
       </div>
     </q-form>
         </q-card>
+  </div>
 </template>
 
 <script>
@@ -471,11 +474,20 @@ export default {
               color: 'red-4',
               textColor: 'white',
               icon: 'clear',
-              message: "Numero de téléphone existe deja"
+              message: "Numero de téléphone existe deja ! Veuillez choisir 'client existant'"
             })
           }
         console.log(error)
       })
+    },
+    filll(){
+        this.neworder.id = this.getuser[0].ID
+        this.neworder.nom = this.getuser[0].nom
+        this.neworder.prenom = this.getuser[0].prenom
+        this.neworder.securitesociale = this.getuser[0].NumSecSocial
+        this.neworder.tel = this.getuser[0].NumTel
+        this.neworder.wilaya = this.getuser[0].Wilaya
+        this.neworder.caisse = this.getuser[0].Caisse
     }
   },
   watch: {
@@ -504,9 +516,11 @@ export default {
     }
   },
   computed:{
-    ...mapGetters('product', ['getproducts'])
+    ...mapGetters('product', ['getproducts']),
+    ...mapGetters('devis', ['getuser'])
   },
   created(){
+    this.filll()
     this.getallproducts()
   }
 }
