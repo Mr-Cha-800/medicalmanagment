@@ -102,7 +102,7 @@
           </tr>
           <tr>
             <td colspan="2">MONTANT T.T.C</td>
-            <td>{{((getorder[0].montants* getinfo[0].Tva)/100)+getorder[0].montants}},00 DA</td>
+            <td>{{(((getorder[0].montants* getinfo[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA</td>
           </tr>
         </table>
       <div id="thanks">Arrêter  la présente facture à la somme</div>

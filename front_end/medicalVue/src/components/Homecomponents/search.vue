@@ -41,6 +41,4 @@ export default {
 </script>
 
 <style>
-.my-card {
-}
 </style>
