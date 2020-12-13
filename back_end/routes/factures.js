@@ -2,6 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 const Router = express.Router();
 const mysqlConnection = require('../connect'); 
+var fs  = require('fs');
 
 
 // Gestion des produits
@@ -69,6 +70,9 @@ Router.post('/',(req,res)=>{
         }else {
             mysqlConnection.query('INSERT INTO dossier (nom, prenom, NumSecSocial, NumTel, Caisse, Wilaya, year,identifier) VALUES(?,?,?,?,?,?,?,?)',[req.body.nom,req.body.prenom,req.body.numsecsocial,req.body.numtel,req.body.caisse,req.body.wilaya,yearr,x],(err,rows,fields)=>{
                 if(!err) {
+                    if (!fs.existsSync(`G:/${yearr}`)){
+                        fs.mkdirSync(`G:/${yearr}`);
+                    }
                 mysqlConnection.query('INSERT INTO devis_facture (Annee, foreignID,datee, foreignyear, patient_nom, patient_prenom, patient_datenaiss, patient_lieunaiss, etat, montant_total, identifier) VALUES (?,(Select ID from dossier where identifier = ? ),curdate(),(Select year from dossier where NumTel = ? ),?,?,?,?,?,?,?)',[yearr,x,req.body.numtel,req.body.patientnom,req.body.patientprenom,req.body.patientdatenaiss,req.body.patientlieunaiss,'non-finalisé',montanttotal,x],(err,rows,fields)=>{
                     if(!err){
                         for(var k=0; k < req.body.commande.length; k++) {

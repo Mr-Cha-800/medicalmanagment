@@ -14,7 +14,7 @@
         <h2 style="font-size:20px"><i>Agrément ministère de la santé N°332 du 02-02-2020</i></h2>
       </div> -->
     </header>
-    <main>
+    <main  ref="content">
       <div id="details" class="clearfix">
         <div id="client">
           <div><b style="font-size:15px">N° RC : {{getinfo[0].NumRegistreComm}}</b></div>
@@ -118,6 +118,9 @@
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ><q-tooltip anchor="top middle">Imprimer</q-tooltip></q-btn>
     </q-page-sticky>
+    <q-page-sticky id="printPageButton" position="top-right" style="padding-top:70px" class="q-pa-xs" :offset="[18, 18]">
+      <q-btn fab icon="save" @click="saveme()"  color="blue-grey-5" ><q-tooltip anchor="top middle">Sauvegarder</q-tooltip></q-btn>
+    </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[180, 18]">
       <printactions v-if="getorder[0].etat === 'finalisé'" :id="getorder[0].idfact"/>
       </q-page-sticky>
@@ -128,6 +131,8 @@
 var writtenNumber = require('written-number');
 import { mapActions, mapGetters } from 'vuex'
 import { date } from 'quasar'
+import jspdf from 'jspdf'
+const fs = require('fs');
 let timeStamp = Date.now()
 let formattedString = date.formatDate(timeStamp, 'DD-MM-YYYY')
 import { NumberToLetter } from 'convertir-nombre-lettre';
@@ -149,6 +154,21 @@ export default {
       ...mapActions('order',['setoneorder']),
         printili(){
           window.print()
+        },
+        saveme(){
+          const doc = new jspdf()
+          const html = this.$refs.contentsave.innerHTML
+
+          doc.fromHTML(html,15,15,{
+            width:150
+          })
+          if (!fs.existsSync(`G:/${this.getorder[0].year}/${this.getorder[0].ID}`)){
+            fs.mkdirSync(`G:/${this.getorder[0].year}/${this.getorder[0].ID}`, function(err){
+              if(!err) {
+                   doc.save(`G:/${this.getorder[0].year}/${this.getorder[0].ID}/Facture.pdf`)
+              }
+            });
+          }
         }
     },
     created(){
