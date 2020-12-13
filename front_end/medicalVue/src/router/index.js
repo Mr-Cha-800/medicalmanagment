@@ -2,7 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 // product managmeent
+import SearchUsers from '../views/SearchUsers.vue'
 import NewOrder from '../views/NewOrder.vue'
+import NewOrderOldDossier from '../components/Homecomponents/neworderolddossier.vue'
 import NewDevis from '../views/NewDevis.vue'
 import ProductManagment from '../views/ProductManagment.vue'
 import modifierproduit from '../components/ProductManagmentComponents/modifier.vue'
@@ -36,9 +38,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
+    path: '/SearchUsers',
+    name: 'SearchUsers',
+    component: SearchUsers
+  },
+  {
     path: '/NewOrder',
     name: 'NewOrder',
     component: NewOrder
+  },
+  {
+    path: '/NewOrderOldDossier',
+    name: 'NewOrderOldDossier',
+    component: NewOrderOldDossier
   },
   {
     path: '/NewDevis',

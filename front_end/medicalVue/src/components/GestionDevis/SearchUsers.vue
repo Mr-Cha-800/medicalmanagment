@@ -1,14 +1,16 @@
 <template>
     <q-card class="my-card">
         <q-card-section class="bg-blue-grey-5 text-white">
-            <div class="text-h6">Rechercher un produit</div>
+            <div class="text-h6">Recherche Utilisateur</div>
         </q-card-section>
         <q-card-section class="">
-      <q-input   v-model="search" label="Désignation/Référence du produit... " >
+    <form @submit.prevent="onSubmit">
+      <q-input   v-model="search" label="Nom, Prénom, Num de tél etc... " >
           <template v-slot:append>
           <q-icon name="search"></q-icon>
         </template>
       </q-input>
+    </form>
         </q-card-section>
     </q-card>
 </template>
@@ -23,9 +25,9 @@ export default {
         }
     },
     methods:{
-        ...mapActions('product', ['searchproducts']),
+        ...mapActions('devis', ['searchusers']),
         onSubmit(){
-            this.searchproducts(this.search)
+            this.searchusers(this.search)
             .then(() => {
             }).catch(err => {
                 console.log(err)
@@ -41,4 +43,5 @@ export default {
 </script>
 
 <style>
+
 </style>

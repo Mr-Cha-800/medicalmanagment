@@ -6,7 +6,7 @@
             <q-btn  @click="$router.push({name: 'Home'})" flat><strong>Admin</strong>  panel</q-btn>
             </q-toolbar-title>
             <!--<q-btn no-caps @click="$router.push({name: 'NewDevis'})" flat>Nouveau devis</q-btn>-->
-            <q-btn no-caps @click="$router.push({name: 'NewOrder'})" flat>Nouvelle commande</q-btn>
+            <choosing/>
             <q-btn no-caps @click="$router.push({name: 'ProductManagment'})" flat>Gestion des produits</q-btn>
             <q-btn no-caps @click="$router.push({name: 'InvoiceHistory'})" flat>Historique des achats</q-btn>
             <q-btn no-caps @click="$router.push({name: 'Gestiondevis'})" flat>Gestion de devis</q-btn>
@@ -21,10 +21,12 @@
 </div>
 </template>
 <script>
+import choosing from '../GestionDevis/Choosing.vue'
 // import search from '../HeaderComponents/search.vue'
 //import drawer from '../HeaderComponents/drawerr.vue'
 export default {
     components: {
+      choosing
        // search,
         //drawer
     },

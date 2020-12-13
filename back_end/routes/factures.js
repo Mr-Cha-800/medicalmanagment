@@ -54,33 +54,75 @@ Router.post('/',(req,res)=>{
     }
     var x =  Math.floor(Math.random() * Math.floor(10000))
     var yearr  = new Date().getFullYear()
-    mysqlConnection.query('INSERT INTO dossier (nom, prenom, NumSecSocial, NumTel, Caisse, Wilaya, year,identifier) VALUES(?,?,?,?,?,?,?,?)',[req.body.nom,req.body.prenom,req.body.numsecsocial,req.body.numtel,req.body.caisse,req.body.wilaya,yearr,x],(err,rows,fields)=>{
-        if(!err) {
-        mysqlConnection.query('INSERT INTO devis_facture (Annee, foreignID,datee, foreignyear, patient_nom, patient_prenom, patient_datenaiss, patient_lieunaiss, etat, montant_total, identifier) VALUES (?,(Select ID from dossier where identifier = ? ),curdate(),(Select year from dossier where NumTel = ? ),?,?,?,?,?,?,?)',[yearr,x,req.body.numtel,req.body.patientnom,req.body.patientprenom,req.body.patientdatenaiss,req.body.patientlieunaiss,'non-finalisé',montanttotal,x],(err,rows,fields)=>{
-            if(!err){
-                for(var k=0; k < req.body.commande.length; k++) {
-                    mysqlConnection.query('INSERT INTO achat (id_fact,id_produit,quantity,montant,price) VALUES ((Select ID from devis_facture where identifier = ? ),?,?,?,?)',[x,req.body.commande[k].NumRef,req.body.commande[k].quantity,req.body.commande[k].PrixU,req.body.commande[k].PrixU],(err,rows,fields)=>{
-                        if(err){
+    
+                if(req.body.id === 1){
+                    
+    mysqlConnection.query('SELECT * from dossier WHERE NumTel = ?',[req.body.numtel],(err,rows,fields)=>{
+        if(err){
+            console.log(err);
+        }else {
+
+            if (rows && rows.length ) {
+                
+                return res.status('406').send({ message: 'numero kayen deja' });
+                // do something with your row variable
+        }else {
+            mysqlConnection.query('INSERT INTO dossier (nom, prenom, NumSecSocial, NumTel, Caisse, Wilaya, year,identifier) VALUES(?,?,?,?,?,?,?,?)',[req.body.nom,req.body.prenom,req.body.numsecsocial,req.body.numtel,req.body.caisse,req.body.wilaya,yearr,x],(err,rows,fields)=>{
+                if(!err) {
+                mysqlConnection.query('INSERT INTO devis_facture (Annee, foreignID,datee, foreignyear, patient_nom, patient_prenom, patient_datenaiss, patient_lieunaiss, etat, montant_total, identifier) VALUES (?,(Select ID from dossier where identifier = ? ),curdate(),(Select year from dossier where NumTel = ? ),?,?,?,?,?,?,?)',[yearr,x,req.body.numtel,req.body.patientnom,req.body.patientprenom,req.body.patientdatenaiss,req.body.patientlieunaiss,'non-finalisé',montanttotal,x],(err,rows,fields)=>{
+                    if(!err){
+                        for(var k=0; k < req.body.commande.length; k++) {
+                            mysqlConnection.query('INSERT INTO achat (id_fact,id_produit,quantity,montant,price) VALUES ((Select ID from devis_facture where identifier = ? ),?,?,?,?)',[x,req.body.commande[k].NumRef,req.body.commande[k].quantity,req.body.commande[k].PrixU,req.body.commande[k].PrixU],(err,rows,fields)=>{
+                                if(err){
+                                    console.log(err);
+                                   }
+                            })
+                        }
+                        mysqlConnection.query('UPDATE devis_facture SET identifier=? WHERE identifier=?',[0,x],(err,rows,fields)=>{
+                            if(err)
                             console.log(err);
-                           }
+                        });
+                        mysqlConnection.query('UPDATE dossier SET identifier=? WHERE identifier=?',[0,x],(err,rows,fields)=>{
+                            if(err)
+                            console.log(err);
+                        });
+                        res.send(rows);
+                    }
+                    else
+                    console.log(err);
+                })}
+                else
+                console.log(err);
+            })
+        }
+            } 
+        });
+                   
+                }else {
+                    mysqlConnection.query('UPDATE dossier SET NumTel=? WHERE ID=?',[req.body.numtel,req.body.id],(err,rows,fields)=>{
+                        if(err)
+                        console.log(err);
+                    })
+                    mysqlConnection.query('INSERT INTO devis_facture (Annee, foreignID,datee, foreignyear, patient_nom, patient_prenom, patient_datenaiss, patient_lieunaiss, etat, montant_total, identifier) VALUES (?,? ,curdate(),(Select year from dossier where NumTel = ? ),?,?,?,?,?,?,?)',[yearr,req.body.id,req.body.numtel,req.body.patientnom,req.body.patientprenom,req.body.patientdatenaiss,req.body.patientlieunaiss,'non-finalisé',montanttotal, x],(err,rows,fields)=>{
+                        if(!err){
+                            for(var k=0; k < req.body.commande.length; k++) {
+                                mysqlConnection.query('INSERT INTO achat (id_fact,id_produit,quantity,montant,price) VALUES ((Select ID from devis_facture where identifier = ? ),?,?,?,?)',[x,req.body.commande[k].NumRef,req.body.commande[k].quantity,req.body.commande[k].PrixU,req.body.commande[k].PrixU],(err,rows,fields)=>{
+                                    if(err){
+                                        console.log(err);
+                                       }
+                                })
+                            }
+                            mysqlConnection.query('UPDATE dossier SET identifier=? WHERE identifier=?',[0,x],(err,rows,fields)=>{
+                                if(err)
+                                console.log(err);
+                            });
+                            res.send(rows);
+                        }
+                        else
+                        console.log(err);
                     })
                 }
-                mysqlConnection.query('UPDATE devis_facture SET identifier=? WHERE identifier=?',[0,x],(err,rows,fields)=>{
-                    if(err)
-                    console.log(err);
-                });
-                mysqlConnection.query('UPDATE dossier SET identifier=? WHERE identifier=?',[0,x],(err,rows,fields)=>{
-                    if(err)
-                    console.log(err);
-                });
-                res.send(rows);
-            }
-            else
-            console.log(err);
-        })}
-        else
-        console.log(err);
-    })
+
 });
 
  // Supprimer un devis

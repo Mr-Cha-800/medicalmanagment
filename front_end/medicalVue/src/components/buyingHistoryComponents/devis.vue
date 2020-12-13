@@ -101,12 +101,16 @@
             <td>{{(getorder[0].montants* getinfo[0].Tva)/100}},00 DA</td>
           </tr>
           <tr>
-            <td colspan="2">MONTANT T.T.C</td>
-            <td>{{((getorder[0].montants* getinfo[0].Tva)/100)+getorder[0].montants}},00 DA</td>
+            <td colspan="2"> <b>MONTANT T.T.C</b> </td>
+            <td><b>{{(((getorder[0].montants* getinfo[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td>
           </tr>
         </table>
-      <div id="thanks">Arrêter  la présente facture à la somme</div>
-       <h6> {{nummm}} et {{nummmm}} Dinars Algériens</h6>
+        <table>
+          <tr>
+      <div id="thanks">Arréter la présente facture à la somme</div>
+          </tr>
+       <div class="text-h6"> <b> {{nummm}} Dinars<template v-if="nummmm !== 'zéro'"> et  {{nummmm}}</template> </b></div>
+        </table>
     </main>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="west"  @click="$router.push({name: 'Gestiondevis'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
@@ -134,8 +138,8 @@ export default {
             hi: '',
             date1: formattedString,
             NumberToLetter: NumberToLetter(65000),
-            nummm: null,
-            nummmm: null
+          //  nummm: null,
+          //  nummmm: null
         }
     },
     methods:{
@@ -148,14 +152,20 @@ export default {
     created(){
       this.setinfo()
       this.setoneorder(this.$route.params.id)
-        console.log(NumberToLetter(65000))
-      this.nummm = NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))
-      this.nummmm = NumberToLetter((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
+     // this.nummm = NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))
+     // this.nummmm = NumberToLetter((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
     
     },
     computed:{
       ...mapGetters('company', ['getinfo']),
-      ...mapGetters('order', ['getorder'])
+      ...mapGetters('order', ['getorder']),
+      nummm(){
+        return NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))
+      },
+      nummmm(){
+        return  NumberToLetter((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
+    
+      }
     }
 }
 </script>

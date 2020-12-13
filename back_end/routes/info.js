@@ -27,6 +27,15 @@ Router.patch('/modify',(req,res)=>{
     })
 });
 
+  // Rechercher un utilisateur
+  Router.post('/recherche',(req,res)=>{
+    mysqlConnection.query('SELECT * from dossier WHERE ID LIKE ? OR nom LIKE ? OR prenom LIKE ? OR NumTel LIKE ? OR NumSecSocial LIKE ? ',[req.body.Search,req.body.Search,req.body.Search,req.body.Search,req.body.Search],(err,rows,fields)=>{
+        if(!err)
+        res.send(rows);
+        else
+        console.log(err);
+    })
+ });
  
 
 module.exports = Router;

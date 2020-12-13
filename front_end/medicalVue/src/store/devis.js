@@ -2,16 +2,31 @@ import axios from 'axios'
 export default {
     namespaced: true,
     state:{
-      devis: []
+      devis: [],
+      dossier: [],
+      user: {}
     },
     getters:{
       getalldevis(state){
         return state.devis
+      },
+      getallusers(state){
+        return state.dossier
+      },
+      getuser(state){
+        return state.user
       }
+
     },
     mutations:{
       setalldevis(state, devis){
         state.devis = devis
+      },
+      setallusers(state, users){
+        state.dossier = users
+      },
+      setuser(state, id){
+        state.user = state.dossier.filter(x => x.ID === id)
       }
     },
     actions:{
@@ -64,6 +79,22 @@ export default {
                 })
                   .then(response => {
                     dispatch('setdevis')
+                    resolve(response)
+                    // console.log(response)
+                  })
+                  .catch(error => {
+                    reject(error)
+                  })
+              })
+        },
+        async searchusers({ commit }, search){
+          search = '%'+search+'%'
+            return new Promise((resolve, reject) => {
+                axios.post('/info/recherche', {
+                  Search : search
+                })
+                  .then(response => {
+                    commit('setallusers', response.data)
                     resolve(response)
                     // console.log(response)
                   })
