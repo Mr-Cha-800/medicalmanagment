@@ -3,7 +3,7 @@ const express = require('express');
 const produits = require('./routes/produits');
 const info = require('./routes/info');
 const bodyparser = require('body-parser');
-const mysqlConnection = require('./connect1'); 
+const mysqlConnection = require('./connect'); 
 var cors = require('cors')
 
 
