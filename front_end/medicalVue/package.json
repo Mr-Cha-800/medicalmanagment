@@ -17,6 +17,7 @@
     "axios": "^0.21.0",
     "convertir-nombre-lettre": "^1.0.2",
     "core-js": "^3.6.5",
+    "jspdf": "^2.2.0",
     "moment": "^2.29.1",
     "quasar": "^1.0.0",
     "vue": "^2.6.11",
