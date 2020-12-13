@@ -107,7 +107,7 @@
         </table>
         <table>
           <tr>
-      <div id="thanks">Arrêter la présente facture à la somme</div>
+      <div id="thanks">Arréter la présente facture à la somme</div>
           </tr>
        <div class="text-h6"> {{nummm}} Dinars<template v-if="nummmm !== 'zéro'"> et  {{nummmm}}</template></div>
         </table>
