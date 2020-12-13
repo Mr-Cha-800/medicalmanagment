@@ -36,7 +36,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .my-card{
-    height: 300px;
+    height: 330px;
     width: 500px;
 }
 </style>
