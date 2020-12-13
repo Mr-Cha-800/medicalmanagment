@@ -101,8 +101,8 @@
             <td>{{(getorder[0].montants* getinfo[0].Tva)/100}},00 DA</td>
           </tr>
           <tr>
-            <td colspan="2">MONTANT T.T.C</td>
-            <td>{{(((getorder[0].montants* getinfo[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA</td>
+            <td colspan="2"> <b>MONTANT T.T.C</b> </td>
+            <td><b>{{(((getorder[0].montants* getinfo[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td>
           </tr>
         </table>
         <table>
