@@ -105,8 +105,12 @@
             <td>{{(((getorder[0].montants* getinfo[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA</td>
           </tr>
         </table>
-      <div id="thanks">Arrêter  la présente facture à la somme</div>
-       <h6> {{nummm}} Dinars et <p v-if="nummmm !== 'zéro'">{{nummmm}}</p> </h6>
+        <table>
+          <tr>
+      <div id="thanks">Arréter la présente facture à la somme</div>
+          </tr>
+       <div class="text-h6"> {{nummm}} Dinars<template v-if="nummmm !== 'zéro'"> et  {{nummmm}}</template></div>
+        </table>
     </main>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="west"  @click="$router.push({name: 'InvoiceHistory'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
