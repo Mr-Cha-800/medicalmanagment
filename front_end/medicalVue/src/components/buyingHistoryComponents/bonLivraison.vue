@@ -1,6 +1,7 @@
 <!-- A L'IMPREMENTE MAHECH TEMCHIIIIIII AWÉÉÉÉÉÉÉ-->
 <template>
     <body class="q-pl-md q-pr-md q-pb-md">
+      <div ref="content">
     <header class="clearfix">
       <div id="logo">
         <img src="../../../public/logo.png">
@@ -96,11 +97,15 @@
         {{NumberToLetter}}
       </div>
     </main>
+    </div>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="west"  @click="$router.push({name: 'Gestiondevis'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ><q-tooltip anchor="top middle">Imprimer</q-tooltip></q-btn>
+    </q-page-sticky>
+    <q-page-sticky id="printPageButton" position="top-right" style="padding-top:70px" class="q-pa-xs" :offset="[18, 18]">
+      <q-btn fab icon="save" @click="saveme(getorder[0].year,getorder[0].ID)"  color="blue-grey-5" ><q-tooltip anchor="top middle">Sauvegarder</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[180, 18]">
       <printactions v-if="getorder[0].etat === 'finalisé'" :id="getorder[0].idfact"/>
@@ -111,6 +116,8 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { date } from 'quasar'
+import jspdf from 'jspdf'
+import domtoimage from 'dom-to-image';
 let timeStamp = Date.now()
 let formattedString = date.formatDate(timeStamp, 'DD-MM-YYYY')
 import { NumberToLetter } from 'convertir-nombre-lettre';
@@ -129,7 +136,26 @@ export default {
       ...mapActions('order',['setoneorder']),
         printili(){
           window.print()
-        }
+        },
+        saveme(year,id){
+        domtoimage
+        .toPng(this.$refs.content)
+        .then(function (dataUrl) {
+          var img = new Image();
+          img.src = dataUrl;
+          var doc = new jspdf("p", "cm", "a5");
+          var width = doc.internal.pageSize.getWidth();
+          var height = doc.internal.pageSize.getHeight();
+          doc.addImage(img, 'PNG', 0.5, 0, width-1, height-2.5);
+          const filename = 'BonLivraison' + '.pdf';
+
+          doc.save(`${id}/${year}/${filename}`);
+        })
+        .catch(function (error) {
+          console.error('oops, something went wrong!', error);
+        });
+    }
+
     },
     created(){
       this.setinfo()

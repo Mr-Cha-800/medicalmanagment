@@ -1,6 +1,7 @@
 <!-- A L'IMPREMENTE MAHECH TEMCHIIIIIII AWÉÉÉÉÉÉÉ-->
 <template>
-    <body class="q-pl-md q-pr-md q-pb-md">
+    <body   class="q-pl-md q-pr-md q-pb-md">
+      <div ref="content">
     <header class="clearfix">
       <div id="logo">
         <img src="../../../public/logo.png">
@@ -14,7 +15,7 @@
         <h2 style="font-size:20px"><i>Agrément ministère de la santé N°332 du 02-02-2020</i></h2>
       </div> -->
     </header>
-    <main  ref="content">
+    <main> 
       <div id="details" class="clearfix">
         <div id="client">
           <div><b style="font-size:15px">N° RC : {{getinfo[0].NumRegistreComm}}</b></div>
@@ -112,6 +113,8 @@
        <div class="text-h6"><b> {{(nummm).toUpperCase()}} DINARS<template v-if="nummmm !== 'zéro'"> ET  {{nummmm.toUpperCase()}}</template></b></div>
         </table>
     </main>
+    
+        </div>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="west"  @click="$router.push({name: 'InvoiceHistory'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
     </q-page-sticky>
@@ -119,7 +122,7 @@
       <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ><q-tooltip anchor="top middle">Imprimer</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" style="padding-top:70px" class="q-pa-xs" :offset="[18, 18]">
-      <q-btn fab icon="save" @click="saveme()"  color="blue-grey-5" ><q-tooltip anchor="top middle">Sauvegarder</q-tooltip></q-btn>
+      <q-btn fab icon="save" @click="saveme(getorder[0].year,getorder[0].ID)"  color="blue-grey-5" ><q-tooltip anchor="top middle">Sauvegarder</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[180, 18]">
       <printactions v-if="getorder[0].etat === 'finalisé'" :id="getorder[0].idfact"/>
@@ -132,7 +135,8 @@ var writtenNumber = require('written-number');
 import { mapActions, mapGetters } from 'vuex'
 import { date } from 'quasar'
 import jspdf from 'jspdf'
-const fs = require('fs');
+import domtoimage from 'dom-to-image';
+// const fs = require('fs');
 let timeStamp = Date.now()
 let formattedString = date.formatDate(timeStamp, 'DD-MM-YYYY')
 import { NumberToLetter } from 'convertir-nombre-lettre';
@@ -155,13 +159,35 @@ export default {
         printili(){
           window.print()
         },
-        saveme(){
-          const doc = new jspdf()
-          const html = this.$refs.contentsave.innerHTML
+        
+        saveme(year,id){
+        domtoimage
+        .toPng(this.$refs.content)
+        .then(function (dataUrl) {
+          var img = new Image();
+          img.src = dataUrl;
+          var doc = new jspdf("p", "cm", "a5");
+          var width = doc.internal.pageSize.getWidth();
+          var height = doc.internal.pageSize.getHeight();
+          doc.addImage(img, 'PNG', 0.5, 0, width-1, height-2.5);
+          const filename = 'Facture' + '.pdf';
+
+          doc.save(`${id}/${year}/${filename}`);
+        })
+        .catch(function (error) {
+          console.error('oops, something went wrong!', error);
+        });
+    },
+
+
+
+          /*
+          const doc = new jspdf();
+          const html = this.$refs.content.innerHTML;
 
           doc.fromHTML(html,15,15,{
             width:150
-          })
+          });
           if (!fs.existsSync(`G:/${this.getorder[0].year}/${this.getorder[0].ID}`)){
             fs.mkdirSync(`G:/${this.getorder[0].year}/${this.getorder[0].ID}`, function(err){
               if(!err) {
@@ -169,7 +195,8 @@ export default {
               }
             });
           }
-        }
+        }*/
+        
     },
     created(){
       this.setinfo()
@@ -185,7 +212,7 @@ export default {
         return NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))
       },
       nummmm(){
-        return  NumberToLetter((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
+        return  NumberToLetter(((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100).toFixed(2));
     
       }
     }
