@@ -3,9 +3,27 @@ const express = require('express');
 const Router = express.Router();
 const mysqlConnection = require('../connect'); 
 
-
+var exec = require('child_process').exec;
 // Gestion des produits
 
+Router.post('/save',(req,res)=>{
+    let date_ob = new Date();
+
+// adjust 0 before single digit date
+let date = ("0" + date_ob.getDate()).slice(-2);
+
+// current month
+let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+// current year
+let year = date_ob.getFullYear();
+
+// prints date in YYYY-MM-DD format
+var my_date = year + "-" + month + "-" + date;
+    var exec = require('child_process').exec;
+    var child = exec(" mysqldump -u root -p'' medical > "+ req.body.chemin +"/"+my_date+"medical.sql");
+    return res.status('200').send({ message: 'nice'});
+ });
 // Renvoyer la liste des produits
 Router.get('/',(req,res)=>{
     mysqlConnection.query('SELECT * FROM companyinfo',(err,rows,fields)=>{

@@ -5,7 +5,7 @@
         <search/>
     </div>
     <div class="col-md-5 col-sm-6 col-xs-12 q-pa-md">
-    <q-btn no-caps color="red-8" icon-right="add_shopping_cart" label="Gestion de produit" />
+        <savingdata/>
     </div>
    </div>
    <div class="row q-pa-md justify-center full-height full-width text-center">
@@ -19,12 +19,14 @@
 </div>
 </template>
 <script>
+import savingdata from '../components/settings/savingdata'
 import buyinghistory from '../components/Homecomponents/buyinghistory'
 import newdevis from '../components/Homecomponents/newdevis'
 import search from '../components/Homecomponents/search'
 export default {
     name: 'Home',
     components: { 
+        savingdata,
         buyinghistory,
         newdevis,
         search

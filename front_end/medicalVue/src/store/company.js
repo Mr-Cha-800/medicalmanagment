@@ -51,6 +51,20 @@ export default {
                     reject(error)
                   })
               })
+        },
+        async savedatabase(_, chemin){
+            return new Promise((resolve, reject) => {
+                axios.post('/info/save', {
+                    chemin: chemin
+                })
+                  .then(response => {
+                    resolve(response)
+                    // console.log(response)
+                  })
+                  .catch(error => {
+                    reject(error)
+                  })
+              })
         }
     }
 }
