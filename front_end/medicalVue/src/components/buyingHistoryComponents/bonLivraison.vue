@@ -92,10 +92,10 @@
 
         </tbody>
       </table>
-      <div id="thanks">Arrêter  la présente facture à la somme</div>
+      <!--<div id="thanks">Arrêter  la présente facture à la somme</div>
       <div id="notices">
         {{NumberToLetter}}
-      </div>
+      </div> -->
     </main>
     </div>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">

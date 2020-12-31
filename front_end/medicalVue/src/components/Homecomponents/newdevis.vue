@@ -160,6 +160,21 @@
       </tr>
     </table>
     </div>
+      <q-toggle
+        v-model="remisestate"
+        color="blue-grey-5"
+        label="Remise"
+      />
+      
+    <div class="q-gutter-sm justify-center q-pa-lg  q-pb-xl">
+       <q-input
+        type="number"
+        v-if="remisestate"
+        v-model="neworder.remise"
+        label="Remise en %"
+      >%
+      </q-input>
+    </div>
       <div class="q-pr-lg q-pt-xl q-pb-lg q-gutter-md absolute-bottom-right">
     <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer le devis" >
       <template v-slot:loading>
@@ -209,6 +224,7 @@ export default {
   data(){
     return {
       fill: false,
+      remisestate: false,
       loading: false,
       neworder:{
         nom: '',
@@ -429,7 +445,8 @@ export default {
             label: 'MILITAIRE',
             value: 'MILITAIRE'
           }
-        ]
+        ],
+        remise: null
       },
       patient:{
         nom: '',

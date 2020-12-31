@@ -93,6 +93,10 @@
         </tbody>
       </table>
         <table style="width:30%;float:right">
+        <!--  <tr v-if="getorder[0].remise > 0">
+            <td colspan="2">REMISE</td>
+            <td>{{getorder[0].remise}} %</td>
+          </tr> -->
           <tr>
             <td colspan="2">MONTANT H.T</td>
             <td>{{getorder[0].montants}},00 DA</td>
@@ -110,7 +114,7 @@
           <tr>
       <div id="thanks">Arréter la présente facture à la somme</div>
           </tr>
-       <div class="text-h6"> <b> {{nummm.toUpperCase()}} DINARS<template v-if="nummmm !== 'zéro'"> ET  {{nummmm.toUpperCase()}}</template> </b></div>
+       <div class="text-h6"> <b> {{nummm.toUpperCase()}} DINARS<template v-if="nummmm !== 'zéro'"> ET {{nummmm.toUpperCase()}} CTS</template> </b></div>
         </table>
     </main>
     </div>

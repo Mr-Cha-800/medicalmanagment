@@ -65,7 +65,6 @@
         v-if="neworder.caisse === 'CASNOS' || neworder.caisse === 'CNAS' || neworder.caisse ==='MILITAIRE'"
         v-model="neworder.securitesociale"
         label="N° sécurité sociale *"
-        mask="## #### #### ##"
         fill-mask
         lazy-rules
         hint="Aide: XX XXXX XXXX XX"
@@ -171,6 +170,21 @@
       </tr>
     </table>
     </div>
+      <q-toggle
+        v-model="remisestate"
+        color="blue-grey-5"
+        label="Remise"
+      />
+      
+    <div class="q-gutter-sm justify-center q-pa-lg  q-pb-xl">
+       <q-input
+        type="number"
+        v-if="remisestate"
+        v-model="neworder.remise"
+        label="Remise en %"
+      >%
+      </q-input>
+    </div>
       <div class="q-pr-lg q-pt-xl q-pb-lg q-gutter-md absolute-bottom-right">
     <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer le devis" >
       <template v-slot:loading>
@@ -190,6 +204,7 @@ export default {
   data(){
     return {
       fill: false,
+      remisestate: false,
       loading: false,
       neworder:{
         id: 1,
@@ -418,7 +433,8 @@ export default {
           prenom: '',
           datenaiss: '',
           lieunaissance: ''
-        }
+        },
+        remise: null
       },
       model: null,
       filterOptions: this.getproducts

@@ -41,7 +41,8 @@ export default {
                     patientprenom: order.patient.prenom,
                     patientdatenaiss: order.patient.datenaiss,
                     patientlieunaiss: order.patient.lieunaissance,
-                    montanttotal: order.montanttotal
+                    montanttotal: order.montanttotal,
+                    remise: order.remise
                 })
                   .then(response => {
                     resolve(response)
