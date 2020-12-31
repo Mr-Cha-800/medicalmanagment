@@ -36,9 +36,8 @@ export default {
   }
 }
 </script>
-
-<style  lang="scss" scoped>
-.my-cards{
+<style lang="scss" scoped>
+.my-card{
     height: 300px;
     width: 500px;
 }
