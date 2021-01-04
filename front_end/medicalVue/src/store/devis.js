@@ -30,6 +30,7 @@ export default {
       }
     },
     actions:{
+      // recuperer tous les devis
       async setdevis({ commit }){
           return new Promise((resolve, reject) => {
               axios.get('/factures/devis')
@@ -43,6 +44,7 @@ export default {
                 })
             })
       },
+      // supprimer un devis
         async deletedevis({dispatch},id){
             return new Promise((resolve, reject) => {
                 axios.delete('/factures/devis/'+ id)
@@ -56,6 +58,7 @@ export default {
                   })
               })
         },
+        // chercher un devis
         async searchdevis({ commit }, search){
           search = '%'+search+'%'
             return new Promise((resolve, reject) => {
@@ -72,6 +75,7 @@ export default {
                   })
               })
         },
+        // finaliser un devis
         async finaliserdevis({ dispatch }, productId){
             return new Promise((resolve, reject) => {
                 axios.patch('/factures/finaliser', {
@@ -87,6 +91,7 @@ export default {
                   })
               })
         },
+        // chercher un utilisateur pour client existant
         async searchusers({ commit }, search){
           search = '%'+search+'%'
             return new Promise((resolve, reject) => {
