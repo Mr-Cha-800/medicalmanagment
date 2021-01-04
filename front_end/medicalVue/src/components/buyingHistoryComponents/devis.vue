@@ -190,7 +190,7 @@ export default {
       ...mapGetters('company', ['getinfo']),
       ...mapGetters('order', ['getorder']),
       nummm(){
-        return NumberToLetter(((Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants)).toFixed(2))*100)
+        return NumberToLetter(((Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants)).toFixed(2)))
       //  return NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants))
       },
       nummmm(){

@@ -9,7 +9,7 @@ var fs  = require('fs');
 
 // Renvoyer la liste des devis
 Router.get('/devis',(req,res)=>{
-    mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier,achat WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact GROUP BY devis_facture.ID ORDER BY devis_facture.ID  DESC',(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.Tva as Tva,devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier,achat WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact GROUP BY devis_facture.ID ORDER BY devis_facture.ID  DESC',(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
@@ -19,7 +19,7 @@ Router.get('/devis',(req,res)=>{
  
 // Renvoyer la liste des factures
 Router.get('/',(req,res)=>{
-    mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*   FROM devis_facture,dossier,achat WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact AND devis_facture.etat = ? GROUP BY devis_facture.ID ORDER BY devis_facture.ID  DESC',['finalisé'],(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.Tva as Tva, devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*   FROM devis_facture,dossier,achat WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact AND devis_facture.etat = ? GROUP BY devis_facture.ID ORDER BY devis_facture.ID  DESC',['finalisé'],(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
@@ -105,7 +105,7 @@ Router.post('/',(req,res)=>{
                         if(err)
                         console.log(err);
                     })
-                    mysqlConnection.query('INSERT INTO devis_facture (Annee, foreignID,datee, foreignyear, patient_nom, patient_prenom, patient_datenaiss, patient_lieunaiss, etat, montant_total, identifier) VALUES (?,? ,curdate(),(Select year from dossier where NumTel = ? ),?,?,?,?,?,?,?)',[yearr,req.body.id,req.body.numtel,req.body.patientnom,req.body.patientprenom,req.body.patientdatenaiss,req.body.patientlieunaiss,'non-finalisé',montanttotal, x],(err,rows,fields)=>{
+                    mysqlConnection.query('INSERT INTO devis_facture (Annee, foreignID,datee, foreignyear, patient_nom, patient_prenom, patient_datenaiss, patient_lieunaiss, etat, montant_total, Tva, identifier) VALUES (?,? ,curdate(),(Select year from dossier where NumTel = ? ),?,?,?,?,?,?,?,?)',[yearr,req.body.id,req.body.numtel,req.body.patientnom,req.body.patientprenom,req.body.patientdatenaiss,req.body.patientlieunaiss,'non-finalisé',montanttotal,req.body.tva, x],(err,rows,fields)=>{
                         if(!err){
                             for(var k=0; k < req.body.commande.length; k++) {
                                 mysqlConnection.query('INSERT INTO achat (id_fact,id_produit,quantity,montant,price) VALUES ((Select ID from devis_facture where identifier = ? ),?,?,?,?)',[x,req.body.commande[k].NumRef,req.body.commande[k].quantity,req.body.commande[k].PrixU,req.body.commande[k].PrixU],(err,rows,fields)=>{
@@ -140,7 +140,7 @@ Router.post('/',(req,res)=>{
 
   // Rechercher une facture
   Router.post('/recherche',(req,res)=>{
-    mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID AND devis_facture.etat = ?',[req.body.Search,req.body.Search,req.body.Search,'finalisé'],(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.Tva as Tva,devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID AND devis_facture.etat = ?',[req.body.Search,req.body.Search,req.body.Search,'finalisé'],(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
@@ -149,7 +149,7 @@ Router.post('/',(req,res)=>{
  });
   // Rechercher un devis
   Router.post('/recherche/devis',(req,res)=>{
-    mysqlConnection.query('SELECT devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID',[req.body.Search,req.body.Search,req.body.Search],(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.Tva as Tva,devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID',[req.body.Search,req.body.Search,req.body.Search],(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
