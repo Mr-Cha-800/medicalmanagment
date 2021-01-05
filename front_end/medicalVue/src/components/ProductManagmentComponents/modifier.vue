@@ -36,6 +36,14 @@
         :rules="[val => !!val || 'Veuillez remplir']">
       </q-input>
     </div>
+    
+      <q-toggle
+        v-model="showoneproduct[0].tax"
+        :false-value="0"
+        :true-value="1"
+        color="blue-grey-5"
+        label="Tva"
+      />
       <div class=" q-pr-lg q-pt-lg q-pb-lg q-gutter-md absolute-bottom-right ">
     <q-btn no-caps  push color="red-5" @click="$router.push({name: 'ProductManagment'})"  label="Annuler" />
     <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  label="Modifier" >

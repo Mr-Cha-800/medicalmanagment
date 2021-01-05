@@ -64,7 +64,7 @@
     </div>
     <div class="q-gutter-sm justify-center q-pa-md">
        <q-input
-        v-if="neworder.caisse === 'CASNOS' || neworder.caisse === 'CNAS' || neworder.caisse ==='MILITAIRE'"
+        v-if="neworder.caisse === 'CASNOS' || neworder.caisse === 'CNAS' || neworder.caisse ==='CAMSSP'"
         v-model="neworder.securitesociale"
         label="N° sécurité sociale *"
         fill-mask
@@ -427,8 +427,8 @@ export default {
             value: 'CASNOS'
           },
           {
-            label: 'MILITAIRE',
-            value: 'MILITAIRE'
+            label: 'CAMSSP',
+            value: 'CAMSSP'
           }
         ],
         patient:{
@@ -510,7 +510,7 @@ export default {
     neworder: {
       deep: true,
       handler (val) {
-        if (val.caisse === 'MILITAIRE' || val.caisse === '') {
+        if (val.caisse === 'CAMSSP' || val.caisse === '') {
           val.wilaya = ''
         }
         if ((val.nom || val.prenom ) && this.fill === true){

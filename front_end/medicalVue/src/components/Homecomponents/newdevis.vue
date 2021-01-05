@@ -442,8 +442,8 @@ export default {
             value: 'CASNOS'
           },
           {
-            label: 'MILITAIRE',
-            value: 'MILITAIRE'
+            label: 'CAMSSP',
+            value: 'CAMSSP'
           }
         ],
         remise: null
@@ -502,7 +502,7 @@ export default {
     neworder: {
       deep: true,
       handler (val) {
-        if (val.caisse === 'MILITAIRE' || val.caisse === '') {
+        if (val.caisse === 'CAMSSP' || val.caisse === '') {
           val.wilaya = ''
         }
         if ((val.nom || val.prenom ) && this.fill === true){

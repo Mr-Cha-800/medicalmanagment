@@ -39,7 +39,7 @@ Router.get('/',(req,res)=>{
 
  // Ajouter un nouveau produit
  Router.post('/',(req,res)=>{
-     mysqlConnection.query('INSERT INTO produits VALUES(?,?,?,?)',[req.body.NumRef,req.body.Designation,req.body.PrixU,1],(err,rows,fields)=>{
+     mysqlConnection.query('INSERT INTO produits VALUES(?,?,?,?,?)',[req.body.NumRef,req.body.Designation,req.body.PrixU,1,req.body.Tva],(err,rows,fields)=>{
          if(!err)
          res.json(rows);
          else
@@ -49,7 +49,7 @@ Router.get('/',(req,res)=>{
  
  // Modifier les informations d'un produit 
 Router.patch('/:id',(req,res)=>{
-    mysqlConnection.query('UPDATE produits SET Designation=?,PrixU=? WHERE NumRef=?',[req.body.Designation,req.body.PrixU,req.params.id],(err,rows,fields)=>{
+    mysqlConnection.query('UPDATE produits SET Designation=?,PrixU=?,tax = ? WHERE NumRef=?',[req.body.Designation,req.body.PrixU,req.body.Tva,req.params.id],(err,rows,fields)=>{
         if(!err)
         res.json(rows);
         else

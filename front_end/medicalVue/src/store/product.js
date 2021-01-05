@@ -28,7 +28,8 @@ export default {
                 axios.post('/produits', {
                     NumRef: product.refId,
                     Designation: product.nomProduit,
-                    PrixU: product.montantProduit
+                    PrixU: product.montantProduit,
+                    Tva: product.Tva
                 })
                   .then(response => {
                     resolve(response)
@@ -70,7 +71,8 @@ export default {
                 axios.patch('/produits/' + product.NumRef, {
                     NumRef: product.NumRef,
                     Designation: product.Designation,
-                    PrixU: product.PrixU
+                    PrixU: product.PrixU,
+                    Tva: product.tax
                 })
                   .then(response => {
                     resolve(response)
