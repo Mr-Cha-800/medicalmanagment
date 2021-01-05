@@ -99,11 +99,11 @@
           </tr> -->
           <tr>
             <td colspan="2">MONTANT H.T</td>
-            <td>{{getorder[0].montants}},00 DA</td>
+            <td>{{getorder[0].montants}} DA</td>
           </tr>
           <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td><!-- DE PRÉFERENCE DIR TVA VARIABLE BEH IDA TBEDLET Y9AD YBEDELHA-->
-            <td>{{(getorder[0].montants* getorder[0].Tva)/100}},00 DA</td>
+            <td>{{(getorder[0].montants* getorder[0].Tva)/100}} DA</td>
           </tr>
           <tr>
             <td colspan="2"> <b>MONTANT T.T.C</b> </td>
