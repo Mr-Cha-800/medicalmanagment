@@ -25,34 +25,43 @@ export default {
         }
     },
     actions:{
-        async order(_, order){
+      // faire une commnde
+        async order({ dispatch }, order){
             return new Promise((resolve, reject) => {
+              dispatch('company/setinfo', null , { root:true })
+              .then(Response => {
+              var Tvaa = Response.data[0].Tva
                 axios.post('/factures', {
-                    id:order.id,
-                    nom: order.nom,
-                    prenom: order.prenom,
-                    numsecsocial: order.securitesociale,
-                    numtel: order.tel,
-                    caisse: order.caisse,
-                    wilaya: order.wilaya,
-                    commande: order.commande,
-                    year: order.year,
-                    patientnom: order.patient.nom,
-                    patientprenom: order.patient.prenom,
-                    patientdatenaiss: order.patient.datenaiss,
-                    patientlieunaiss: order.patient.lieunaissance,
-                    montanttotal: order.montanttotal,
-                    remise: order.remise
-                })
-                  .then(response => {
-                    resolve(response)
-                    // console.log(response)
-                  })
-                  .catch(error => {
-                    reject(error)
-                  })
+                  id:order.id,
+                  nom: order.nom,
+                  prenom: order.prenom,
+                  numsecsocial: order.securitesociale,
+                  numtel: order.tel,
+                  caisse: order.caisse,
+                  wilaya: order.wilaya,
+                  commande: order.commande,
+                  year: order.year,
+                  patientnom: order.patient.nom,
+                  patientprenom: order.patient.prenom,
+                  patientdatenaiss: order.patient.datenaiss,
+                  patientlieunaiss: order.patient.lieunaissance,
+                  montanttotal: order.montanttotal,
+                  remise: order.remise,
+                  tva: Tvaa
               })
+                .then(response => {
+                  resolve(response)
+                  // console.log(response)
+                })
+                .catch(error => {
+                  reject(error)
+                })
+              }).catch(err=> {
+                console.log(err)
+              })
+            })
         },
+        // recuperer les commandes
         async setorders({ commit }){
             return new Promise((resolve, reject) => {
                 axios.get('/factures')
@@ -66,6 +75,7 @@ export default {
                   })
               })
         },
+        // recuperer une seule commande
         async setoneorder({ commit },id){
             return new Promise((resolve, reject) => {
                 axios.get('/factures/'+ id)
@@ -79,6 +89,7 @@ export default {
                   })
               })
         },
+        // rechercher une factuZe
         async searchfacture({ commit }, search){
           search = '%'+search+'%'
             return new Promise((resolve, reject) => {

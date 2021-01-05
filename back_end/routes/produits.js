@@ -8,7 +8,7 @@ const mysqlConnection = require('../connect');
 
 // Renvoyer la liste des produits
 Router.get('/',(req,res)=>{
-    mysqlConnection.query('SELECT * FROM produits',(err,rows,fields)=>{
+    mysqlConnection.query('SELECT * FROM produits ORDER BY NumRef DESC',(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else

@@ -99,15 +99,15 @@
           </tr>
           <tr>
             <td colspan="2">MONTANT H.T</td>
-            <td>{{getorder[0].montants}},00 DA</td>
+            <td>{{getorder[0].montants}} DA</td>
           </tr>
           <tr>
-            <td colspan="2">TVA {{getinfo[0].Tva}}%</td><!-- DE PRÉFERENCE DIR TVA VARIABLE BEH IDA TBEDLET Y9AD YBEDELHA-->
-            <td>{{(getorder[0].montants * getinfo[0].Tva)/100}},00 DA</td>
+            <td colspan="2">TVA {{getorder[0].Tva}}%</td><!-- DE PRÉFERENCE DIR TVA VARIABLE BEH IDA TBEDLET Y9AD YBEDELHA-->
+            <td>{{(getorder[0].montants * getorder[0].Tva)/100}} DA</td>
           </tr>
           <tr>
             <td colspan="2"> <b>MONTANT T.T.C</b> </td>
-            <td><b>{{(((getorder[0].montants* getinfo[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td>
+            <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td>
           </tr>
         </table>
         <table>
@@ -206,18 +206,18 @@ export default {
     created(){
       this.setinfo()
       this.setoneorder(this.$route.params.id)
-      // this.nummm = NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))
-      // this.nummmm = NumberToLetter((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
+      // this.nummm = NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants))
+      // this.nummmm = NumberToLetter((((((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
     
     },
     computed:{
       ...mapGetters('company', ['getinfo']),
       ...mapGetters('order', ['getorder']),
       nummm(){
-        return NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))
+        return NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants))
       },
       nummmm(){
-        return  NumberToLetter(((((((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getinfo[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100).toFixed(2));
+        return  NumberToLetter(((((((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100).toFixed(2));
     
       }
     }
