@@ -47,6 +47,7 @@ export default {
                   patientlieunaiss: order.patient.lieunaissance,
                   montanttotal: order.montanttotal,
                   remise: order.remise,
+                  cash: order.cash,
                   tva: Tvaa
               })
                 .then(response => {

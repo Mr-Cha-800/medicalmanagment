@@ -50,6 +50,7 @@ export default {
                 axios.delete('/factures/devis/'+ id)
                   .then(response => {
                     dispatch('setdevis')
+                    dispatch('order/setorders', null , { root:true })
                     resolve(response)
                     // console.log(response)
                   })

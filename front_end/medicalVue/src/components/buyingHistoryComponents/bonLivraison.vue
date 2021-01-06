@@ -1,6 +1,6 @@
 <!-- A L'IMPREMENTE MAHECH TEMCHIIIIIII AWÉÉÉÉÉÉÉ-->
 <template>
-    <body class="q-pl-md q-pr-md q-pb-md">
+    <body   class="q-pl-md q-pr-md q-pb-md">
       <div ref="content">
     <header class="clearfix">
       <div id="logo">
@@ -15,7 +15,7 @@
         <h2 style="font-size:20px"><i>Agrément ministère de la santé N°332 du 02-02-2020</i></h2>
       </div> -->
     </header>
-    <main>
+    <main> 
       <div id="details" class="clearfix">
         <div id="client">
           <div><b style="font-size:15px">N° RC : {{getinfo[0].NumRegistreComm}}</b></div>
@@ -35,7 +35,7 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="facture">Bon livraison N°: {{getorder[0].idfact}}/{{getorder[0].factyear}} </th> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
+            <th class="facture">BON LIVRAISON N°: {{getorder[0].idfact}}/{{getorder[0].factyear}} </th> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
             <th class="dossier">DOSSIER : {{getorder[0].ID}}/{{getorder[0].year}}</th><!--la meme chose hnaya pour le dossier-->
           </tr>
         </thead>
@@ -68,6 +68,7 @@
           </tr>
         </thead>
       </table>
+        <template v-if="getorder[0].Cash === 0">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -76,7 +77,38 @@
           <tr>
             <th class="totale">N° RÉF.</th>
             <th class="desc">DESCRIPTION</th>
-            <th class="unit">PRIX UNITAIRE</th>
+            <th class="unit">PRIX UNITAIRE H.T</th>
+            <th class="tva">TVA</th>
+            <th class="qty">QUANTITÉ</th>
+            <th class="total">PRIX TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="produit in getorder" :key="produit.id">
+            <td class="totale">{{produit.NumRef}}</td>
+            <td class="desc">{{produit.Designation}}</td>
+            <td class="unit">{{produit.price}} DA</td>
+            <td v-if="produit.tax === 0" class="tva">0 %</td>
+            <td v-else>{{getorder[0].Tva}} %</td>
+            <td class="qty">{{produit.quantities}}</td>
+            <td v-if="produit.tax === 0" class="total">{{produit.quantities* produit.price }} DA</td>
+            <td v-else class="total">{{produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))  }} DA</td>
+          </tr>
+
+        </tbody>
+      </table>
+        </template>
+        
+        <template v-if="getorder[0].Cash === 1">
+      <div>
+          <div><b style="font-size:20px">PRODUIT :</b></div>
+      </div>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="totale">N° RÉF.</th>
+            <th class="desc">DESCRIPTION</th>
+            <th class="unit">PRIX UNITAIRE H.T</th>
             <th class="qty">QUANTITÉ</th>
             <th class="total">PRIX TOTAL</th>
           </tr>
@@ -87,19 +119,17 @@
             <td class="desc">{{produit.Designation}}</td>
             <td class="unit">{{produit.price}} DA</td>
             <td class="qty">{{produit.quantities}}</td>
-            <td class="total">{{produit.quantities*produit.price}} DA</td>
+            <td class="total">{{produit.quantities* produit.price   }} DA</td>
           </tr>
 
         </tbody>
       </table>
-      <!--<div id="thanks">Arrêter  la présente facture à la somme</div>
-      <div id="notices">
-        {{NumberToLetter}}
-      </div> -->
+        </template>
     </main>
-    </div>
+    
+        </div>
     <q-page-sticky id="printPageButton" position="top-left" class="q-pa-xs" :offset="[18, 18]">
-      <q-btn fab icon="west"  @click="$router.push({name: 'Gestiondevis'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
+      <q-btn fab icon="west"  @click="$router.push({name: 'InvoiceHistory'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ><q-tooltip anchor="top middle">Imprimer</q-tooltip></q-btn>
@@ -114,10 +144,12 @@
 </template>
 
 <script>
+var writtenNumber = require('written-number');
 import { mapActions, mapGetters } from 'vuex'
 import { date } from 'quasar'
 import jspdf from 'jspdf'
 import domtoimage from 'dom-to-image';
+// const fs = require('fs');
 let timeStamp = Date.now()
 let formattedString = date.formatDate(timeStamp, 'DD-MM-YYYY')
 import { NumberToLetter } from 'convertir-nombre-lettre';
@@ -128,7 +160,10 @@ export default {
         return{
             hi: '',
             date1: formattedString,
-            NumberToLetter: NumberToLetter(65000)
+            NumberToLetterz: NumberToLetter(20),
+            teste: writtenNumber(1234.22, {lang: 'fr'}),
+           // nummm: null,
+           // nummmm: null
         }
     },
     methods:{
@@ -137,6 +172,7 @@ export default {
         printili(){
           window.print()
         },
+        
         saveme(year,id){
         domtoimage
         .toPng(this.$refs.content)
@@ -147,24 +183,57 @@ export default {
           var width = doc.internal.pageSize.getWidth();
           var height = doc.internal.pageSize.getHeight();
           doc.addImage(img, 'PNG', 0.5, 0, width-1, height-2.5);
-          const filename = 'BonLivraison' + '.pdf';
+          const filename = 'Facture' + '.pdf';
 
           doc.save(`${id}/${year}/${filename}`);
         })
         .catch(function (error) {
           console.error('oops, something went wrong!', error);
         });
-    }
+        
+    },
 
+
+
+          /*
+          const doc = new jspdf();
+          const html = this.$refs.content.innerHTML;
+
+          doc.fromHTML(html,15,15,{
+            width:150
+          });
+          if (!fs.existsSync(`G:/${this.getorder[0].year}/${this.getorder[0].ID}`)){
+            fs.mkdirSync(`G:/${this.getorder[0].year}/${this.getorder[0].ID}`, function(err){
+              if(!err) {
+                   doc.save(`G:/${this.getorder[0].year}/${this.getorder[0].ID}/Facture.pdf`)
+              }
+            });
+          }
+        }*/
+        
     },
     created(){
       this.setinfo()
       this.setoneorder(this.$route.params.id)
-        console.log(NumberToLetter(65000))
+      // this.nummm = NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants))
+      // this.nummmm = NumberToLetter((((((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
+    
     },
     computed:{
       ...mapGetters('company', ['getinfo']),
-      ...mapGetters('order', ['getorder'])
+      ...mapGetters('order', ['getorder']),
+      nummm(){
+            return NumberToLetter(Math.trunc(this.getorder[0].montants))
+      },
+      nummmTTC(){
+            return NumberToLetter(Math.trunc(this.getorder[0].montant_TTC))
+      },
+      nummmm(){
+          return  NumberToLetter(((((this.getorder[0].montants) - (Math.trunc(this.getorder[0].montants))).toFixed(2))*100).toFixed(2));
+      },
+      nummmmTTC(){
+          return  NumberToLetter(((((this.getorder[0].montant_TTC) - (Math.trunc(this.getorder[0].montant_TTC))).toFixed(2))*100).toFixed(2));
+      }
     }
 }
 </script>

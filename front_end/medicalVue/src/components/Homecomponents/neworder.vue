@@ -164,12 +164,19 @@
       <tr v-for="product in neworder.commande" :key="product.id">
         <td>{{product.NumRef}}</td>
         <td style="width:80%">{{product.Designation}}  </td>
-        <td > <q-input min="0" type="number" v-model="product.PrixU"></q-input>  Da</td>
+        <td> <q-input min="0" type="number" v-model="product.PrixU"></q-input>  Da</td>
         <td style="width:20%"><q-input type="number" min="1" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>
         <td>{{product.quantity*product.PrixU}} Da</td>
       </tr>
     </table>
     </div>
+      <q-toggle
+        v-model="neworder.cash"
+        :true-value="1"
+        :false-value="0"
+        color="blue-grey-5"
+        label="Cash"
+      />
       <q-toggle
         v-model="remisestate"
         color="blue-grey-5"
@@ -434,6 +441,7 @@ export default {
           datenaiss: '',
           lieunaissance: ''
         },
+        cash: 0,
         remise: null
       },
       model: null,
@@ -467,7 +475,6 @@ export default {
       })
     },
     onSubmit(){
-      console.log(this.neworder)
       this.order(this.neworder)
       .then(response => {
         if(response){

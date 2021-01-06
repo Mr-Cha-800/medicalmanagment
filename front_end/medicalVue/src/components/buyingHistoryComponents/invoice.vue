@@ -68,6 +68,7 @@
           </tr>
         </thead>
       </table>
+        <template v-if="getorder[0].Cash === 0">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -76,7 +77,8 @@
           <tr>
             <th class="totale">N° RÉF.</th>
             <th class="desc">DESCRIPTION</th>
-            <th class="unit">PRIX UNITAIRE</th>
+            <th class="unit">PRIX UNITAIRE H.T</th>
+            <th class="tva">TVA</th>
             <th class="qty">QUANTITÉ</th>
             <th class="total">PRIX TOTAL</th>
           </tr>
@@ -86,8 +88,11 @@
             <td class="totale">{{produit.NumRef}}</td>
             <td class="desc">{{produit.Designation}}</td>
             <td class="unit">{{produit.price}} DA</td>
+            <td v-if="produit.tax === 0" class="tva">0 %</td>
+            <td v-else>{{getorder[0].Tva}} %</td>
             <td class="qty">{{produit.quantities}}</td>
-            <td class="total">{{produit.quantities*produit.price}} DA</td>
+            <td v-if="produit.tax === 0" class="total">{{produit.quantities* produit.price }} DA</td>
+            <td v-else class="total">{{produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))  }} DA</td>
           </tr>
 
         </tbody>
@@ -101,14 +106,67 @@
             <td colspan="2">MONTANT H.T</td>
             <td>{{getorder[0].montants}} DA</td>
           </tr>
-          <tr>
-            <td colspan="2">TVA {{getorder[0].Tva}}%</td><!-- DE PRÉFERENCE DIR TVA VARIABLE BEH IDA TBEDLET Y9AD YBEDELHA-->
+         <!-- <tr>
+            <td colspan="2">TVA {{getorder[0].Tva}}%</td>
             <td>{{(getorder[0].montants * getorder[0].Tva)/100}} DA</td>
-          </tr>
+          </tr> -->  
           <tr>
             <td colspan="2"> <b>MONTANT T.T.C</b> </td>
-            <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td>
+            <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
+            <td><b>{{(getorder[0].montant_TTC).toFixed(2)}} DA </b></td>
           </tr>
+        </table>
+        <table>
+          <tr>
+      <div id="thanks">Arrété la présente facture à la somme</div>
+          </tr>
+       <div v-if="getorder[0].Cash === 0" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CTS</template></b></div>
+        </table>
+        </template>
+        
+        <template v-if="getorder[0].Cash === 1">
+      <div>
+          <div><b style="font-size:20px">PRODUIT :</b></div>
+      </div>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="totale">N° RÉF.</th>
+            <th class="desc">DESCRIPTION</th>
+            <th class="unit">PRIX UNITAIRE H.T</th>
+            <th class="qty">QUANTITÉ</th>
+            <th class="total">PRIX TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="produit in getorder" :key="produit.id">
+            <td class="totale">{{produit.NumRef}}</td>
+            <td class="desc">{{produit.Designation}}</td>
+            <td class="unit">{{produit.price}} DA</td>
+            <td class="qty">{{produit.quantities}}</td>
+            <td class="total">{{produit.quantities* produit.price   }} DA</td>
+          </tr>
+
+        </tbody>
+      </table>
+        <table style="width:30%;float:right">
+          <tr v-if="getorder[0].remise > 0">
+            <td colspan="2">REMISE</td>
+            <td>{{getorder[0].remise}} %</td>
+          </tr>
+          <tr  v-if="getorder[0].Cash === 1" >
+            <td colspan="2">MONTANT H.T</td>
+            <td>{{getorder[0].montants}} DA</td>
+          </tr>
+         <!-- <tr>
+            <td colspan="2">TVA {{getorder[0].Tva}}%</td>
+            <td>{{(getorder[0].montants * getorder[0].Tva)/100}} DA</td>
+          </tr> -->  
+         <!--   <tr>
+            <td colspan="2"> <b>MONTANT T.T.C</b> </td>
+             <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td>
+            <td><b>{{(getorder[0].montant_TTC).toFixed(2)}} DA </b></td>
+          </tr>  -->
         </table>
         <table>
           <tr>
@@ -116,6 +174,7 @@
           </tr>
        <div class="text-h6"><b> {{(nummm).toUpperCase()}} DINARS<template v-if="nummmm !== 'zéro'"> ET  {{nummmm.toUpperCase()}} CTS</template></b></div>
         </table>
+        </template>
     </main>
     
         </div>
@@ -214,11 +273,16 @@ export default {
       ...mapGetters('company', ['getinfo']),
       ...mapGetters('order', ['getorder']),
       nummm(){
-        return NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants))
+            return NumberToLetter(Math.trunc(this.getorder[0].montants))
+      },
+      nummmTTC(){
+            return NumberToLetter(Math.trunc(this.getorder[0].montant_TTC))
       },
       nummmm(){
-        return  NumberToLetter(((((((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100).toFixed(2));
-    
+          return  NumberToLetter(((((this.getorder[0].montants) - (Math.trunc(this.getorder[0].montants))).toFixed(2))*100).toFixed(2));
+      },
+      nummmmTTC(){
+          return  NumberToLetter(((((this.getorder[0].montant_TTC) - (Math.trunc(this.getorder[0].montant_TTC))).toFixed(2))*100).toFixed(2));
       }
     }
 }

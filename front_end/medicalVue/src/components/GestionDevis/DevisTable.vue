@@ -14,7 +14,6 @@
     <th>Prénom</th>
     <th>Date</th>
     <th>Num téléphone</th>
-    <th>Montant TTC</th>
     <th>Opérations</th>
     <th>etat</th>
     <th></th>
@@ -26,7 +25,6 @@
     <td>{{devis.prenom}}</td>
     <td>{{dateme(devis.datee)}}</td> 
     <td>{{devis.NumTel}}</td> 
-    <td>{{(((devis.montant* devis.Tva)/100)+devis.montant).toFixed(2)}}  Da</td>
     <td class="text-center">
       <q-btn round flat @click="$router.push({name: 'devisshow', params: { id: devis.idfact }})" ><q-icon color="green" name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn>
       <supprimerDevis :id="devis.idfact" />

@@ -28,7 +28,7 @@ Router.get('/',(req,res)=>{
  });
 // Renvoyer la liste une seule facture
 Router.get('/:id',(req,res)=>{
-    mysqlConnection.query('SELECT devis_facture.Tva as Tva, devis_facture.etat as etat, devis_facture.ID as idfact,devis_facture.Annee as factyear,devis_facture.montant_total as montants,devis_facture.remise as remise, patient_nom,patient_prenom,patient_datenaiss,patient_lieunaiss, dossier.*, achat.*,produits.*, achat.quantity as quantities  FROM devis_facture,dossier,achat,produits WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact AND devis_facture.ID = ? AND produits.NumRef = achat.id_produit',[req.params.id],(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.montant_TTC as montant_TTC,devis_facture.Cash as Cash,devis_facture.Tva as Tva, devis_facture.etat as etat, devis_facture.ID as idfact,devis_facture.Annee as factyear,devis_facture.montant_total as montants,devis_facture.remise as remise, patient_nom,patient_prenom,patient_datenaiss,patient_lieunaiss, dossier.*, achat.*,produits.*, achat.quantity as quantities  FROM devis_facture,dossier,achat,produits WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact AND devis_facture.ID = ? AND produits.NumRef = achat.id_produit',[req.params.id],(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
@@ -50,15 +50,16 @@ Router.patch('/modify',(req,res)=>{
  // Ajouter un devis 
 Router.post('/',(req,res)=>{
     var montanttotal = 0;
+    var montantttc = 0;
     for(var k=0; k < req.body.commande.length; k++) {
-        montanttotal = montanttotal + req.body.commande[k].PrixU*req.body.commande[k].quantity
+        montanttotal = montanttotal + (req.body.commande[k].PrixU * req.body.commande[k].quantity)
+        montantttc = montantttc + (req.body.commande[k].PrixU + ((req.body.commande[k].PrixU * req.body.commande[k].tax * req.body.tva )/100))*req.body.commande[k].quantity
     }
     montanttotal = montanttotal - ((montanttotal * req.body.remise)/100)
+    montantttc = montantttc - ((montantttc * req.body.remise)/100)
     var x =  Math.floor(Math.random() * Math.floor(10000))
     var yearr  = new Date().getFullYear()
-    
                 if(req.body.id === 1){
-                    
     mysqlConnection.query('SELECT * from dossier WHERE NumTel = ?',[req.body.numtel],(err,rows,fields)=>{
         if(err){
             console.log(err);
@@ -71,10 +72,10 @@ Router.post('/',(req,res)=>{
         }else { // 
             mysqlConnection.query('INSERT INTO dossier (nom, prenom, NumSecSocial, NumTel, Caisse, Wilaya, year,identifier) VALUES(?,?,?,?,?,?,?,?)',[req.body.nom,req.body.prenom,req.body.numsecsocial,req.body.numtel,req.body.caisse,req.body.wilaya,yearr,x],(err,rows,fields)=>{
                 if(!err) {
-                mysqlConnection.query('INSERT INTO devis_facture (Annee, foreignID,datee, foreignyear, patient_nom, patient_prenom, patient_datenaiss, patient_lieunaiss, etat,remise, montant_total, Tva,identifier) VALUES (?,(Select ID from dossier where identifier = ? ),curdate(),(Select year from dossier where NumTel = ? ),?,?,?,?,?,?,?,?,?)',[yearr,x,req.body.numtel,req.body.patientnom,req.body.patientprenom,req.body.patientdatenaiss,req.body.patientlieunaiss,'non-finalisé',req.body.remise,montanttotal,req.body.tva,x],(err,rows,fields)=>{
+                mysqlConnection.query('INSERT INTO devis_facture (Annee, foreignID,datee, foreignyear, patient_nom, patient_prenom, patient_datenaiss, patient_lieunaiss, etat,remise, montant_total, montant_TTC, Tva,Cash,identifier) VALUES (?,(Select ID from dossier where identifier = ? ),curdate(),(Select year from dossier where NumTel = ? ),?,?,?,?,?,?,?,?,?,?,?)',[yearr,x,req.body.numtel,req.body.patientnom,req.body.patientprenom,req.body.patientdatenaiss,req.body.patientlieunaiss,'non-finalisé',req.body.remise,montanttotal,montantttc,req.body.tva,req.body.cash,x],(err,rows,fields)=>{
                     if(!err){
                         for(var k=0; k < req.body.commande.length; k++) {
-                            mysqlConnection.query('INSERT INTO achat (id_fact,id_produit,quantity,montant,price) VALUES ((Select ID from devis_facture where identifier = ? ),?,?,?,?)',[x,req.body.commande[k].NumRef,req.body.commande[k].quantity,req.body.commande[k].PrixU,req.body.commande[k].PrixU],(err,rows,fields)=>{
+                            mysqlConnection.query('INSERT INTO achat (id_fact,id_produit,quantity,montant,price,tax) VALUES ((Select ID from devis_facture where identifier = ? ),?,?,?,?,?)',[x,req.body.commande[k].NumRef,req.body.commande[k].quantity,req.body.commande[k].PrixU,req.body.commande[k].PrixU,req.body.commande[k].tax],(err,rows,fields)=>{
                                 if(err){
                                     console.log(err);
                                    }
@@ -99,16 +100,16 @@ Router.post('/',(req,res)=>{
         }
             } 
         });
-                   
+        
                 }else {
                     mysqlConnection.query('UPDATE dossier SET NumTel=? WHERE ID=?',[req.body.numtel,req.body.id],(err,rows,fields)=>{
                         if(err)
                         console.log(err);
                     })
-                    mysqlConnection.query('INSERT INTO devis_facture (Annee, foreignID,datee, foreignyear, patient_nom, patient_prenom, patient_datenaiss, patient_lieunaiss, etat, montant_total, Tva, identifier) VALUES (?,? ,curdate(),(Select year from dossier where NumTel = ? ),?,?,?,?,?,?,?,?)',[yearr,req.body.id,req.body.numtel,req.body.patientnom,req.body.patientprenom,req.body.patientdatenaiss,req.body.patientlieunaiss,'non-finalisé',montanttotal,req.body.tva, x],(err,rows,fields)=>{
+                    mysqlConnection.query('INSERT INTO devis_facture (Annee, foreignID,datee, foreignyear, patient_nom, patient_prenom, patient_datenaiss, patient_lieunaiss, etat, montant_total, montant_TTC, Tva,Cash, identifier) VALUES (?,? ,curdate(),(Select year from dossier where NumTel = ? ),?,?,?,?,?,?,?,?,?,?)',[yearr,req.body.id,req.body.numtel,req.body.patientnom,req.body.patientprenom,req.body.patientdatenaiss,req.body.patientlieunaiss,'non-finalisé',montanttotal,montantttc,req.body.tva,req.body.cash, x],(err,rows,fields)=>{
                         if(!err){
                             for(var k=0; k < req.body.commande.length; k++) {
-                                mysqlConnection.query('INSERT INTO achat (id_fact,id_produit,quantity,montant,price) VALUES ((Select ID from devis_facture where identifier = ? ),?,?,?,?)',[x,req.body.commande[k].NumRef,req.body.commande[k].quantity,req.body.commande[k].PrixU,req.body.commande[k].PrixU],(err,rows,fields)=>{
+                                mysqlConnection.query('INSERT INTO achat (id_fact,id_produit,quantity,montant,price,tax) VALUES ((Select ID from devis_facture where identifier = ? ),?,?,?,?,?)',[x,req.body.commande[k].NumRef,req.body.commande[k].quantity,req.body.commande[k].PrixU,req.body.commande[k].PrixU,req.body.commande[k].tax],(err,rows,fields)=>{
                                     if(err){
                                         console.log(err);
                                        }

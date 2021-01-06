@@ -173,6 +173,13 @@
     </table>
     </div>
       <q-toggle
+        v-model="neworder.cash"
+        :true-value="1"
+        :false-value="0"
+        color="blue-grey-5"
+        label="Cash"
+      />
+      <q-toggle
         v-model="remisestate"
         color="blue-grey-5"
         label="Remise"
@@ -437,6 +444,7 @@ export default {
           datenaiss: '',
           lieunaissance: ''
         },
+        cash: 0,
         remise: null
       },
       model: null,
