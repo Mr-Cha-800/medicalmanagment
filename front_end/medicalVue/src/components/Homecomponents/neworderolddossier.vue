@@ -520,6 +520,7 @@ export default {
       handler (val) {
         if (val.caisse === 'CAMSSP' || val.caisse === '') {
           val.wilaya = ''
+          val.securitesociale = ''
         }
         if ((val.nom || val.prenom ) && this.fill === true){
         this.neworder.patient.nom = this.neworder.nom

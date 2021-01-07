@@ -49,8 +49,8 @@
             <th class="desc" colspan="2">NOM ET PRÉNOM : {{getorder[0].nom}}  {{getorder[0].prenom}} </th> <!--hnaya dir variable lel nom wel prénom-->
           </tr>
           <tr>
-            <th class="desc">N° SÉCURITÉ SOCIALE : {{getorder[0].NumSecSocial}}</th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
-            <th class="desc"> CAISSE : {{getorder[0].Caisse}} {{getorder[0].Wilaya}}</th> <!--hnaya dir variable lel CAISSE-->
+            <th v-if="getorder[0].Numsecsocial" class="desc">N° SÉCURITÉ SOCIALE : {{getorder[0].Numsecsocial}}</th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
+            <th v-if="getorder[0].Caissee && getorder[0].Wilayaa"  class="desc"> CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</th> <!--hnaya dir variable lel CAISSE-->
           </tr>
         </thead>
       </table>
