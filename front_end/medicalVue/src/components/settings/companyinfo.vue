@@ -64,6 +64,7 @@
        <q-input
         v-model="info.Tva"
         type="number"
+        step="any"
         min="1"
         label="TVA"
         :rules="[val => !!val || 'Obligatoire']"

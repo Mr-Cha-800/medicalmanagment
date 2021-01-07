@@ -166,8 +166,8 @@
       <tr v-for="product in neworder.commande" :key="product.id">
         <td>{{product.NumRef}}</td>
         <td style="width:80%">{{product.Designation}}  </td>
-        <td > <q-input min="0" type="number" v-model="product.PrixU"></q-input>  Da</td>
-        <td style="width:20%"><q-input type="number" min="1" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>
+        <td > <q-input min="0" type="number" step="any" v-model="product.PrixU"></q-input>  Da</td>
+        <td style="width:20%"><q-input type="number" step="any" min="1" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>
         <td>{{product.quantity*product.PrixU}} Da</td>
       </tr>
     </table>
@@ -188,6 +188,7 @@
     <div class="q-gutter-sm justify-center q-pa-lg  q-pb-xl">
        <q-input
         type="number"
+        step="any"
         v-if="remisestate"
         v-model="neworder.remise"
         label="Remise en %"
