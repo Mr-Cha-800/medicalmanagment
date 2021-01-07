@@ -33,6 +33,7 @@
     <div class="q-gutter-sm justify-center q-pa-md q-pb-xl">
        <q-input
         type="number"
+        step="any"
         v-model="produit.montantProduit"
         label="Prix unitaire"
         :rules="[ val => val >= 1 || '1 ou plus' ]"
