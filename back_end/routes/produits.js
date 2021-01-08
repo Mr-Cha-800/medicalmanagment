@@ -6,7 +6,7 @@ const mysqlConnection = require('../connect');
 
 // Gestion des produits
 
-// Renvoyer la liste des produits
+// Renvoyer la liste des produits pour commande 
 Router.get('/',(req,res)=>{
     mysqlConnection.query('SELECT * FROM produits ORDER BY NumRef DESC',(err,rows,fields)=>{
         if(!err)
@@ -16,9 +16,19 @@ Router.get('/',(req,res)=>{
     })
  });
  
+// Renvoyer la liste des produits pour gestion
+Router.get('/gestion',(req,res)=>{
+    mysqlConnection.query('SELECT * FROM produits ORDER BY NumRef DESC limit 20',(err,rows,fields)=>{
+        if(!err)
+        res.send(rows);
+        else
+        console.log(err);
+    })
+ });
+ 
   // Rechercher un produit
   Router.post('/recherche',(req,res)=>{
-    mysqlConnection.query('SELECT * FROM produits WHERE NumRef LIKE ? OR Designation LIKE ?',[req.body.Search,req.body.Search],(err,rows,fields)=>{
+    mysqlConnection.query('SELECT * FROM produits WHERE NumRef LIKE ? OR Designation LIKE ? limit 20',[req.body.Search,req.body.Search],(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else

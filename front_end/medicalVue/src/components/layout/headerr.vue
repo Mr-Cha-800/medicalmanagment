@@ -21,14 +21,15 @@
 </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 import choosing from '../GestionDevis/Choosing.vue'
 // import search from '../HeaderComponents/search.vue'
 //import drawer from '../HeaderComponents/drawerr.vue'
 export default {
     components: {
       choosing
-       // search,
-        //drawer
+      // search,
+      // drawer
     },
   data () {
     return {
@@ -36,10 +37,12 @@ export default {
     }
   },
   methods:{
+      ...mapActions('company',['setinfo']),
   },
   computed:{
   },
   created() {
+    this.setinfo()
   }
 }
 </script>

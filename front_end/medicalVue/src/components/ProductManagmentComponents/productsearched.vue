@@ -12,6 +12,7 @@
     <th>N° Réf.</th>
     <th>Désignation</th>
     <th>Prix unitaire</th>
+    <th>TVA</th>
     <th>Modifier</th>
     <th>Supprimer</th>
   </tr>
@@ -19,6 +20,7 @@
     <td>{{product.NumRef}}</td>
     <td>{{product.Designation}}</td>
     <td>{{product.PrixU}} Da</td>
+    <td>{{product.tax}} %</td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: product.NumRef }})"  name="edit"/><q-tooltip>Modifier</q-tooltip></q-btn></td>
     <td> <supprimer :id="product.NumRef"/> </td>
   </tr>

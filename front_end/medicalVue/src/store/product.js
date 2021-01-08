@@ -53,6 +53,19 @@ export default {
                   })
               })
         },
+        async getallproductsforgestion({ commit }){
+            return new Promise((resolve, reject) => {
+                axios.get('/produits/gestion')
+                  .then(response => {
+                      commit('getallproducts', response.data)
+                    resolve(response)
+                    // console.log(response)
+                  })
+                  .catch(error => {
+                    reject(error)
+                  })
+              })
+        },
         async showproduct({ commit }, id){
             return await new Promise((resolve, reject) => {
                 axios.get('/produits/'+ id)
