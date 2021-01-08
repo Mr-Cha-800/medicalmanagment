@@ -44,10 +44,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions('product', ['getallproducts'])
+    ...mapActions('product', ['getallproductsforgestion'])
   },
   created(){
-    this.getallproducts()
+    this.getallproductsforgestion()
   },
   computed:{
     ...mapGetters('product', ['getproducts']),
