@@ -12,6 +12,8 @@
     <th>N° Réf.</th>
     <th>Désignation</th>
     <th>Prix unitaire</th>
+    <th>TVA</th>
+    <th>Prix T.T.C</th>
     <th>Modifier</th>
     <th>Supprimer</th>
   </tr>
@@ -19,6 +21,10 @@
     <td>{{product.NumRef}}</td>
     <td>{{product.Designation}}</td>
     <td>{{product.PrixU}} Da</td>
+    <td v-if="product.tax === 1">{{getinfo[0].Tva}} %</td>
+    <td v-else>{{product.tax}} %</td>
+    <td v-if="product.tax === 1">{{(product.PrixU+((product.PrixU*getinfo[0].Tva)/100)).toFixed(2)}} DA</td>
+    <td v-else-if="product.tax === 0">{{product.PrixU}} DA</td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: product.NumRef }})"  name="edit"/><q-tooltip>Modifier</q-tooltip></q-btn></td>
     <td> <supprimer :id="product.NumRef"/> </td>
   </tr>
@@ -44,7 +50,8 @@ export default {
     this.getallproducts()
   },
   computed:{
-    ...mapGetters('product', ['getproducts'])
+    ...mapGetters('product', ['getproducts']),
+    ...mapGetters('company', ['getinfo'])
   }
 }
 </script>
