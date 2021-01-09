@@ -11,9 +11,9 @@
   <tr>
     <th>N° Réf.</th>
     <th>Désignation</th>
-    <th>Prix unitaire</th>
+    <th style=width:9%>Prix unitaire</th>
     <th>TVA</th>
-    <th>Prix T.T.C</th>
+    <th style=width:9%>Prix T.T.C</th>
     <th>Modifier</th>
     <th>Supprimer</th>
   </tr>
