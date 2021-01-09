@@ -17,6 +17,13 @@
     <th>Modifier</th>
     <th>Supprimer</th>
   </tr>
+  <center>
+  <template v-if="showstatus">
+    <q-spinner-hourglass 
+    color="blue-grey-5"
+    size="3.5em"/>
+  </template>
+  </center>
   <tr v-for="product in getproducts" :key="product.id">
     <td>{{product.NumRef}}</td>
     <td>{{product.Designation}}</td>
@@ -50,7 +57,7 @@ export default {
     this.getallproductsforgestion()
   },
   computed:{
-    ...mapGetters('product', ['getproducts']),
+    ...mapGetters('product', ['getproducts', 'showstatus']),
     ...mapGetters('company', ['getinfo'])
   }
 }

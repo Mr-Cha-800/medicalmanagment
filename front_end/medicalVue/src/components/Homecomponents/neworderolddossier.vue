@@ -168,7 +168,7 @@
       <tr v-for="product in neworder.commande" :key="product.id">
         <td>{{product.NumRef}}</td>
         <td style="width:70%">{{product.Designation}}  </td>
-        <td> <q-input min="0" type="number" step="any" v-model="product.PrixU"></q-input>  Da</td>
+        <td style="width:10%"> {{product.PrixU}} Da</td>
         <td v-if="product.tax === 1">{{getinfo[0].Tva}} %</td>
         <td v-else>{{product.tax}} %</td>
         <td style="width:20%"><q-input type="number" step="any" min="1" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>

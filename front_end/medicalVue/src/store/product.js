@@ -4,7 +4,8 @@ export default {
     state:{
         order: {},
         product: {},
-        products: {}
+        products: {},
+        loading: true
     },
     getters:{
         showoneproduct(state){
@@ -12,6 +13,9 @@ export default {
         },
         getproducts(state){
             return state.products
+        },
+        showstatus(state){
+          return state.loading
         }
     },
     mutations:{
@@ -19,7 +23,11 @@ export default {
             state.product = product
         },
         getallproducts(state, products){
+            state.loading = false
             state.products = products
+        },
+        dirloading(state){
+          state.loading = true
         }
     },
     actions:{
@@ -111,6 +119,7 @@ export default {
         },
         async searchproducts({ commit }, search){
           search = '%'+search+'%'
+          commit('dirloading')
             return new Promise((resolve, reject) => {
                 axios.post('/produits/recherche', {
                   Search : search
