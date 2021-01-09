@@ -11,9 +11,9 @@
   <tr>
     <th>N° Réf.</th>
     <th>Désignation</th>
-    <th style=width:9%>Prix unitaire</th>
+    <th style=width:10%>Prix unitaire</th>
     <th>TVA</th>
-    <th style=width:9%>Prix T.T.C</th>
+    <th style=width:10%>Prix T.T.C</th>
     <th>Modifier</th>
     <th>Supprimer</th>
   </tr>
@@ -27,7 +27,7 @@
   <tr v-for="product in getproducts" :key="product.id">
     <td>{{product.NumRef}}</td>
     <td>{{product.Designation}}</td>
-    <td>{{product.PrixU}} Da</td>
+    <td>{{product.PrixU}} DA</td>
     <td v-if="product.tax === 1">{{getinfo[0].Tva}} %</td>
     <td v-else>{{product.tax}} %</td>
     <td v-if="product.tax === 1">{{(product.PrixU+((product.PrixU*getinfo[0].Tva)/100)).toFixed(2)}} DA</td>
@@ -72,7 +72,6 @@ table {
 
 td, th {
   border: 1px solid #dddddd;
-  text-align: left;
   padding: 8px;
 }
 
