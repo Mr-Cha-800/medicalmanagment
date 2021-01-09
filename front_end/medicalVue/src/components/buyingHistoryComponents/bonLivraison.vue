@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <th v-if="getorder[0].Numsecsocial" class="desc">N° SÉCURITÉ SOCIALE : {{getorder[0].Numsecsocial}}</th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
-            <th v-if="getorder[0].Caissee && getorder[0].Wilayaa"  class="desc"> CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</th> <!--hnaya dir variable lel CAISSE-->
+            <th  v-if="(getorder[0].Caissee && getorder[0].Wilayaa) || getorder[0].Caissee === 'CAMSSP'"  class="desc"> CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</th> <!--hnaya dir variable lel CAISSE-->
           </tr>
         </thead>
       </table>
@@ -68,7 +68,7 @@
           </tr>
         </thead>
       </table>
-        <template v-if="getorder[0].Cash === 0">
+        <template  v-if="getorder[0].Caissee !== 'CASH'">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -99,7 +99,7 @@
       </table>
         </template>
         
-        <template v-if="getorder[0].Cash === 1">
+        <template  v-else-if="getorder[0].Caissee === 'CASH'">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -132,7 +132,7 @@
       <q-btn fab icon="west"  @click="$router.push({name: 'InvoiceHistory'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[18, 18]">
-      <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ><q-tooltip anchor="top middle">Imprimer</q-tooltip></q-btn>
+      <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" style="padding-top:70px" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="save" @click="saveme(getorder[0].year,getorder[0].ID)"  color="blue-grey-5" ><q-tooltip anchor="top middle">Sauvegarder</q-tooltip></q-btn>

@@ -176,13 +176,13 @@
       </tr>
     </table>
     </div>
-      <q-toggle
+      <!--<q-toggle
         v-model="neworder.cash"
         :true-value="1"
         :false-value="0"
         color="blue-grey-5"
         label="Cash"
-      />
+      /> -->
       <q-toggle
         v-model="remisestate"
         color="blue-grey-5"
@@ -426,8 +426,8 @@ export default {
         caisse: '',
         caisseoptions: [
           {
-            label: '',
-            value: ''
+            label: 'CASH',
+            value: 'CASH'
           },
           {
             label: 'CNAS',
@@ -513,7 +513,7 @@ export default {
     neworder: {
       deep: true,
       handler (val) {
-        if (val.caisse === 'CAMSSP' || val.caisse === '') {
+        if (val.caisse === 'CAMSSP' || val.caisse === 'CASH') {
           val.wilaya = ''
           val.securitesociale = ''
         }

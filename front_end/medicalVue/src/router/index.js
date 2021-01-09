@@ -95,7 +95,7 @@ const routes = [
   {
     path: '/Gestiondevis/devis/:id',
     name: 'devisshow',
-    component: devisshow,
+    component: devisshow ,
     meta: {
       header: 1
     }
@@ -111,7 +111,7 @@ const routes = [
   {
     path: '/InvoiceHistory/bonlivraison/:id',
     name: 'bonlivraison',
-    component: bonlivraison,
+    component: bonlivraison ,
     meta: {
       header: 1
     }
@@ -132,7 +132,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })

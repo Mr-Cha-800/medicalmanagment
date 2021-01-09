@@ -37,7 +37,7 @@ export default {
     }
   },
   methods:{
-      ...mapActions('company',['setinfo']),
+  ...mapActions('company',['setinfo']),
   },
   computed:{
   },
