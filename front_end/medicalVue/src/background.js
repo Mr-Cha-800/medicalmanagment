@@ -1,10 +1,6 @@
 'use strict'
-<<<<<<< HEAD
 /* global __static*/
 import path from 'path'
-=======
-//import path from 'path'
->>>>>>> 0f631b6217ca6f6e2c8d6ea3109d50bdc4254beb
 
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
@@ -27,7 +23,7 @@ async function createWindow() {
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
     },
-     //icon: path.join(__static, 'icon.png')
+     icon: path.join(__static, 'icon.png')
   })
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
