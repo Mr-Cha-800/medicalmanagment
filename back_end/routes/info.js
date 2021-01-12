@@ -54,6 +54,27 @@ Router.patch('/modify',(req,res)=>{
         console.log(err);
     })
  });
- 
+ // recuperer un seul utilisateur
+ // /getprofile
+ Router.get('/getprofile/:id',(req,res)=>{
+    mysqlConnection.query('SELECT * FROM dossier WHERE ID = ?',[req.params.id],(err,rows,fields)=>{
+        if(!err)
+        res.send(rows);
+        else
+        console.log(err);
+    })
+});
+ // modifier un utilisateur
 
+ // /profile/modify
+ 
+ // Modifier les informations d'un produit 
+ Router.patch('/profile/modify/:id',(req,res)=>{
+    mysqlConnection.query('UPDATE dossier SET nom=?,prenom=?,NumSecSocial = ?, NumTel = ?, Caisse = ?, Wilaya = ? WHERE ID=?',[req.body.nom,req.body.prenom,req.body.NumSecSocial, req.body.NumTel, req.body.Caisse, req.body.Wilaya,req.params.id],(err,rows,fields)=>{
+        if(!err)
+        res.json(rows);
+        else
+        console.log(err);
+    })
+});
 module.exports = Router;
