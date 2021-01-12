@@ -87,12 +87,12 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale">{{produit.NumRef}}</td>
             <td class="desc">{{produit.Designation}}</td>
-            <td class="unit">{{produit.price}} DA</td>
+            <td class="unit">{{formatthis(produit.price)}} DA</td>
             <td v-if="produit.tax === 0" class="tva">0 %</td>
             <td v-else>{{getorder[0].Tva}} %</td>
             <td class="qty">{{produit.quantities}}</td>
-            <td v-if="produit.tax === 0" class="total">{{produit.quantities* produit.price }} DA</td>
-            <td v-else class="total">{{(produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))).toFixed(2)  }} DA</td>
+            <td v-if="produit.tax === 0" class="total">{{formatthis(produit.quantities* produit.price) }} DA</td>
+            <td v-else class="total">{{formatthis((produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))).toFixed(2))  }} DA</td>
           </tr>
 
         </tbody>
@@ -117,9 +117,9 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale">{{produit.NumRef}}</td>
             <td class="desc">{{produit.Designation}}</td>
-            <td class="unit">{{produit.price}} DA</td>
+            <td class="unit">{{formatthis(produit.price)}} DA</td>
             <td class="qty">{{produit.quantities}}</td>
-            <td class="total">{{(produit.quantities* produit.price).toFixed(2)   }} DA</td>
+            <td class="total">{{formatthis((produit.quantities* produit.price).toFixed(2))   }} DA</td>
           </tr>
 
         </tbody>
@@ -154,6 +154,7 @@ let timeStamp = Date.now()
 let formattedString = date.formatDate(timeStamp, 'DD-MM-YYYY')
 import { NumberToLetter } from 'convertir-nombre-lettre';
 import printactions from '../layout/printactions'
+var numberFormatter = require("number-formatter")
 export default {
     components:{printactions},
     data(){
@@ -162,6 +163,7 @@ export default {
             date1: formattedString,
             NumberToLetterz: NumberToLetter(20),
             teste: writtenNumber(1234.22, {lang: 'fr'}),
+            hti: numberFormatter("### ### ###.##", '56789.87')
            // nummm: null,
            // nummmm: null
         }
@@ -192,6 +194,9 @@ export default {
         });
         
     },
+    formatthis(x){
+      return numberFormatter("### ### ###.##", x)
+    }
 
 
 
