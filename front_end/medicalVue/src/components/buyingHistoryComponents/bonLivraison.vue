@@ -78,7 +78,6 @@
             <th class="totale">N° RÉF.</th>
             <th class="desc">DESCRIPTION</th>
             <th class="unit">PRIX UNITAIRE H.T</th>
-            <th class="tva">TVA</th>
             <th class="qty">QUANTITÉ</th>
             <th class="total">PRIX TOTAL</th>
           </tr>
@@ -88,8 +87,6 @@
             <td class="totale">{{produit.NumRef}}</td>
             <td class="desc">{{produit.Designation}}</td>
             <td class="unit">{{formatthis(produit.price)}} DA</td>
-            <td v-if="produit.tax === 0" class="tva">0 %</td>
-            <td v-else>{{getorder[0].Tva}} %</td>
             <td class="qty">{{produit.quantities}}</td>
             <td v-if="produit.tax === 0" class="total">{{formatthis(produit.quantities* produit.price) }} DA</td>
             <td v-else class="total">{{formatthis((produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))).toFixed(2))  }} DA</td>

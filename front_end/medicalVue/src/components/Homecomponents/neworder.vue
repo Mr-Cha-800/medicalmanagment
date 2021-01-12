@@ -166,13 +166,13 @@
       <tr v-for="product in neworder.commande" :key="product.id">
         <td style="width:10%">{{product.NumRef}}</td>
         <td style="width:60%">{{product.Designation}}  </td>
-        <td style="width:10%"> {{product.PrixU}} Da</td>
+        <td style="width:10%"> {{formatthis(product.PrixU)}} Da</td>
         <td v-if="product.tax === 1">{{getinfo[0].Tva}} %</td>
         <td v-else>{{product.tax}} %</td>
         <td ><q-input type="number" step="any" min="1" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>
-        <td style="width:10%">{{(product.quantity*product.PrixU).toFixed(2)}} Da</td>
-        <td v-if="product.tax === 0">{{(product.quantity*(product.PrixU+((product.PrixU*product.tax)/100))).toFixed(2)}} Da</td>
-        <td v-else-if="product.tax === 1">{{(product.quantity*(product.PrixU+((product.PrixU*getinfo[0].Tva)/100))).toFixed(2)}} Da</td>
+        <td style="width:10%">{{formatthis((product.quantity*product.PrixU).toFixed(2))}} Da</td>
+        <td v-if="product.tax === 0">{{formatthis((product.quantity*(product.PrixU+((product.PrixU*product.tax)/100))).toFixed(2))}} Da</td>
+        <td v-else-if="product.tax === 1">{{formatthis((product.quantity*(product.PrixU+((product.PrixU*getinfo[0].Tva)/100))).toFixed(2))}} Da</td>
       </tr>
     </table>
     </div>
@@ -213,6 +213,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+var numberFormatter = require("number-formatter")
 
 export default {
   data(){
@@ -220,6 +221,7 @@ export default {
       fill: false,
       remisestate: false,
       loading: false,
+      hti: numberFormatter("### ### ###.##", '56789.87'),
       neworder:{
         id: 1,
         nom: '',
@@ -507,6 +509,9 @@ export default {
           }
         console.log(error)
       })
+    },
+    formatthis(x){
+      return numberFormatter("### ### ###.##", x)
     }
   },
   watch: {

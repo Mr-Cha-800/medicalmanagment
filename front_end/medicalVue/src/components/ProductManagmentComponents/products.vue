@@ -30,8 +30,8 @@
     <td>{{product.PrixU}} DA</td>
     <td v-if="product.tax === 1">{{getinfo[0].Tva}} %</td>
     <td v-else>{{product.tax}} %</td>
-    <td v-if="product.tax === 1">{{(product.PrixU+((product.PrixU*getinfo[0].Tva)/100)).toFixed(2)}} DA</td>
-    <td v-else-if="product.tax === 0">{{product.PrixU}} DA</td>
+    <td v-if="product.tax === 1">{{formatthis((product.PrixU+((product.PrixU*getinfo[0].Tva)/100)).toFixed(2))}} DA</td>
+    <td v-else-if="product.tax === 0">{{formatthis(product.PrixU)}} DA</td>
     <td><q-btn round flat><q-icon color="blue-grey-5"  @click="$router.push({name: 'modifierproduit', params: { id: product.NumRef }})"  name="edit"/><q-tooltip>Modifier</q-tooltip></q-btn></td>
     <td> <supprimer :id="product.NumRef"/> </td>
   </tr>
@@ -43,15 +43,21 @@
 <script>
 import { mapActions,mapGetters } from 'vuex'
 import supprimer from './supprimer'
+var numberFormatter = require("number-formatter")
+
 export default {
   components:{ supprimer },
   data(){
     return {
-      dialog: false
-    }
+      dialog: false,
+      hti: numberFormatter("### ### ###.##", '56789.87')
+      }
   },
   methods: {
-    ...mapActions('product', ['getallproductsforgestion'])
+    ...mapActions('product', ['getallproductsforgestion']),
+    formatthis(x){
+      return numberFormatter("### ### ###.##", x)
+    }
   },
   created(){
     this.getallproductsforgestion()
