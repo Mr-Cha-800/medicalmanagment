@@ -19,7 +19,7 @@
     <th></th>
   </tr>
   <template  v-for="devis in getalldevis" >
-  <tr v-if="(deviss === 'Non-Payé' && devis.etat === 'non-finalisé') || (deviss === 'Payé' && devis.etat === 'finalisé') " :key="devis.id">
+  <tr v-if="(deviss === 'Non-Payé' && devis.etat === 'non-finalisé') || (deviss === 'Payé' && devis.etat === 'finalisé' && devis.Caissee === 'CASH') " :key="devis.id">
     <td>{{devis.idfact}}/{{devis.Annee}}</td>
     <td>{{devis.nom}}</td>
     <td>{{devis.prenom}}</td>

@@ -68,7 +68,7 @@
           </tr>
         </thead>
       </table>
-        <template v-if="getorder[0].Cash === 0">
+        <template v-if="getorder[0].Caissee !== 'CASH'">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -87,12 +87,12 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale">{{produit.NumRef}}</td>
             <td class="desc">{{produit.Designation}}</td>
-            <td class="unit">{{produit.price}} DA</td>
+            <td class="unit">{{formatthis(produit.price)}} DA</td>
             <td v-if="produit.tax === 0" class="tva">0 %</td>
             <td v-else>{{getorder[0].Tva}} %</td>
             <td class="qty">{{produit.quantities}}</td>
-            <td v-if="produit.tax === 0" class="total">{{produit.quantities* produit.price }} DA</td>
-            <td v-else class="total">{{(produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))).toFixed(2)  }} DA</td>
+            <td v-if="produit.tax === 0" class="total">{{formatthis(produit.quantities* produit.price) }} DA</td>
+            <td v-else class="total">{{formatthis((produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))).toFixed(2))  }} DA</td>
           </tr>
 
         </tbody>
@@ -104,7 +104,7 @@
           </tr>
           <tr>
             <td colspan="2">MONTANT H.T</td>
-            <td>{{getorder[0].montants}} DA</td>
+            <td>{{formatthis(getorder[0].montants)}} DA</td>
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
@@ -113,18 +113,18 @@
           <tr>
             <td colspan="2"> <b>MONTANT T.T.C</b> </td>
             <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
-            <td><b>{{(getorder[0].montant_TTC).toFixed(2)}} DA </b></td>
+            <td><b>{{formatthis((getorder[0].montant_TTC).toFixed(2))}} DA </b></td>
           </tr>
         </table>
         <table>
           <tr>
       <div id="thanks">Arrété le présent devis à la somme</div>
           </tr>
-       <div v-if="getorder[0].Cash === 0" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CTS</template></b></div>
+       <div v-if="getorder[0].Caissee !== 'CASH'" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CTS</template></b></div>
         </table>
         </template>
         
-        <template v-if="getorder[0].Cash === 1">
+        <template v-if="getorder[0].Caissee === 'CASH'">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -142,9 +142,9 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale">{{produit.NumRef}}</td>
             <td class="desc">{{produit.Designation}}</td>
-            <td class="unit">{{produit.price}} DA</td>
+            <td class="unit">{{formatthis(produit.price)}} DA</td>
             <td class="qty">{{produit.quantities}}</td>
-            <td class="total">{{(produit.quantities* produit.price).toFixed(2)   }} DA</td>
+            <td class="total">{{formatthis((produit.quantities* produit.price).toFixed(2))   }} DA</td>
           </tr>
 
         </tbody>
@@ -154,9 +154,9 @@
             <td colspan="2">REMISE</td>
             <td>{{getorder[0].remise}} %</td>
           </tr>
-          <tr  v-if="getorder[0].Cash === 1" >
+          <tr  v-if="getorder[0].Caissee === 'CASH'" >
             <td colspan="2">MONTANT H.T</td>
-            <td>{{getorder[0].montants}} DA</td>
+            <td>{{formatthis(getorder[0].montants)}} DA</td>
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
@@ -188,7 +188,7 @@
       <q-btn fab icon="save" @click="saveme(getorder[0].year,getorder[0].ID)"  color="blue-grey-5" ><q-tooltip anchor="top middle">Sauvegarder</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[180, 18]">
-      <printactions v-if="getorder[0].etat === 'finalisé'" :id="getorder[0].idfact"/>
+      <printactions v-if="getorder[0].etat === 'finalisé'" :caissee="getorder[0].Caissee" :id="getorder[0].idfact"/>
       </q-page-sticky>
   </body>
 </template>
@@ -204,6 +204,7 @@ let timeStamp = Date.now()
 let formattedString = date.formatDate(timeStamp, 'DD-MM-YYYY')
 import { NumberToLetter } from 'convertir-nombre-lettre';
 import printactions from '../layout/printactions'
+var numberFormatter = require("number-formatter")
 export default {
     components:{printactions},
     data(){
@@ -212,6 +213,7 @@ export default {
             date1: formattedString,
             NumberToLetterz: NumberToLetter(20),
             teste: writtenNumber(1234.22, {lang: 'fr'}),
+            hti: numberFormatter("### ### ###.##", '56789.87')
            // nummm: null,
            // nummmm: null
         }
@@ -242,6 +244,9 @@ export default {
         });
         
     },
+    formatthis(x){
+      return numberFormatter("### ### ###.##", x)
+    }
 
 
 

@@ -17,7 +17,7 @@
     </header>
     <main> 
       <div id="details" class="clearfix">
-        <div id="client">
+        <div id="client">{{shit}}
           <div><b style="font-size:18px">N° RC : {{getinfo[0].NumRegistreComm}}</b></div>
           <div><b style="font-size:18px">N° Art imp : {{getinfo[0].NumArtImp}}</b></div>
           <div><b style="font-size:18px">NIF : {{getinfo[0].NumIdFisc}}</b></div>
@@ -87,12 +87,12 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
-            <td class="unit"><b>{{produit.price}} DA</b></td>
+            <td class="unit"><b>{{formatthis(produit.price)}} DA</b></td>
             <td v-if="produit.tax === 0" class="tva"><b>0 %</b></td>
             <td v-else><b>{{getorder[0].Tva}} %</b></td>
             <td class="qty"><b>{{produit.quantities}}</b></td>
-            <td v-if="produit.tax === 0" class="total"><b>{{produit.quantities* produit.price }} DA</b></td>
-            <td v-else class="total"><b>{{(produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))).toFixed(2)  }} DA</b></td>
+            <td v-if="produit.tax === 0" class="total"><b>{{formatthis(produit.quantities* produit.price) }} DA</b></td>
+            <td v-else class="total"><b>{{formatthis((produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))).toFixed(2))  }} DA</b></td>
           </tr>
 
         </tbody>
@@ -104,7 +104,7 @@
           </tr>
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT H.T</b></td>
-            <td style="width:130px"><b>{{getorder[0].montants}} DA</b></td>
+            <td style="width:130px"><b>{{formatthis(getorder[0].montants)}} DA</b></td>
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
@@ -113,7 +113,7 @@
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT T.T.C</b></td>
             <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
-            <td style="width:130px"><b>{{(getorder[0].montant_TTC).toFixed(2)}} DA </b></td>
+            <td style="width:130px"><b>{{formatthis((getorder[0].montant_TTC).toFixed(2))}} DA </b></td>
           </tr>
         </table>
         <table>
@@ -142,9 +142,9 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale">{{produit.NumRef}}</td>
             <td class="desc">{{produit.Designation}}</td>
-            <td class="unit">{{produit.price}} DA</td>
+            <td class="unit">{{formatthis(produit.price)}} DA</td>
             <td class="qty">{{produit.quantities}}</td>
-            <td class="total">{{(produit.quantities* produit.price).toFixed(2)   }} DA</td>
+            <td class="total">{{formatthis((produit.quantities* produit.price).toFixed(2))   }} DA</td>
           </tr>
 
         </tbody>
@@ -156,7 +156,7 @@
           </tr>
           <tr  v-if="getorder[0].Caissee === 'CASH'" >
             <td colspan="2">MONTANT H.T</td>
-            <td>{{getorder[0].montants}} DA</td>
+            <td>{{formatthis(getorder[0].montants)}} DA</td>
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
@@ -204,6 +204,7 @@ let timeStamp = Date.now()
 let formattedString = date.formatDate(timeStamp, 'DD-MM-YYYY')
 import { NumberToLetter } from 'convertir-nombre-lettre';
 import printactions from '../layout/printactions'
+var numberFormatter = require("number-formatter")
 export default {
     components:{printactions},
     data(){
@@ -212,6 +213,7 @@ export default {
             date1: formattedString,
             NumberToLetterz: NumberToLetter(20),
             teste: writtenNumber(1234.22, {lang: 'fr'}),
+            hti: numberFormatter("### ### ###.##", '56789.87')
            // nummm: null,
            // nummmm: null
         }
@@ -242,7 +244,9 @@ export default {
         });
         
     },
-
+    formatthis(x){
+      return numberFormatter("### ### ###.##", x)
+    }
 
 
           /*
