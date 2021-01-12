@@ -1,5 +1,6 @@
 <template>
       <q-fab
+      v-if="caissee !== 'CASH'"
         v-model="fab2"
         external-label
         id="printPageButton"
@@ -18,6 +19,8 @@
 export default {
   props:{
     id:{
+    },
+    caissee:{
     }
   },
   data(){

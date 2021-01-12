@@ -68,7 +68,7 @@
           </tr>
         </thead>
       </table>
-        <template v-if="getorder[0].Cash === 0">
+        <template v-if="getorder[0].Caissee !== 'CASH'">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -120,11 +120,11 @@
           <tr>
       <div id="thanks">Arrété le présent devis à la somme</div>
           </tr>
-       <div v-if="getorder[0].Cash === 0" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CTS</template></b></div>
+       <div v-if="getorder[0].Caissee !== 'CASH'" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CTS</template></b></div>
         </table>
         </template>
         
-        <template v-if="getorder[0].Cash === 1">
+        <template v-if="getorder[0].Caissee === 'CASH'">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -154,7 +154,7 @@
             <td colspan="2">REMISE</td>
             <td>{{getorder[0].remise}} %</td>
           </tr>
-          <tr  v-if="getorder[0].Cash === 1" >
+          <tr  v-if="getorder[0].Caissee === 'CASH'" >
             <td colspan="2">MONTANT H.T</td>
             <td>{{getorder[0].montants}} DA</td>
           </tr>
@@ -188,7 +188,7 @@
       <q-btn fab icon="save" @click="saveme(getorder[0].year,getorder[0].ID)"  color="blue-grey-5" ><q-tooltip anchor="top middle">Sauvegarder</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[180, 18]">
-      <printactions v-if="getorder[0].etat === 'finalisé'" :id="getorder[0].idfact"/>
+      <printactions v-if="getorder[0].etat === 'finalisé'" :caissee="getorder[0].Caissee" :id="getorder[0].idfact"/>
       </q-page-sticky>
   </body>
 </template>
