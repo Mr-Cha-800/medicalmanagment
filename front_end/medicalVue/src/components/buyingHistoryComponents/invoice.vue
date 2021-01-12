@@ -18,25 +18,25 @@
     <main> 
       <div id="details" class="clearfix">
         <div id="client">
-          <div><b style="font-size:20px">N° RC : {{getinfo[0].NumRegistreComm}}</b></div>
-          <div><b style="font-size:17px">N° Art imp : {{getinfo[0].NumArtImp}}</b></div>
-          <div><b style="font-size:17px">NIF : {{getinfo[0].NumIdFisc}}</b></div>
-          <div><div style="float:left;width:20%"><img class="img" style="margin-top:9px;width:25px;height:25px" src="../../../public/phone.png" ></div>
+          <div><b style="font-size:18px">N° RC : {{getinfo[0].NumRegistreComm}}</b></div>
+          <div><b style="font-size:18px">N° Art imp : {{getinfo[0].NumArtImp}}</b></div>
+          <div><b style="font-size:18px">NIF : {{getinfo[0].NumIdFisc}}</b></div>
+          <div><div style="float:left;width:20%"><img class="img" style="margin-top:11px;width:27px;height:27px" src="../../../public/phone.png" ></div>
           <div style="margin-left:20%"> <p>
-          <b> {{getinfo[0].TelOne}}</b>
+          <b style="font-size:18px"> {{getinfo[0].TelOne}}</b>
           <br>
-          <b>{{getinfo[0].TelTwo}} </b>
+          <b style="font-size:18px">{{getinfo[0].TelTwo}} </b>
           </p> </div></div>
         </div>
         <div id="invoice">
-          <div><b style="font-size:20px">Sidi Bel Abbès le {{date1 }}</b></div>
+          <div><b style="font-size:23px">Sidi Bel Abbès le {{date1 }}</b></div>
         </div>
       </div>
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="facture">FACTURE N°: {{getorder[0].idfact}}/{{getorder[0].factyear}} </th> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
-            <th class="dossier">DOSSIER : {{getorder[0].ID}}/{{getorder[0].year}}</th><!--la meme chose hnaya pour le dossier-->
+            <th style="font-size:16px" class="facture"><b>FACTURE N°: {{getorder[0].idfact}}/{{getorder[0].factyear}}</b> </th> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
+            <th style="font-size:16px" class="dossier"><b>DOSSIER : {{getorder[0].ID}}/{{getorder[0].year}}</b></th><!--la meme chose hnaya pour le dossier-->
           </tr>
         </thead>
       </table>
@@ -46,11 +46,11 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="desc" colspan="2">NOM ET PRÉNOM : {{getorder[0].nom}}  {{getorder[0].prenom}} </th> <!--hnaya dir variable lel nom wel prénom-->
+            <th style="font-size:16px" class="desc" colspan="2"><b>NOM ET PRÉNOM : {{getorder[0].nom}}  {{getorder[0].prenom}} </b></th> <!--hnaya dir variable lel nom wel prénom-->
           </tr>
           <tr>
-            <th v-if="getorder[0].Numsecsocial" class="desc">N° SÉCURITÉ SOCIALE : {{getorder[0].Numsecsocial}}</th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
-            <th  v-if="(getorder[0].Caissee && getorder[0].Wilayaa) || getorder[0].Caissee === 'CAMSSP'"  class="desc"> CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</th> <!--hnaya dir variable lel CAISSE-->
+            <th v-if="getorder[0].Numsecsocial" class="desc" style="font-size:16px"><b>N° SÉCURITÉ SOCIALE : {{getorder[0].Numsecsocial}}</b></th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
+            <th v-if="(getorder[0].Caissee && getorder[0].Wilayaa) || getorder[0].Caissee === 'CAMSSP'"  class="desc" style="font-size:16px"><b> CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</b></th> <!--hnaya dir variable lel CAISSE-->
           </tr>
         </thead>
       </table>
@@ -60,11 +60,11 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr> 
-            <th class="desc" colspan="2">NOM ET PRÉNOM : {{getorder[0].patient_nom}} {{getorder[0].patient_prenom}}</th> <!--hnaya dir variable lel nom wel prénom-->
+            <th style="font-size:16px" class="desc" colspan="2"><b>NOM ET PRÉNOM : {{getorder[0].patient_nom}} {{getorder[0].patient_prenom}}</b></th> <!--hnaya dir variable lel nom wel prénom-->
           </tr>
           <tr>
-            <th class="desc">DATE ET LIEU DE NAISSANCE : {{getorder[0].patient_datenaiss}}</th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
-            <th class="desc"> À : {{getorder[0].patient_lieunaiss}}</th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
+            <th style="font-size:16px" class="desc"><b>DATE ET LIEU DE NAISSANCE : {{getorder[0].patient_datenaiss}}</b></th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
+            <th style="font-size:16px" class="desc"><b> À : {{getorder[0].patient_lieunaiss}}</b></th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
           </tr>
         </thead>
       </table>
@@ -75,12 +75,12 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="totale">N° RÉF.</th>
-            <th class="desc">DESCRIPTION</th>
-            <th class="unit">PRIX UNITAIRE H.T</th>
-            <th class="tva">TVA</th>
-            <th class="qty">QUANTITÉ</th>
-            <th class="total">PRIX TOTAL</th>
+            <th class="totale"><b>N° RÉF.</b></th>
+            <th class="desc"><b>DESCRIPTION</b></th>
+            <th class="unit"><b>PRIX UNITAIRE H.T</b></th>
+            <th class="tva"><b>TVA</b></th>
+            <th class="qty"><b>QUANTITÉ</b></th>
+            <th class="total"><b>PRIX TOTAL</b></th>
           </tr>
         </thead>
         <tbody>
@@ -99,19 +99,19 @@
       </table>
         <table style="width:30%;float:right">
           <tr v-if="getorder[0].remise > 0">
-            <td colspan="2">REMISE</td>
-            <td>{{getorder[0].remise}} %</td>
+            <td colspan="2"><b>REMISE</b></td>
+            <td><b>{{getorder[0].remise}} %</b></td>
           </tr>
           <tr>
-            <td colspan="2">MONTANT H.T</td>
-            <td>{{getorder[0].montants}} DA</td>
+            <td colspan="2"><b>MONTANT H.T</b></td>
+            <td><b>{{getorder[0].montants}} DA</b></td>
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
             <td>{{(getorder[0].montants * getorder[0].Tva)/100}} DA</td>
           </tr> -->  
           <tr>
-            <td colspan="2"> <b>MONTANT T.T.C</b> </td>
+            <td colspan="2"><b>MONTANT T.T.C</b></td>
             <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
             <td><b>{{(getorder[0].montant_TTC).toFixed(2)}} DA </b></td>
           </tr>
