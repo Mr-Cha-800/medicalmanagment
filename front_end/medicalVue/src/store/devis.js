@@ -4,7 +4,8 @@ export default {
     state:{
       devis: [],
       dossier: [],
-      user: {}
+      user: {},
+      profile: {}
     },
     getters:{
       getalldevis(state){
@@ -15,6 +16,9 @@ export default {
       },
       getuser(state){
         return state.user
+      },
+      getprofile(state){
+        return state.profile
       }
 
     },
@@ -27,6 +31,9 @@ export default {
       },
       setuser(state, id){
         state.user = state.dossier.filter(x => x.ID === id)
+      },
+      setProfile(state, user){
+        state.profile = user
       }
     },
     actions:{
@@ -108,6 +115,41 @@ export default {
                     reject(error)
                   })
               })
-        }
+        },
+        // Modifier un utilisateur
+        async modifyprofile(_, profile){
+          return new Promise((resolve, reject) => {
+              axios.patch('/info/profile/modify/' + profile.ID, {
+                  nom: profile.nom,
+                  prenom: profile.prenom,
+                  NumSecSocial: profile.NumSecSocial,
+                  NumTel: profile.NumTel,
+                  Caisse: profile.Caisse,
+                  Wilaya: profile.Wilaya,
+
+              })
+                .then(response => {
+                  resolve(response)
+                  // console.log(response)
+                })
+                .catch(error => {
+                  reject(error)
+                })
+            })
+      },
+      // recuperer un deul profile
+      async setProfile({ commit }, id){
+          return new Promise((resolve, reject) => {
+              axios.get('/info/getprofile/'+ id )
+                .then(response => {
+                    commit('setProfile', response.data)
+                  resolve(response)
+                  // console.log(response)
+                })
+                .catch(error => {
+                  reject(error)
+                })
+            })
+      },
     }
 }

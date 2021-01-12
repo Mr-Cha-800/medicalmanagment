@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-// product managmeent
+// User managment
 import SearchUsers from '../views/SearchUsers.vue'
+import ListUsers from '../views/GestionClient.vue'
+import ModifyClient from '../views/ModifyClient.vue'
+
+// product managmeent
 import NewOrder from '../views/NewOrder.vue'
 import NewOrderOldDossier from '../components/Homecomponents/neworderolddossier.vue'
 import NewDevis from '../views/NewDevis.vue'
@@ -41,6 +45,16 @@ const routes = [
     path: '/SearchUsers',
     name: 'SearchUsers',
     component: SearchUsers
+  },
+  {
+    path: '/ListUsers',
+    name: 'ListUsers',
+    component: ListUsers
+  },
+  {
+    path: '/ModifyClient/:id',
+    name: 'ModifyClient',
+    component: ModifyClient
   },
   {
     path: '/NewOrder',
