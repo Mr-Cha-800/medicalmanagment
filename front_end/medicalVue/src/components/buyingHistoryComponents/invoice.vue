@@ -273,16 +273,16 @@ export default {
       ...mapGetters('company', ['getinfo']),
       ...mapGetters('order', ['getorder']),
       nummm(){
-            return NumberToLetter(Math.trunc(this.getorder[0].montants))
+            return writtenNumber(Math.trunc(this.getorder[0].montants), {lang: 'fr'})
       },
       nummmTTC(){
-            return NumberToLetter(Math.trunc(this.getorder[0].montant_TTC))
+            return writtenNumber(Math.trunc(this.getorder[0].montant_TTC), {lang: 'fr'})
       },
       nummmm(){
-          return  NumberToLetter(((((this.getorder[0].montants) - (Math.trunc(this.getorder[0].montants))).toFixed(2))*100).toFixed(2));
+          return  writtenNumber(((((this.getorder[0].montants) - (Math.trunc(this.getorder[0].montants))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
       },
       nummmmTTC(){
-          return  NumberToLetter(((((this.getorder[0].montant_TTC) - (Math.trunc(this.getorder[0].montant_TTC))).toFixed(2))*100).toFixed(2));
+          return  writtenNumber(((((this.getorder[0].montant_TTC) - (Math.trunc(this.getorder[0].montant_TTC))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
       }
     }
 }
