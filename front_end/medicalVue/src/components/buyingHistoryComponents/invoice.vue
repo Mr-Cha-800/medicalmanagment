@@ -385,10 +385,10 @@ table td {
   padding: 10px;
   background: #ffffff;
   text-align: center;
-  border-top: 1px solid #000000;
-  border-left: 1px solid #000000;
-  border-right: 1px solid #000000;
-  border-bottom: 1px solid #000000;
+  border-top: 2px solid #000000;
+  border-left: 2px solid #000000;
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
 }
 
 table th {
