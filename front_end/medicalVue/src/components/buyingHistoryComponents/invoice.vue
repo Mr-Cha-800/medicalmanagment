@@ -98,13 +98,13 @@
         </tbody>
       </table>
         <table style="width:40%;float:right">
-          <tr v-if="getorder[0].remise > 0">
-            <td style="text-align:left" colspan="2"><b>REMISE</b></td>
-            <td style="width:130px"><b>{{getorder[0].remise}} %</b></td>
-          </tr>
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT H.T</b></td>
             <td style="width:130px"><b>{{formatthis(getorder[0].montants)}} DA</b></td>
+          </tr>
+          <tr v-if="getorder[0].remise > 0">
+            <td style="text-align:left" colspan="2"><b>REMISE</b></td>
+            <td style="width:130px"><b>{{getorder[0].remise}} %</b></td>
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
