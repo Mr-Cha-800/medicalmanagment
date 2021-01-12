@@ -22,6 +22,7 @@
     "dom-to-image": "^2.6.0",
     "jspdf": "^2.2.0",
     "moment": "^2.29.1",
+    "number-formatter": "^1.2.0",
     "quasar": "^1.0.0",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.0",
