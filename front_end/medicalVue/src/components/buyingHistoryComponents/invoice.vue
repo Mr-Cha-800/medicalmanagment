@@ -103,10 +103,10 @@
             <td style="text-align:left" colspan="2"><b>REMISE {{getorder[0].remise}} %</b></td>
             <td style="width:130px"><b>- {{getorder[0].remise}} %</b></td>
           </tr>
-         <!-- <tr>
-            <td colspan="2">TVA {{getorder[0].Tva}}%</td>
-            <td>{{(getorder[0].montants * getorder[0].Tva)/100}} DA</td>
-          </tr> -->  
+          <tr>
+            <td colspan="2">TVA </td>
+            <td>{{getorder[0].Tva}} %</td>
+          </tr> 
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT T.T.C</b></td>
             <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
