@@ -18,9 +18,9 @@
     <main> 
       <div id="details" class="clearfix">
         <div id="client">
-          <div><b style="font-size:15px">N° RC : {{getinfo[0].NumRegistreComm}}</b></div>
-          <div><b style="font-size:15px">N° Art imp : {{getinfo[0].NumArtImp}}</b></div>
-          <div><b style="font-size:15px">NIF : {{getinfo[0].NumIdFisc}}</b></div>
+          <div><b style="font-size:20px">N° RC : {{getinfo[0].NumRegistreComm}}</b></div>
+          <div><b style="font-size:17px">N° Art imp : {{getinfo[0].NumArtImp}}</b></div>
+          <div><b style="font-size:17px">NIF : {{getinfo[0].NumIdFisc}}</b></div>
           <div><div style="float:left;width:20%"><img class="img" style="margin-top:9px;width:25px;height:25px" src="../../../public/phone.png" ></div>
           <div style="margin-left:20%"> <p>
           <b> {{getinfo[0].TelOne}}</b>
@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <th v-if="getorder[0].Numsecsocial" class="desc">N° SÉCURITÉ SOCIALE : {{getorder[0].Numsecsocial}}</th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
-            <th v-if="getorder[0].Caissee && getorder[0].Wilayaa"  class="desc"> CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</th> <!--hnaya dir variable lel CAISSE-->
+            <th  v-if="(getorder[0].Caissee && getorder[0].Wilayaa) || getorder[0].Caissee === 'CAMSSP'"  class="desc"> CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</th> <!--hnaya dir variable lel CAISSE-->
           </tr>
         </thead>
       </table>
@@ -68,7 +68,7 @@
           </tr>
         </thead>
       </table>
-        <template v-if="getorder[0].Cash === 0">
+        <template v-if="getorder[0].Caissee !== 'CASH'">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -120,11 +120,11 @@
           <tr>
       <div id="thanks">Arrété la présente facture à la somme</div>
           </tr>
-       <div v-if="getorder[0].Cash === 0" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CTS</template></b></div>
+       <div v-if="getorder[0].Caissee !== 'CASH'" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CTS</template></b></div>
         </table>
         </template>
         
-        <template v-if="getorder[0].Cash === 1">
+        <template v-else-if="getorder[0].Caissee === 'CASH'">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -154,7 +154,7 @@
             <td colspan="2">REMISE</td>
             <td>{{getorder[0].remise}} %</td>
           </tr>
-          <tr  v-if="getorder[0].Cash === 1" >
+          <tr  v-if="getorder[0].Caissee === 'CASH'" >
             <td colspan="2">MONTANT H.T</td>
             <td>{{getorder[0].montants}} DA</td>
           </tr>
@@ -182,7 +182,7 @@
       <q-btn fab icon="west"  @click="$router.push({name: 'InvoiceHistory'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[18, 18]">
-      <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ><q-tooltip anchor="top middle">Imprimer</q-tooltip></q-btn>
+      <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" style="padding-top:70px" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="save" @click="saveme(getorder[0].year,getorder[0].ID)"  color="blue-grey-5" ><q-tooltip anchor="top middle">Sauvegarder</q-tooltip></q-btn>
@@ -273,16 +273,16 @@ export default {
       ...mapGetters('company', ['getinfo']),
       ...mapGetters('order', ['getorder']),
       nummm(){
-            return writtenNumber(Math.trunc(this.getorder[0].montants), {lang: 'fr'})
+            return NumberToLetter(Math.trunc(this.getorder[0].montants))
       },
       nummmTTC(){
-            return writtenNumber(Math.trunc(this.getorder[0].montant_TTC), {lang: 'fr'})
+            return NumberToLetter(Math.trunc(this.getorder[0].montant_TTC))
       },
       nummmm(){
-          return  writtenNumber(((((this.getorder[0].montants) - (Math.trunc(this.getorder[0].montants))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
+          return  NumberToLetter(((((this.getorder[0].montants) - (Math.trunc(this.getorder[0].montants))).toFixed(2))*100).toFixed(2));
       },
       nummmmTTC(){
-          return  writtenNumber(((((this.getorder[0].montant_TTC) - (Math.trunc(this.getorder[0].montant_TTC))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
+          return  NumberToLetter(((((this.getorder[0].montant_TTC) - (Math.trunc(this.getorder[0].montant_TTC))).toFixed(2))*100).toFixed(2));
       }
     }
 }
@@ -306,7 +306,7 @@ body {
   width: 21cm;  
   height: 29.7cm; 
   margin: 0 auto; 
-  color: #555555;
+  color: #000000;
   background: #FFFFFF; 
   font-family: Arial, sans-serif; 
   font-size: 14px; 
@@ -319,8 +319,8 @@ body {
 }
 
 #logo img {
-  height: 70px;
-  margin-right: 20px;
+  height: 100px;
+  margin-right: 50px;
 }
 
 .img{
@@ -382,9 +382,12 @@ table {
 table th,
 table td {
   padding: 10px;
-  background: #EEEEEE;
+  background: #ffffff;
   text-align: center;
-  border-bottom: 1px solid #AAAAAA;
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
 }
 
 table th {
@@ -414,7 +417,7 @@ table .desc {
 }
 
 table .unit {
-  background: #DDDDDD;
+  background: #ffffff;
 }
 
 table .total {
@@ -470,7 +473,7 @@ table tfoot tr td:first-child {
 }
 
 footer {
-  color: #777777;
+  color: #ffffff;
   width: 100%;
   height: 30px;
   position: absolute;
