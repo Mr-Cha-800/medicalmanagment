@@ -77,7 +77,7 @@
           <tr>
             <th class="totale"><b>N° RÉF.</b></th>
             <th class="desc"><b>DESCRIPTION</b></th>
-            <th class="unit"><b>PRIX UNITAIRE H.T</b></th>
+            <th class="unit"><b>PRIX UNITAIRE</b></th>
             <th class="qty"><b>QTE</b></th>
             <th class="total"><b>PRIX TOTAL</b></th>
           </tr>
@@ -99,14 +99,14 @@
             <td style="text-align:left" colspan="2"><b>MONTANT H.T</b></td>
             <td style="width:130px"><b>{{formatthis(getorder[0].montants)}} DA</b></td>
           </tr>
+          <tr>
+            <td style="text-align:left" colspan="2"><b>TVA : {{getorder[0].Tva}} %</b></td>
+            <td><b>{{getorder[0].Tva}} %</b></td>
+          </tr> 
           <tr v-if="getorder[0].remise > 0">
             <td style="text-align:left" colspan="2"><b>REMISE {{getorder[0].remise}} %</b></td>
             <td style="width:130px"><b>- {{getorder[0].remise}} %</b></td>
           </tr>
-          <tr>
-            <td colspan="2">TVA </td>
-            <td>{{getorder[0].Tva}} %</td>
-          </tr> 
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT T.T.C</b></td>
             <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
