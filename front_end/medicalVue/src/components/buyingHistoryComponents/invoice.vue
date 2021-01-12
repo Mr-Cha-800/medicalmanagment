@@ -79,41 +79,41 @@
             <th class="desc"><b>DESCRIPTION</b></th>
             <th class="unit"><b>PRIX UNITAIRE H.T</b></th>
             <th class="tva"><b>TVA</b></th>
-            <th class="qty"><b>QUANTITÉ</b></th>
+            <th class="qty"><b>QTE</b></th>
             <th class="total"><b>PRIX TOTAL</b></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="produit in getorder" :key="produit.id">
-            <td class="totale">{{produit.NumRef}}</td>
-            <td class="desc">{{produit.Designation}}</td>
-            <td class="unit">{{produit.price}} DA</td>
-            <td v-if="produit.tax === 0" class="tva">0 %</td>
-            <td v-else>{{getorder[0].Tva}} %</td>
-            <td class="qty">{{produit.quantities}}</td>
-            <td v-if="produit.tax === 0" class="total">{{produit.quantities* produit.price }} DA</td>
-            <td v-else class="total">{{(produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))).toFixed(2)  }} DA</td>
+            <td class="totale"><b>{{produit.NumRef}}</b></td>
+            <td class="desc"><b>{{produit.Designation}}</b></td>
+            <td class="unit"><b>{{produit.price}} DA</b></td>
+            <td v-if="produit.tax === 0" class="tva"><b>0 %</b></td>
+            <td v-else><b>{{getorder[0].Tva}} %</b></td>
+            <td class="qty"><b>{{produit.quantities}}</b></td>
+            <td v-if="produit.tax === 0" class="total"><b>{{produit.quantities* produit.price }} DA</b></td>
+            <td v-else class="total"><b>{{(produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))).toFixed(2)  }} DA</b></td>
           </tr>
 
         </tbody>
       </table>
-        <table style="width:30%;float:right">
+        <table style="width:40%;float:right">
           <tr v-if="getorder[0].remise > 0">
-            <td colspan="2"><b>REMISE</b></td>
-            <td><b>{{getorder[0].remise}} %</b></td>
+            <td style="text-align:left" colspan="2"><b>REMISE</b></td>
+            <td style="width:130px"><b>{{getorder[0].remise}} %</b></td>
           </tr>
           <tr>
-            <td colspan="2"><b>MONTANT H.T</b></td>
-            <td><b>{{getorder[0].montants}} DA</b></td>
+            <td style="text-align:left" colspan="2"><b>MONTANT H.T</b></td>
+            <td style="width:130px"><b>{{getorder[0].montants}} DA</b></td>
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
             <td>{{(getorder[0].montants * getorder[0].Tva)/100}} DA</td>
           </tr> -->  
           <tr>
-            <td colspan="2"><b>MONTANT T.T.C</b></td>
+            <td style="text-align:left" colspan="2"><b>MONTANT T.T.C</b></td>
             <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
-            <td><b>{{(getorder[0].montant_TTC).toFixed(2)}} DA </b></td>
+            <td style="width:130px"><b>{{(getorder[0].montant_TTC).toFixed(2)}} DA </b></td>
           </tr>
         </table>
         <table>
@@ -429,8 +429,12 @@ table .totale {
 
 }
 table td.unit,
-table td.qty,
 table td.total {
+  font-size: 1.2em;
+}
+
+table td.qty{
+  text-align: center;
   font-size: 1.2em;
 }
 
