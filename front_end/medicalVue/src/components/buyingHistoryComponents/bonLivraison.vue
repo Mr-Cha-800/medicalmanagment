@@ -1,4 +1,4 @@
-<!-- A L'IMPREMENTE MAHECH TEMCHIIIIIII AWÉÉÉÉÉÉÉ-->
+<!-- tva lkolech heta la fin-->
 <template>
     <body   class="q-pl-md q-pr-md q-pb-md">
       <div ref="content">
@@ -29,13 +29,13 @@
           </p> </div></div>
         </div>
         <div id="invoice">
-          <div><b style="font-size:20px">Sidi Bel Abbès le {{date1 }}</b></div>
+          <div><b style="font-size:23px">Sidi Bel Abbès le {{date1 }}</b></div>
         </div>
       </div>
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th style="font-size:16px" class="facture"><b>BON LIVRAISON N°: {{getorder[0].idfact}}/{{getorder[0].factyear}} </b></th> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
+            <th style="font-size:16px" class="facture"><b>BON LIVRAISON N°: {{getorder[0].idfact}}/{{getorder[0].factyear}}</b> </th> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
             <th style="font-size:16px" class="dossier"><b>DOSSIER : {{getorder[0].ID}}/{{getorder[0].year}}</b></th><!--la meme chose hnaya pour le dossier-->
           </tr>
         </thead>
@@ -49,8 +49,8 @@
             <th style="font-size:16px" class="desc" colspan="2"><b>NOM ET PRÉNOM : {{getorder[0].nom}}  {{getorder[0].prenom}} </b></th> <!--hnaya dir variable lel nom wel prénom-->
           </tr>
           <tr>
-            <th v-if="getorder[0].Numsecsocial" class="desc" style="font-size:16px" ><b>N° SÉCURITÉ SOCIALE : {{getorder[0].Numsecsocial}}</b></th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
-            <th  v-if="(getorder[0].Caissee && getorder[0].Wilayaa) || getorder[0].Caissee === 'CAMSSP'"  class="desc" style="font-size:16px" ><b> CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</b></th> <!--hnaya dir variable lel CAISSE-->
+            <th v-if="getorder[0].Numsecsocial" class="desc" style="font-size:16px"><b>N° SÉCURITÉ SOCIALE : {{getorder[0].Numsecsocial}}</b></th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
+            <th v-if="(getorder[0].Caissee && getorder[0].Wilayaa) || getorder[0].Caissee === 'CAMSSP'"  class="desc" style="font-size:16px"><b> CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</b></th> <!--hnaya dir variable lel CAISSE-->
           </tr>
         </thead>
       </table>
@@ -60,15 +60,15 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr> 
-            <th class="desc" colspan="2" style="font-size:16px" ><b>NOM ET PRÉNOM : {{getorder[0].patient_nom}} {{getorder[0].patient_prenom}}</b></th> <!--hnaya dir variable lel nom wel prénom-->
+            <th style="font-size:16px" class="desc" colspan="2"><b>NOM ET PRÉNOM : {{getorder[0].patient_nom}} {{getorder[0].patient_prenom}}</b></th> <!--hnaya dir variable lel nom wel prénom-->
           </tr>
           <tr>
-            <th class="desc" style="font-size:16px"><b>DATE ET LIEU DE NAISSANCE : {{getorder[0].patient_datenaiss}}</b></th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
-            <th class="desc" style="font-size:16px" ><b> À : {{getorder[0].patient_lieunaiss}}</b></th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
+            <th style="font-size:16px" class="desc"><b>DATE ET LIEU DE NAISSANCE : {{getorder[0].patient_datenaiss}}</b></th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
+            <th style="font-size:16px" class="desc"><b> À : {{getorder[0].patient_lieunaiss}}</b></th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
           </tr>
         </thead>
       </table>
-        <template  v-if="getorder[0].Caissee !== 'CASH'">
+        <template v-if="getorder[0].Caissee !== 'CASH'">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -87,16 +87,15 @@
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
             <td class="unit"><b>{{formatthis(produit.price)}} DA</b></td>
-            <td class="qty" style="text-align:center"><b>{{produit.quantities}}</b></td>
-            <td v-if="produit.tax === 0" class="total"><b>{{formatthis(produit.quantities* produit.price) }} DA</b></td>
-            <td v-else class="total"><b>{{formatthis((produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))).toFixed(2))  }} DA</b></td>
+            <td class="qty"><b>{{produit.quantities}}</b></td>
+            <td class="total"><b>{{formatthis(produit.quantities * produit.price) }} DA</b></td>
           </tr>
 
         </tbody>
       </table>
         </template>
         
-        <template  v-else-if="getorder[0].Caissee === 'CASH'">
+        <template v-else-if="getorder[0].Caissee === 'CASH'">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -196,7 +195,6 @@ export default {
     }
 
 
-
           /*
           const doc = new jspdf();
           const html = this.$refs.content.innerHTML;
@@ -224,18 +222,6 @@ export default {
     computed:{
       ...mapGetters('company', ['getinfo']),
       ...mapGetters('order', ['getorder']),
-      nummm(){
-            return NumberToLetter(Math.trunc(this.getorder[0].montants))
-      },
-      nummmTTC(){
-            return NumberToLetter(Math.trunc(this.getorder[0].montant_TTC))
-      },
-      nummmm(){
-          return  NumberToLetter(((((this.getorder[0].montants) - (Math.trunc(this.getorder[0].montants))).toFixed(2))*100).toFixed(2));
-      },
-      nummmmTTC(){
-          return  NumberToLetter(((((this.getorder[0].montant_TTC) - (Math.trunc(this.getorder[0].montant_TTC))).toFixed(2))*100).toFixed(2));
-      }
     }
 }
 </script>
@@ -297,7 +283,7 @@ body {
 }
 
 #client .to {
-  color: #ffffff;
+  color: #777777;
 }
 
 h2.name {
@@ -381,8 +367,12 @@ table .totale {
 
 }
 table td.unit,
-table td.qty,
 table td.total {
+  font-size: 1.2em;
+}
+
+table td.qty{
+  text-align: center;
   font-size: 1.2em;
 }
 

@@ -1,4 +1,4 @@
-<!-- A L'IMPREMENTE MAHECH TEMCHIIIIIII AWÉÉÉÉÉÉÉ-->
+<!-- tva lkolech heta la fin-->
 <template>
     <body   class="q-pl-md q-pr-md q-pb-md">
       <div ref="content">
@@ -17,7 +17,7 @@
     </header>
     <main> 
       <div id="details" class="clearfix">
-        <div id="client">
+        <div id="client">{{shit}}
           <div><b style="font-size:18px">N° RC : {{getinfo[0].NumRegistreComm}}</b></div>
           <div><b style="font-size:18px">N° Art imp : {{getinfo[0].NumArtImp}}</b></div>
           <div><b style="font-size:18px">NIF : {{getinfo[0].NumIdFisc}}</b></div>
@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <th v-if="getorder[0].Numsecsocial" class="desc" style="font-size:16px"><b>N° SÉCURITÉ SOCIALE : {{getorder[0].Numsecsocial}}</b></th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
-            <th v-if="getorder[0].Caissee && getorder[0].Wilayaa"  class="desc" style="font-size:16px"><b> CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</b></th> <!--hnaya dir variable lel CAISSE-->
+            <th v-if="(getorder[0].Caissee && getorder[0].Wilayaa) || getorder[0].Caissee === 'CAMSSP'"  class="desc" style="font-size:16px"><b> CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</b></th> <!--hnaya dir variable lel CAISSE-->
           </tr>
         </thead>
       </table>
@@ -60,11 +60,11 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr> 
-            <th class="desc" colspan="2" style="font-size:16px"><b>NOM ET PRÉNOM : {{getorder[0].patient_nom}} {{getorder[0].patient_prenom}}</b></th> <!--hnaya dir variable lel nom wel prénom-->
+            <th style="font-size:16px" class="desc" colspan="2"><b>NOM ET PRÉNOM : {{getorder[0].patient_nom}} {{getorder[0].patient_prenom}}</b></th> <!--hnaya dir variable lel nom wel prénom-->
           </tr>
           <tr>
-            <th class="desc" style="font-size:16px"><b>DATE ET LIEU DE NAISSANCE : {{getorder[0].patient_datenaiss}}</b></th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
-            <th class="desc" style="font-size:16px"><b> À : {{getorder[0].patient_lieunaiss}}</b></th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
+            <th style="font-size:16px" class="desc"><b>DATE ET LIEU DE NAISSANCE : {{getorder[0].patient_datenaiss}}</b></th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
+            <th style="font-size:16px" class="desc"><b> À : {{getorder[0].patient_lieunaiss}}</b></th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
           </tr>
         </thead>
       </table>
@@ -84,12 +84,11 @@
         </thead>
         <tbody>
           <tr v-for="produit in getorder" :key="produit.id">
-            <td class="totale" ><b>{{produit.NumRef}}</b></td>
-            <td class="desc" ><b>{{produit.Designation}}</b></td>
-            <td class="unit" ><b>{{formatthis(produit.price)}} DA</b></td>
-            <td class="qty" style="text-align:center"><b>{{produit.quantities}}</b></td>
-            <td v-if="produit.tax === 0" class="total" ><b>{{formatthis(produit.quantities* produit.price) }} DA</b></td>
-            <td v-else class="total" ><b>{{formatthis((produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))).toFixed(2))  }} DA</b></td>
+            <td class="totale"><b>{{produit.NumRef}}</b></td>
+            <td class="desc"><b>{{produit.Designation}}</b></td>
+            <td class="unit"><b>{{formatthis(produit.price)}} DA</b></td>
+            <td class="qty"><b>{{produit.quantities}}</b></td>
+            <td class="total"><b>{{formatthis(produit.quantities * produit.price) }} DA</b></td>
           </tr>
 
         </tbody>
@@ -97,31 +96,31 @@
         <table style="width:40%;float:right">
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT H.T</b></td>
-            <td><b>{{formatthis(getorder[0].montants)}} DA</b></td>
+            <td style="width:130px"><b>{{formatthis((getorder[0].montants).toFixed(2))}} DA</b></td>
           </tr>
-          <tr>
-            <td style="text-align:left" colspan="2"><b>TVA : {{getorder[0].Tva}} %</b></td>
-            <td><b>{{getorder[0].Tva}} %</b></td>
-          </tr> 
           <tr v-if="getorder[0].remise > 0">
-            <td style="text-align:left" colspan="2"><b>REMISE : {{getorder[0].remise}} %</b></td>
-            <td><b>{{getorder[0].remise}} %</b></td>
+            <td style="text-align:left" colspan="2"><b>REMISE {{getorder[0].remise}} %</b></td>
+            <td style="width:130px"><b> {{formatthis((getorder[0].Remiseonly).toFixed(2))}} DA</b></td>
           </tr>
           <tr>
-            <td style="text-align:left" colspan="2"> <b>MONTANT T.T.C</b> </td>
+            <td style="text-align:left" colspan="2"><b>TVA {{getorder[0].Tva}} %</b></td>
+            <td><b>{{formatthis((getorder[0].TVAonly).toFixed(2))}} DA </b></td>
+          </tr>
+          <tr>
+            <td style="text-align:left" colspan="2"><b>MONTANT T.T.C</b></td>
             <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
-            <td><b>{{formatthis((getorder[0].montant_TTC).toFixed(2))}} DA </b></td>
+            <td style="width:130px"><b>{{formatthis( (getorder[0].TTConly).toFixed(2) )}} DA </b></td>
           </tr>
         </table>
         <table>
           <tr>
-      <div id="thanks">Arrété le présent devis à la somme</div>
+      <div id="thanks">Arrété la présente facture à la somme</div>
           </tr>
        <div v-if="getorder[0].Caissee !== 'CASH'" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CTS</template></b></div>
         </table>
         </template>
         
-        <template v-if="getorder[0].Caissee === 'CASH'">
+        <template v-else-if="getorder[0].Caissee === 'CASH'">
       <div>
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
@@ -130,8 +129,8 @@
           <tr>
             <th class="totale"><b>N° RÉF.</b></th>
             <th class="desc"><b>DESCRIPTION</b></th>
-            <th class="unit"><b>PRIX UNITAIRE</b></th>
-            <th class="qty"><b>QTE</b></th>
+            <th class="unit"><b>PRIX UNITAIRE H.T</b></th>
+            <th class="qty"><b>QUANTITÉ</b></th>
             <th class="total"><b>PRIX TOTAL</b></th>
           </tr>
         </thead>
@@ -140,20 +139,20 @@
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
             <td class="unit"><b>{{formatthis(produit.price)}} DA</b></td>
-            <td class="qty" style="text-align:center"><b>{{produit.quantities}}</b></td>
+            <td class="qty"><b>{{produit.quantities}}</b></td>
             <td class="total"><b>{{formatthis((produit.quantities* produit.price).toFixed(2))   }} DA</b></td>
           </tr>
 
         </tbody>
       </table>
-        <table style="width:40%;float:right">
+        <table style="width:30%;float:right">
           <tr v-if="getorder[0].remise > 0">
-            <td colspan="2" style="text-align:left"><b>REMISE : {{getorder[0].remise}} %</b></td>
-            <td><b>{{getorder[0].remise}} %</b></td>
+            <td style="text-align:left" colspan="2"><b> REMISE {{getorder[0].remise}} %</b></td>
+            <td style="text-align:left" colspan="2"><b> {{formatthis(getorder[0].Remiseonly)}} DA</b></td>
           </tr>
           <tr  v-if="getorder[0].Caissee === 'CASH'" >
-            <td colspan="2" style="text-align:left"><b>MONTANT H.T</b></td>
-            <td><b>{{formatthis(getorder[0].montants)}} DA</b></td>
+            <td style="text-align:left" colspan="2"><b>MONTANT H.T</b></td>
+            <td><b>{{formatthis((getorder[0].montants - getorder[0].Remiseonly).toFixed(2) )}} DA</b></td>
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
@@ -179,7 +178,7 @@
       <q-btn fab icon="west"  @click="$router.push({name: 'Gestiondevis'})"  color="blue-grey-5" ><q-tooltip anchor="top middle">Retour</q-tooltip></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" class="q-pa-xs" :offset="[18, 18]">
-      <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ><q-tooltip anchor="top middle">Imprimer</q-tooltip></q-btn>
+      <q-btn fab icon="print" @click="printili()"  color="blue-grey-5" ></q-btn>
     </q-page-sticky>
     <q-page-sticky id="printPageButton" position="top-right" style="padding-top:70px" class="q-pa-xs" :offset="[18, 18]">
       <q-btn fab icon="save" @click="saveme(getorder[0].year,getorder[0].ID)"  color="blue-grey-5" ><q-tooltip anchor="top middle">Sauvegarder</q-tooltip></q-btn>
@@ -246,7 +245,6 @@ export default {
     }
 
 
-
           /*
           const doc = new jspdf();
           const html = this.$refs.content.innerHTML;
@@ -275,16 +273,16 @@ export default {
       ...mapGetters('company', ['getinfo']),
       ...mapGetters('order', ['getorder']),
       nummm(){
-            return writtenNumber(Math.trunc(this.getorder[0].montants), {lang: 'fr'})
+            return writtenNumber(Math.trunc(this.getorder[0].montants - this.getorder[0].Remiseonly), {lang: 'fr'})
       },
       nummmTTC(){
-            return writtenNumber(Math.trunc(this.getorder[0].montant_TTC), {lang: 'fr'})
+            return writtenNumber(Math.trunc(this.getorder[0].TTConly), {lang: 'fr'})
       },
       nummmm(){
-          return  writtenNumber(((((this.getorder[0].montants) - (Math.trunc(this.getorder[0].montants))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
+          return  writtenNumber(((((this.getorder[0].montants - this.getorder[0].Remiseonly) - (Math.trunc(this.getorder[0].montants - this.getorder[0].Remiseonly))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
       },
       nummmmTTC(){
-          return  writtenNumber(((((this.getorder[0].montant_TTC) - (Math.trunc(this.getorder[0].montant_TTC))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
+          return  writtenNumber(((((this.getorder[0].TTConly) - (Math.trunc(this.getorder[0].TTConly))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
       }
     }
 }
@@ -347,7 +345,7 @@ body {
 }
 
 #client .to {
-  color: #000000;
+  color: #777777;
 }
 
 h2.name {
@@ -386,7 +384,7 @@ table td {
   padding: 10px;
   background: #ffffff;
   text-align: center;
-   border-top: 2px solid #000000;
+  border-top: 2px solid #000000;
   border-left: 2px solid #000000;
   border-right: 2px solid #000000;
   border-bottom: 2px solid #000000;
@@ -431,8 +429,12 @@ table .totale {
 
 }
 table td.unit,
-table td.qty,
 table td.total {
+  font-size: 1.2em;
+}
+
+table td.qty{
+  text-align: center;
   font-size: 1.2em;
 }
 

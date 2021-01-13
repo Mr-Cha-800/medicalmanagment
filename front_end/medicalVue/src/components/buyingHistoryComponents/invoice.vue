@@ -1,4 +1,4 @@
-<!-- A L'IMPREMENTE MAHECH TEMCHIIIIIII AWÉÉÉÉÉÉÉ-->
+<!-- tva lkolech heta la fin-->
 <template>
     <body   class="q-pl-md q-pr-md q-pb-md">
       <div ref="content">
@@ -17,7 +17,7 @@
     </header>
     <main> 
       <div id="details" class="clearfix">
-        <div id="client">{{shit}}
+        <div id="client">
           <div><b style="font-size:18px">N° RC : {{getinfo[0].NumRegistreComm}}</b></div>
           <div><b style="font-size:18px">N° Art imp : {{getinfo[0].NumArtImp}}</b></div>
           <div><b style="font-size:18px">NIF : {{getinfo[0].NumIdFisc}}</b></div>
@@ -88,8 +88,7 @@
             <td class="desc"><b>{{produit.Designation}}</b></td>
             <td class="unit"><b>{{formatthis(produit.price)}} DA</b></td>
             <td class="qty"><b>{{produit.quantities}}</b></td>
-            <td v-if="produit.tax === 0" class="total"><b>{{formatthis(produit.quantities* produit.price) }} DA</b></td>
-            <td v-else class="total"><b>{{formatthis((produit.quantities* (produit.price + ((produit.price * getorder[0].Tva)/100))).toFixed(2))  }} DA</b></td>
+            <td class="total"><b>{{formatthis(produit.quantities * produit.price) }} DA</b></td>
           </tr>
 
         </tbody>
@@ -97,20 +96,20 @@
         <table style="width:40%;float:right">
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT H.T</b></td>
-            <td style="width:130px"><b>{{formatthis(getorder[0].montants)}} DA</b></td>
+            <td style="width:130px"><b>{{formatthis((getorder[0].montants).toFixed(2))}} DA</b></td>
           </tr>
-          <tr>
-            <td style="text-align:left" colspan="2"><b>TVA : {{getorder[0].Tva}} %</b></td>
-            <td><b>{{getorder[0].Tva}} %</b></td>
-          </tr> 
           <tr v-if="getorder[0].remise > 0">
             <td style="text-align:left" colspan="2"><b>REMISE {{getorder[0].remise}} %</b></td>
-            <td style="width:130px"><b>- {{getorder[0].remise}} %</b></td>
+            <td style="width:130px"><b> {{formatthis((getorder[0].Remiseonly).toFixed(2))}} DA</b></td>
+          </tr>
+          <tr>
+            <td style="text-align:left" colspan="2"><b>TVA {{getorder[0].Tva}} %</b></td>
+            <td><b>{{formatthis((getorder[0].TVAonly).toFixed(2))}} DA </b></td>
           </tr>
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT T.T.C</b></td>
             <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
-            <td style="width:130px"><b>{{formatthis((getorder[0].montant_TTC).toFixed(2))}} DA </b></td>
+            <td style="width:130px"><b>{{formatthis( (getorder[0].TTConly).toFixed(2) )}} DA </b></td>
           </tr>
         </table>
         <table>
@@ -128,32 +127,32 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="totale">N° RÉF.</th>
-            <th class="desc">DESCRIPTION</th>
-            <th class="unit">PRIX UNITAIRE H.T</th>
-            <th class="qty">QUANTITÉ</th>
-            <th class="total">PRIX TOTAL</th>
+            <th class="totale"><b>N° RÉF.</b></th>
+            <th class="desc"><b>DESCRIPTION</b></th>
+            <th class="unit"><b>PRIX UNITAIRE H.T</b></th>
+            <th class="qty"><b>QUANTITÉ</b></th>
+            <th class="total"><b>PRIX TOTAL</b></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="produit in getorder" :key="produit.id">
-            <td class="totale">{{produit.NumRef}}</td>
-            <td class="desc">{{produit.Designation}}</td>
-            <td class="unit">{{formatthis(produit.price)}} DA</td>
-            <td class="qty">{{produit.quantities}}</td>
-            <td class="total">{{formatthis((produit.quantities* produit.price).toFixed(2))   }} DA</td>
+            <td class="totale"><b>{{produit.NumRef}}</b></td>
+            <td class="desc"><b>{{produit.Designation}}</b></td>
+            <td class="unit"><b>{{formatthis(produit.price)}} DA</b></td>
+            <td class="qty"><b>{{produit.quantities}}</b></td>
+            <td class="total"><b>{{formatthis((produit.quantities* produit.price).toFixed(2))   }} DA</b></td>
           </tr>
 
         </tbody>
       </table>
         <table style="width:30%;float:right">
           <tr v-if="getorder[0].remise > 0">
-            <td colspan="2">REMISE</td>
-            <td>{{getorder[0].remise}} %</td>
+            <td style="text-align:left" colspan="2"><b> REMISE {{getorder[0].remise}} %</b></td>
+            <td style="text-align:left" colspan="2"><b> {{formatthis(getorder[0].Remiseonly)}} DA</b></td>
           </tr>
           <tr  v-if="getorder[0].Caissee === 'CASH'" >
-            <td colspan="2">MONTANT H.T</td>
-            <td>{{formatthis(getorder[0].montants)}} DA</td>
+            <td style="text-align:left" colspan="2"><b>MONTANT H.T</b></td>
+            <td><b>{{formatthis((getorder[0].montants - getorder[0].Remiseonly).toFixed(2) )}} DA</b></td>
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
@@ -274,16 +273,16 @@ export default {
       ...mapGetters('company', ['getinfo']),
       ...mapGetters('order', ['getorder']),
       nummm(){
-            return writtenNumber(Math.trunc(this.getorder[0].montants), {lang: 'fr'})
+            return writtenNumber(Math.trunc(this.getorder[0].montants - this.getorder[0].Remiseonly), {lang: 'fr'})
       },
       nummmTTC(){
-            return writtenNumber(Math.trunc(this.getorder[0].montant_TTC), {lang: 'fr'})
+            return writtenNumber(Math.trunc(this.getorder[0].TTConly), {lang: 'fr'})
       },
       nummmm(){
-          return  writtenNumber(((((this.getorder[0].montants) - (Math.trunc(this.getorder[0].montants))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
+          return  writtenNumber(((((this.getorder[0].montants - this.getorder[0].Remiseonly) - (Math.trunc(this.getorder[0].montants - this.getorder[0].Remiseonly))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
       },
       nummmmTTC(){
-          return  writtenNumber(((((this.getorder[0].montant_TTC) - (Math.trunc(this.getorder[0].montant_TTC))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
+          return  writtenNumber(((((this.getorder[0].TTConly) - (Math.trunc(this.getorder[0].TTConly))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
       }
     }
 }
