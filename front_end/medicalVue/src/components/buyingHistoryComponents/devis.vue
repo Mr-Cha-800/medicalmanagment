@@ -136,7 +136,7 @@
             <th class="totale"><b>N° RÉF.</b></th>
             <th class="desc"><b>DESCRIPTION</b></th>
             <th class="unit"><b>PRIX UNITAIRE H.T</b></th>
-            <th class="qty"><b>QUANTITÉ</b></th>
+            <th class="qty"><b>QTE</b></th>
             <th class="total"><b>PRIX TOTAL</b></th>
           </tr>
         </thead>
