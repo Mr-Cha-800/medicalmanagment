@@ -109,12 +109,12 @@
           </tr>
           <tr v-else-if="produit.tax === 0">
             <td  style="text-align:left" colspan="2"><b>TVA 0 %</b></td>
-            <td><b>{{formatthis((getorder[0].TVAonly).toFixed(2))}} DA </b></td>
+            <td><b>0 DA </b></td>
           </tr>
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT T.T.C</b></td>
             <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
-            <td style="width:130px"><b>{{formatthis( (getorder[0].TTConly).toFixed(2) )}} DA </b></td>
+            <td style="width:130px"><b>{{formatthis( (getorder[0].montants - getorder[0].Remiseonly).toFixed(2) )}} DA </b></td>
           </tr>
         </table>
         <table  :key="produit.id">

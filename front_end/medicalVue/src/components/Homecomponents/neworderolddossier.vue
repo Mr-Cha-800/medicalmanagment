@@ -200,6 +200,8 @@
         label="Remise en %"
       >%
       </q-input>
+      <h6>Prix H.T</h6>
+      <h6>{{afterhours}}</h6>
     </div>
       <div class="q-pr-lg q-pt-xl q-pb-lg q-gutter-md absolute-bottom-right">
     <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer le devis" >
@@ -224,6 +226,7 @@ export default {
       fill: false,
       remisestate: false,
       loading: false,
+      afterhours: null,
       neworder:{
         id: 1,
         nom: '',
@@ -529,14 +532,16 @@ export default {
     neworder: {
       deep: true,
       handler (val) {
-        if (val.caisse === 'CAMSSP' || val.caisse === 'CASH') {
+        if ( val.caisse === 'CASH') {
           val.wilaya = ''
           val.securitesociale = ''
+        }
+        if ( val.caisse === 'CAMSSP' ) {
+          val.wilaya = ''
         }
         if ((val.nom || val.prenom ) && this.fill === true){
         this.neworder.patient.nom = this.neworder.nom
         this.neworder.patient.prenom = this.neworder.prenom
-
         }
       }
     },

@@ -517,10 +517,13 @@ export default {
   watch: {
     neworder: {
       deep: true,
-      handler (val) {
-        if (val.caisse === 'CAMSSP' || val.caisse === 'CASH') {
+      handler (val) { //||
+        if ( val.caisse === 'CASH') {
           val.wilaya = ''
           val.securitesociale = ''
+        }
+        if ( val.caisse === 'CAMSSP' ) {
+          val.wilaya = ''
         }
         if ((val.nom || val.prenom ) && this.fill === true){
         this.neworder.patient.nom = this.neworder.nom
