@@ -86,9 +86,9 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
-            <td class="unit"><b>{{formatthis(produit.price)}} DA</b></td>
+            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price)}} DA</b></td>
             <td class="qty"><b>{{produit.quantities}}</b></td>
-            <td class="total"><b>{{formatthis(produit.quantities * produit.price) }} DA</b></td>
+            <td class="total" style="width:140px;text-align:center"><b>{{formatthis(produit.quantities * produit.price) }} DA</b></td>
           </tr>
 
         </tbody>
@@ -113,9 +113,9 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
-            <td class="unit"><b>{{formatthis(produit.price)}} DA</b></td>
+            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price)}} DA</b></td>
             <td class="qty" style="text-align:center"><b>{{produit.quantities}}</b></td>
-            <td class="total"><b>{{formatthis((produit.quantities* produit.price).toFixed(2))   }} DA</b></td>
+            <td class="total" style="width:140px;text-align:center"><b>{{formatthis((produit.quantities* produit.price).toFixed(2))   }} DA</b></td>
           </tr>
 
         </tbody>
