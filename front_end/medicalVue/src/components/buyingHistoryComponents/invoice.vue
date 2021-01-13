@@ -69,10 +69,11 @@
         </thead>
       </table>
         <template v-if="getorder[0].Caissee !== 'CASH'">
-      <div>
+        <template v-for="produit in getorder">
+      <div  :key="produit.id">
           <div><b style="font-size:20px">PRODUIT :</b></div>
       </div>
-      <table border="0" cellspacing="0" cellpadding="0">
+      <table border="0" cellspacing="0" cellpadding="0"  :key="produit.id">
         <thead>
           <tr>
             <th class="totale"><b>N° RÉF.</b></th>
@@ -83,7 +84,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="produit in getorder" :key="produit.id">
+          <tr >
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
             <td class="unit"><b>{{formatthis(produit.price)}} DA</b></td>
@@ -93,7 +94,7 @@
 
         </tbody>
       </table>
-        <table style="width:40%;float:right">
+        <table style="width:40%;float:right"  :key="produit.id">
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT H.T</b></td>
             <td style="width:130px"><b>{{formatthis((getorder[0].montants).toFixed(2))}} DA</b></td>
@@ -102,8 +103,12 @@
             <td style="text-align:left" colspan="2"><b>REMISE {{getorder[0].remise}} %</b></td>
             <td style="width:130px"><b> {{formatthis((getorder[0].Remiseonly).toFixed(2))}} DA</b></td>
           </tr>
-          <tr>
+          <tr v-if="produit.tax === 1">
             <td style="text-align:left" colspan="2"><b>TVA {{getorder[0].Tva}} %</b></td>
+            <td><b>{{formatthis((getorder[0].TVAonly).toFixed(2))}} DA </b></td>
+          </tr>
+          <tr v-else-if="produit.tax === 0">
+            <td  style="text-align:left" colspan="2"><b>TVA 0 %</b></td>
             <td><b>{{formatthis((getorder[0].TVAonly).toFixed(2))}} DA </b></td>
           </tr>
           <tr>
@@ -112,12 +117,13 @@
             <td style="width:130px"><b>{{formatthis( (getorder[0].TTConly).toFixed(2) )}} DA </b></td>
           </tr>
         </table>
-        <table>
+        <table  :key="produit.id">
           <tr>
       <div id="thanks">Arrété la présente facture à la somme</div>
           </tr>
        <div v-if="getorder[0].Caissee !== 'CASH'" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CTS</template></b></div>
         </table>
+        </template>
         </template>
         
         <template v-else-if="getorder[0].Caissee === 'CASH'">
