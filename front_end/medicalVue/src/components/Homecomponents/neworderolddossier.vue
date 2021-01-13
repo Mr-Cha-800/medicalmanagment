@@ -161,7 +161,7 @@
         <th style="width:70%">Désignation</th>
         <th style="width:30%">Prix unitaire</th>
         <th style="width:20%">TVA</th>
-        <th style="width:20%">Quantité</th>
+        <th style="width:20%">QTE</th>
         <th>Montant H.T</th>
         <th>Montant T.T.C</th>
       </tr>
@@ -200,8 +200,7 @@
         label="Remise en %"
       >%
       </q-input>
-      <h6>Prix H.T</h6>
-      <h6>{{afterhours}}</h6>
+      // prix à payer
     </div>
       <div class="q-pr-lg q-pt-xl q-pb-lg q-gutter-md absolute-bottom-right">
     <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer le devis" >

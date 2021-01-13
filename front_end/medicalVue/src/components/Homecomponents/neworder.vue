@@ -159,7 +159,7 @@
         <th style="width:60%">Désignation</th>
         <th style="width:10%">Prix unitaire</th>
         <th>TVA</th>
-        <th>Quantité</th>
+        <th>QTE</th>
         <th style="width:10%">Montant H.T</th>
         <th style="width:10%">Montant T.T.C</th>
       </tr>
@@ -198,6 +198,7 @@
         label="Remise en %"
       >%
       </q-input>
+      // prix à payer
     </div>
       <div class="q-pr-lg q-pt-xl q-pb-lg q-gutter-md absolute-bottom-right">
     <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer le devis" >
