@@ -29,7 +29,7 @@
           </p> </div></div>
         </div>
         <div id="invoice">
-          <div><b style="font-size:23px">Sidi Bel Abbès le {{date1 }}</b></div>
+          <div><b style="font-size:23px">Sidi Bel Abbès le {{dateme()}}</b></div>
         </div>
       </div>
       <table border="0" cellspacing="0" cellpadding="0">
@@ -226,6 +226,9 @@ export default {
         printili(){
           window.print()
         },
+    dateme(){
+      return date.formatDate(Date.now(), 'DD - MM - YYYY')
+    },
         
         saveme(year,id){
         domtoimage
