@@ -195,15 +195,19 @@
        <q-input
         type="number"
         step="any"
+        min="0"
+        max="100"
         v-if="remisestate"
         v-model="neworder.remise"
         label="Remise en %"
       >%
       </q-input>
       <div>
-        <p v-if="remisestate > 0">REMISE : {{remisetaux.toFixed(2)}} DA</p><br>
-        <p v-if="neworder.caisse === 'CNAS' || neworder.caisse === 'CASNOS' || neworder.caisse === 'CAMSSP'">TVA : {{ttctaux.toFixed(2)}} DA</p>
-        <p>PRIX à PAYER : {{finalprice.toFixed(2)}} DA </p>
+        <p v-if="remisestate && neworder.remise > 0">REMISE : {{formatthis(remisetaux.toFixed(2))}} DA</p>
+        <p v-else-if="remisestate">REMISE : 0 DA</p>
+        <p v-if="neworder.caisse === 'CNAS' || neworder.caisse === 'CASNOS' || neworder.caisse === 'CAMSSP'">TVA : {{formatthis(ttctaux.toFixed(2))}} DA</p>
+        <p v-else>TVA : 0 DA</p>
+        <p v-if="finalprice">PRIX à PAYER : {{formatthis(finalprice.toFixed(2))}} DA </p>
       </div>
     </div>
       <div class="q-pr-lg q-pt-xl q-pb-lg q-gutter-md absolute-bottom-right">
@@ -226,8 +230,8 @@ var numberFormatter = require("number-formatter")
 export default {
   data(){
     return {
-      ttctaux:null,
-      remisetaux: null,
+      ttctaux:0,
+      remisetaux: 0,
       finalprice: 0,
       fill: false,
       remisestate: false,

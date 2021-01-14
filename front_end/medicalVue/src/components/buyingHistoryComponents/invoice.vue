@@ -282,13 +282,13 @@ export default {
             return writtenNumber(Math.trunc(this.getorder[0].montants - this.getorder[0].Remiseonly), {lang: 'fr'})
       },
       nummmTTC(){
-            return writtenNumber(Math.trunc(this.getorder[0].TTConly), {lang: 'fr'})
+            return writtenNumber(Math.trunc((this.getorder[0].montants - this.getorder[0].Remiseonly).toFixed(2)), {lang: 'fr'})
       },
       nummmm(){
           return  writtenNumber(((((this.getorder[0].montants - this.getorder[0].Remiseonly) - (Math.trunc(this.getorder[0].montants - this.getorder[0].Remiseonly))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
       },
       nummmmTTC(){
-          return  writtenNumber(((((this.getorder[0].TTConly) - (Math.trunc(this.getorder[0].TTConly))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
+          return  writtenNumber(((((this.getorder[0].montants - this.getorder[0].Remiseonly) - (Math.trunc(this.getorder[0].montants - this.getorder[0].Remiseonly))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
       }
     }
 }
