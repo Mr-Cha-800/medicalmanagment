@@ -248,8 +248,8 @@ export default {
               value:"LAGHOUAT"
           },
           {
-              label:"OUM EL BOUGHI",
-              value:"OUM EL BOUGHI"
+              label:"OUM EL BOUAGHI",
+              value:"OUM EL BOUAGHI"
           },
           {
               label:"BATNA",
