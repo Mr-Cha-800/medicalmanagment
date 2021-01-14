@@ -27,7 +27,7 @@
   <tr v-for="product in getproducts" :key="product.id">
     <td>{{product.NumRef}}</td>
     <td>{{product.Designation}}</td>
-    <td>{{product.PrixU}} DA</td>
+    <td>{{formatthis(product.PrixU)}} DA</td>
     <td v-if="product.tax === 1">{{getinfo[0].Tva}} %</td>
     <td v-else>{{product.tax}} %</td>
     <td v-if="product.tax === 1">{{formatthis((product.PrixU+((product.PrixU*getinfo[0].Tva)/100)).toFixed(2))}} DA</td>
