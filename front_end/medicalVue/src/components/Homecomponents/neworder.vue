@@ -198,7 +198,11 @@
         label="Remise en %"
       >%
       </q-input>
-      // prix à payer
+      <div>
+        <p v-if="remisestate > 0">REMISE : {{remisetaux.toFixed(2)}} DA</p><br>
+        <p v-if="neworder.caisse === 'CNAS' || neworder.caisse === 'CASNOS' || neworder.caisse === 'CAMSSP'">TVA : {{ttctaux.toFixed(2)}} DA</p>
+        <p>PRIX à PAYER : {{finalprice.toFixed(2)}} DA </p>
+      </div>
     </div>
       <div class="q-pr-lg q-pt-xl q-pb-lg q-gutter-md absolute-bottom-right">
     <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Générer le devis" >
@@ -215,10 +219,12 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 var numberFormatter = require("number-formatter")
-
 export default {
   data(){
     return {
+      ttctaux:null,
+      remisetaux: null,
+      finalprice: 0,
       fill: false,
       remisestate: false,
       loading: false,
@@ -469,7 +475,6 @@ export default {
         }
       }
     },
-
     filterFn (val, update) {
       let vm = this.getproducts
       update(() => {
@@ -513,6 +518,27 @@ export default {
     },
     formatthis(x){
       return numberFormatter("### ### ###.##", x)
+    },
+      calculatefinal(){
+        var montanttotal = 0
+        if(this.neworder.caisse === 'CASH'){
+        for(var k=0; k < this.neworder.commande.length; k++) {
+          montanttotal = montanttotal + (this.neworder.commande[k].PrixU * this.neworder.commande[k].quantity)
+      }
+      this.remisetaux = (montanttotal * this.neworder.remise)/100
+      this.finalprice = montanttotal - ((montanttotal * this.neworder.remise)/100)
+        }else if(this.neworder.caisse !== 'CASH'){
+
+        for(k=0; k < this.neworder.commande.length; k++) {
+          montanttotal = montanttotal + (this.neworder.commande[k].PrixU * this.neworder.commande[k].quantity)
+          this.remisetaux = (montanttotal * this.neworder.remise)/100
+      this.finalprice = montanttotal - ((montanttotal * this.neworder.remise)/100)
+      this.ttctaux = (this.finalprice * this.neworder.commande[k].tax * this.getinfo[0].Tva)/100
+      this.finalprice = this.finalprice + this.ttctaux
+      }
+      
+      
+        }
     }
   },
   watch: {
@@ -529,7 +555,9 @@ export default {
         if ((val.nom || val.prenom ) && this.fill === true){
         this.neworder.patient.nom = this.neworder.nom
         this.neworder.patient.prenom = this.neworder.prenom
-
+        }
+        if(val.commande){
+          this.calculatefinal()
         }
       }
     },
@@ -542,12 +570,17 @@ export default {
         this.neworder.patient.nom = ''
         this.neworder.patient.prenom = ''
       }
-    }
+    },
+    remisestate: function(){
+      if(this.remisestate === false){
+        this.remisetaux = 0
+        this.neworder.remise = 0
+      }
+    },
   },
   computed:{
     ...mapGetters('product', ['getproducts']),
     ...mapGetters('company', ['getinfo'])
-
   },
   created(){
     this.getallproducts()
@@ -556,5 +589,4 @@ export default {
 </script>
 
 <style>
-
 </style>
