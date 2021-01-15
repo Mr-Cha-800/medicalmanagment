@@ -1,9 +1,9 @@
 <template>
       <q-card class="my-card " >
         <q-card-section class="bg-blue-grey-5 text-white">
-            <div class="text-h6">Informations du magasins</div>
+            <div class="text-h6">Informations du magasin</div>
           <q-item-label class="text-white" caption>
-            Ces informations vont être affichées sur la facture devis etc...
+            Ces informations vont être affichées sur la facture, devis et le bon de livraison.
           </q-item-label>
         </q-card-section>
 
@@ -115,6 +115,7 @@
       </q-card-actions>
     </q-card>
 </template>
+
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
