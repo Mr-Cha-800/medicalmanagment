@@ -157,21 +157,21 @@
     <div class="q-pa-lg q-pb-xl">
     <table>
       <tr>
-        <th style="width:20%">N° Réf.</th>
-        <th style="width:70%">Désignation</th>
-        <th style="width:30%">Prix unitaire</th>
-        <th style="width:20%">TVA</th>
-        <th style="width:20%">QTE</th>
-        <th>Montant H.T</th>
-        <th>Montant T.T.C</th>
+        <th style="width:120px">N° Réf.</th>
+        <th>Désignation</th>
+        <th style="width:140px">Prix unitaire</th>
+        <th style="width:60px">TVA</th>
+        <th style="width:60px">QTE</th>
+        <th style="width:140px">Montant H.T</th>
+        <th style="width:140px">Montant T.T.C</th>
       </tr>
       <tr v-for="product in neworder.commande" :key="product.id">
         <td>{{product.NumRef}}</td>
-        <td style="width:70%">{{product.Designation}}  </td>
-        <td style="width:10%"> {{formatthis(product.PrixU)}} Da</td>
+        <td >{{product.Designation}}  </td>
+        <td > {{formatthis(product.PrixU)}} Da</td>
         <td v-if="product.tax === 1">{{getinfo[0].Tva}} %</td>
         <td v-else>{{product.tax}} %</td>
-        <td style="width:20%"><q-input type="number" step="any" min="1" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>
+        <td><q-input type="number" step="any" min="1" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>
         <td>{{formatthis((product.quantity*product.PrixU).toFixed(2))}} Da</td>
         <td v-if="product.tax === 0">{{formatthis((product.quantity*(product.PrixU+((product.PrixU*product.tax)/100))).toFixed(2))}} Da</td>
         <td v-else-if="product.tax === 1">{{formatthis((product.quantity*(product.PrixU+((product.PrixU*getinfo[0].Tva)/100))).toFixed(2))}} Da</td>
