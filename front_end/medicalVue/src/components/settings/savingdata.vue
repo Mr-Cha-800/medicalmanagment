@@ -39,7 +39,7 @@ export default {
     data(){
         return {
             dialog:false,
-            chemin: ''
+            chemin: "D:/orthosoft"
         }
     },
     methods: {
