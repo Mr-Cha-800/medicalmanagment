@@ -16,6 +16,9 @@
           <q-btn flat round dense icon="settings" @click="$router.push({name: 'Settings'})" class="q-mr-sm" >
             <q-tooltip>Reglage</q-tooltip>
           </q-btn>
+          <q-btn flat round dense icon="info" @click="$router.push({name: 'About'})" class="q-mr-sm" >
+            <q-tooltip>A propos des dévloppeurs</q-tooltip>
+          </q-btn>
         </q-toolbar>
       </q-header>
     <!--<drawer :leftDrawerOpen="leftDrawerOpen"/>-->
