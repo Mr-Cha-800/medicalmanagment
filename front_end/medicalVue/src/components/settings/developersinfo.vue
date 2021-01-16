@@ -1,9 +1,9 @@
 <template>
-<div>
+<div class="q-gutter-md">
 
-      <q-card class="my-card q-pb-md " >
+      <q-card class="my-card " >
         <q-card-section class="bg-blue-grey-5 text-white">
-            <div class="text-h6">Addou Mohamed Djamil</div>
+            <div class="text-h6">Addou Mohammed Djamil</div>
         </q-card-section>
         <q-separator />
       <q-card-section horizontal>
@@ -19,7 +19,7 @@
           /> -->
         </q-card-section>
     </q-card>
-      <q-card class="my-card  q-pb-md " >
+      <q-card class="my-card " >
         <q-card-section class="bg-blue-grey-5 text-white">
             <div class="text-h6">Dorbane Mohamed Lamine Chaker</div>
         </q-card-section>
@@ -37,7 +37,7 @@
           /> -->
         </q-card-section>
     </q-card>
-      <q-card class="my-card q-pb-md  " >
+      <q-card class="my-card  " >
         <q-card-section class="bg-blue-grey-5 text-white">
             <div class="text-h6">Brahim El-Houcine</div>
         </q-card-section>
