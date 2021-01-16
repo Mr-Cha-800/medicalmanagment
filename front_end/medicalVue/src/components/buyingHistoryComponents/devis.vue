@@ -114,7 +114,7 @@
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT T.T.C</b></td>
             <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
-            <td style="width:140px"><b>{{formatthis( (getorder[0].montants - getorder[0].Remiseonly).toFixed(2) )}} DA </b></td>
+            <td style="width:140px"><b>{{formatthis( ((getorder[0].montants - getorder[0].Remiseonly)+ (getorder[0].TVAonly)).toFixed(2) )}} DA </b></td>
           </tr>
         </table>
         <table  :key="produit.id">
@@ -285,13 +285,13 @@ export default {
             return writtenNumber(Math.trunc(this.getorder[0].montants - this.getorder[0].Remiseonly), {lang: 'fr'})
       },
       nummmTTC(){
-            return writtenNumber(Math.trunc((this.getorder[0].montants - this.getorder[0].Remiseonly).toFixed(2)), {lang: 'fr'})
+            return writtenNumber(Math.trunc(((this.getorder[0].montants - this.getorder[0].Remiseonly) + this.getorder[0].TVAonly).toFixed(2)), {lang: 'fr'})
       },
       nummmm(){
           return  writtenNumber(((((this.getorder[0].montants - this.getorder[0].Remiseonly) - (Math.trunc(this.getorder[0].montants - this.getorder[0].Remiseonly))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
       },
       nummmmTTC(){
-          return  writtenNumber(((((this.getorder[0].montants - this.getorder[0].Remiseonly) - (Math.trunc(this.getorder[0].montants - this.getorder[0].Remiseonly))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
+          return  writtenNumber((((((this.getorder[0].montants - this.getorder[0].Remiseonly)  + this.getorder[0].TVAonly) - (Math.trunc((this.getorder[0].montants - this.getorder[0].Remiseonly)  + this.getorder[0].TVAonly))).toFixed(2))*100).toFixed(2), {lang: 'fr'});
       }
     }
 }
