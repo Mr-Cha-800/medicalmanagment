@@ -58,7 +58,7 @@ Router.post('/',(req,res)=>{
     // remiseonly hiya ch7al rayhin na9so en prix
     Remiseonly = (montanttotal * req.body.remise)/100
     // Tvaonly hiya ch7al nzido tax en prix
-    TVAonly = ((montanttotal - Remiseonly) * req.body.tva)/100
+    TVAonly = ((montanttotal - Remiseonly) * req.body.tva * req.body.commande[0].tax)/100
     // ttconly hiya kolech bl tva lkkolech
     TTConly = montanttotal - Remiseonly + TVAonly
     var x =  Math.floor(Math.random() * Math.floor(10000))
