@@ -7,8 +7,8 @@
         <img src="../../../public/logo.png">
       </div>
       <div id="company">
-        <h3 style="font-size:30px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b><br>
-        <i style="font-size:20px">Agrément ministère de la santé N°332 du 02-02-2020</i></h3>
+        <h3 style="font-size:33px;margin-top:5px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b><br style="line-height:-20px">
+        <i style="margin-left:100px;margin;font-size:17px">Agrément ministère de la santé N°332 du 02-02-2020</i></h3>
       </div>
       <!-- <div id="company">
         <h3 style="font-size:30px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b></h3>
@@ -262,12 +262,12 @@ body {
 
 #logo {
   float: left;
-  margin-top: 20px;
+  margin-top: -20px;
 }
 
 #logo img {
-  height: 100px;
-  margin-right: 50px;
+  height: 160px;
+  margin-right: 15px;
 }
 
 .img{
