@@ -35,22 +35,23 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th style="font-size:16px" class="facture"><b>BON LIVRAISON N°: {{getorder[0].idfact}}/{{getorder[0].factyear}}</b> </th> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
-            <th style="font-size:16px" class="dossier"><b>DOSSIER : {{getorder[0].ID}}/{{getorder[0].year}}</b></th><!--la meme chose hnaya pour le dossier-->
+            <th style="font-size:16px" class="facture">
+              <b class="columnn">BON LIVRAISON N°: {{getorder[0].idfact}}/{{getorder[0].factyear}}</b> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
+            <b class="columnn">DOSSIER : {{getorder[0].ID}}/{{getorder[0].year}}</b></th><!--la meme chose hnaya pour le dossier-->
           </tr>
         </thead>
       </table>
       <div>
           <div><b style="font-size:20px">L'ASSURÉ :</b></div>
       </div>
+      
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th style="font-size:16px" class="desc" colspan="2"><b>NOM ET PRÉNOM : {{getorder[0].nom}}  {{getorder[0].prenom}} </b></th> <!--hnaya dir variable lel nom wel prénom-->
-          </tr>
-          <tr>
-            <th v-if="getorder[0].Numsecsocial" class="desc" style="font-size:16px"><b>N° SÉCURITÉ SOCIALE : {{getorder[0].Numsecsocial}}</b></th> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
-            <th v-if="(getorder[0].Caissee && getorder[0].Wilayaa) || getorder[0].Caissee === 'CAMSSP'"  class="desc" style="font-size:16px"><b> CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</b></th> <!--hnaya dir variable lel CAISSE-->
+            <th style="font-size:16px" class="desc" colspan="2"><b>NOM ET PRÉNOM : {{getorder[0].nom}}  {{getorder[0].prenom}} </b> <br><br> <!--hnaya dir variable lel nom wel prénom-->
+          
+            <b class="columnn" v-if="getorder[0].Numsecsocial">N° SÉCURITÉ SOCIALE : {{getorder[0].Numsecsocial}}</b> <!--hnaya dir variable lel SÉCURITÉ SOCIALE-->
+            <b class="columnn" v-if="(getorder[0].Caissee && getorder[0].Wilayaa) || getorder[0].Caissee === 'CAMSSP'"  >  CAISSE : {{getorder[0].Caissee}} {{getorder[0].Wilayaa}}</b></th> <!--hnaya dir variable lel CAISSE-->
           </tr>
         </thead>
       </table>
@@ -60,11 +61,10 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr> 
-            <th style="font-size:16px" class="desc" colspan="2"><b>NOM ET PRÉNOM : {{getorder[0].patient_nom}} {{getorder[0].patient_prenom}}</b></th> <!--hnaya dir variable lel nom wel prénom-->
-          </tr>
-          <tr>
-            <th style="font-size:16px" class="desc"><b>DATE ET LIEU DE NAISSANCE : {{getorder[0].patient_datenaiss}}</b></th> <!--hnaya dir variable lel DATE DE NAISSANCE-->
-            <th style="font-size:16px" class="desc"><b> À : {{getorder[0].patient_lieunaiss}}</b></th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
+            <th style="font-size:16px" class="desc" colspan="2"><b>NOM ET PRÉNOM : {{getorder[0].patient_nom}} {{getorder[0].patient_prenom}}</b><br><br> <!--hnaya dir variable lel nom wel prénom-->
+          
+            <b class="columnn">DATE ET LIEU DE NAISSANCE : {{getorder[0].patient_datenaiss}}</b> <!--hnaya dir variable lel DATE DE NAISSANCE-->
+            <b class="columnn"> À : {{getorder[0].patient_lieunaiss}}</b></th><!--hnaya dir variable lel LIEU DE NAISSANCE-->
           </tr>
         </thead>
       </table>
