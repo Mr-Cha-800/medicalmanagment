@@ -236,6 +236,12 @@ export default {
 }
 
 
+.columnn{
+  display: inline-block;
+  width: 50%;
+  padding: 2px;
+}
+
 .clearfix:after {
   content: "";
   display: table;

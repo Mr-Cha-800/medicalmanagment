@@ -7,8 +7,8 @@
         <img src="../../../public/logo.png">
       </div>
       <div id="company">
-        <h3 style="font-size:30px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b><br>
-        <i style="font-size:20px">Agrément ministère de la santé N°332 du 02-02-2020</i></h3>
+        <h3 style="font-size:30px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b> <br style="line-height:10px">
+        <i style="font-size:20px">Agrément ministère de la santé N°332 du 02-02-2020</i> </h3>
       </div>
       <!-- <div id="company">
         <h3 style="font-size:30px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b></h3>
@@ -86,9 +86,9 @@
           <tr >
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
-            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price)}} DA</b></td>
+            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price.toFixed(2))}} DA</b></td>
             <td class="qty"><b>{{produit.quantities}}</b></td>
-            <td class="total" style="width:140px;text-align:center"><b>{{formatthis(produit.quantities * produit.price) }} DA</b></td>
+            <td class="total" style="width:140px;text-align:center"><b>{{formatthis((produit.quantities * produit.price).toFixed(2)) }} DA</b></td>
           </tr>
 
         </tbody>
@@ -302,6 +302,12 @@ export default {
   src: url('../../../public/SourceSansPro-Regular.ttf');
 }
 
+
+.columnn{
+  display: inline-block;
+  width: 50%;
+  padding: 2px;
+}
 
 .clearfix:after {
   content: "";
