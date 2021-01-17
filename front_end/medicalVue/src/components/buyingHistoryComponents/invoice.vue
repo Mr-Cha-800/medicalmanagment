@@ -7,8 +7,8 @@
         <img src="../../../public/logo.png">
       </div>
       <div id="company">
-        <h3 style="font-size:33px;margin-top:5px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b><br style="line-height:-20px">
-        <i style="margin-left:100px;margin;font-size:19px">Agrément ministère de la santé N°332 du 02-02-2020</i></h3>
+        <h3 style="font-size:33px;margin-top:5px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b><br style="line-height:2px">
+        <i style="margin-left:100px;font-size:19px">Agrément ministère de la santé N°332 du 02-02-2020</i></h3>
       </div>
       <!-- <div id="company">
         <h3 style="font-size:30px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b></h3>
@@ -86,9 +86,9 @@
           <tr >
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
-            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price)}} </b></td>
+            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price.toFixed(2))}} </b></td>
             <td class="qty" style="text-align:center"><b>{{produit.quantities}}</b></td>
-            <td class="total" style="width:140px;text-align:center"><b>{{formatthis(produit.quantities * produit.price) }} </b></td>
+            <td class="total" style="width:140px;text-align:center"><b>{{formatthis((produit.quantities * produit.price).toFixed(2)) }} </b></td>
           </tr>
 
         </tbody>
@@ -143,7 +143,7 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
-            <td class="unit" style="width:140px"><b>{{formatthis(produit.price)}} DA</b></td>
+            <td class="unit" style="width:140px"><b>{{formatthis(produit.price.toFixed(2))}} DA</b></td>
             <td class="qty"><b>{{produit.quantities}}</b></td>
             <td class="total" style="width:140px"><b>{{formatthis((produit.quantities* produit.price).toFixed(2))   }} DA</b></td>
           </tr>
@@ -153,7 +153,7 @@
         <table style="width:30%;float:right">
           <tr v-if="getorder[0].remise > 0">
             <td style="width:140px;text-align:left" colspan="2"><b> REMISE {{getorder[0].remise}} %</b></td>
-            <td style="text-align:left" colspan="2"><b> {{formatthis(getorder[0].Remiseonly)}} DA</b></td>
+            <td style="text-align:left" colspan="2"><b> {{formatthis((getorder[0].Remiseonly).toFixed(2))}} DA</b></td>
           </tr>
           <tr  v-if="getorder[0].Caissee === 'CASH'" >
             <td style="width:140px;text-align:left" colspan="2"><b>MONTANT H.T</b></td>
@@ -249,7 +249,7 @@ export default {
         
     },
     formatthis(x){
-      return numberFormatter("### ### ###.##", x)
+      return numberFormatter("### ### ###.00", x)
     }
 
 
