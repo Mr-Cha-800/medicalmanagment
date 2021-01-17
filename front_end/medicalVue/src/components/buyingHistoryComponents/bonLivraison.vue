@@ -35,9 +35,9 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th style="font-size:16px" class="facture">
-              <b class="columnn">BON LIVRAISON N°: {{getorder[0].idfact}}/{{getorder[0].factyear}}</b> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
-            <b class="columnn">DOSSIER : {{getorder[0].ID}}/{{getorder[0].year}}</b></th><!--la meme chose hnaya pour le dossier-->
+            <th style="font-size:25px" class="facture">
+              <b class="columnn">BON DE LIVRAISON </b> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
+            </th><!--la meme chose hnaya pour le dossier-->
           </tr>
         </thead>
       </table>
@@ -86,9 +86,9 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
-            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price)}} DA</b></td>
+            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price)}}</b></td>
             <td class="qty"><b>{{produit.quantities}}</b></td>
-            <td class="total" style="width:140px;text-align:center"><b>{{formatthis(produit.quantities * produit.price) }} DA</b></td>
+            <td class="total" style="width:140px;text-align:center"><b>{{formatthis(produit.quantities * produit.price) }}</b></td>
           </tr>
 
         </tbody>
@@ -113,9 +113,9 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
-            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price)}} DA</b></td>
+            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price)}}</b></td>
             <td class="qty" style="text-align:center"><b>{{produit.quantities}}</b></td>
-            <td class="total" style="width:140px;text-align:center"><b>{{formatthis((produit.quantities* produit.price).toFixed(2))   }} DA</b></td>
+            <td class="total" style="width:140px;text-align:center"><b>{{formatthis((produit.quantities* produit.price).toFixed(2))   }}</b></td>
           </tr>
 
         </tbody>
