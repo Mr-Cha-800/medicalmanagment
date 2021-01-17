@@ -249,7 +249,7 @@ export default {
         
     },
     formatthis(x){
-      return numberFormatter("### ### ###.##", x)
+      return numberFormatter("### ### ###.00", x)
     }
 
 
