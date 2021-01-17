@@ -246,7 +246,6 @@ export default {
         .catch(function (error) {
           console.error('oops, something went wrong!', error);
         });
-        
     },
     formatthis(x){
       return numberFormatter("### ### ###.00", x)

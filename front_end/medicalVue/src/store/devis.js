@@ -84,10 +84,12 @@ export default {
               })
         },
         // finaliser un devis
-        async finaliserdevis({ dispatch }, productId){
+        async finaliserdevis({ dispatch }, order){
             return new Promise((resolve, reject) => {
                 axios.patch('/factures/finaliser', {
-                    Id: productId
+                    Id: order.Id,
+                    ID_seyed:  order.ID_seyed,
+                    Nom_Prenom: order.Nom_Prenom
                 })
                   .then(response => {
                     dispatch('setdevis')

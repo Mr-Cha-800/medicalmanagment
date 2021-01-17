@@ -121,6 +121,8 @@
         </tbody>
       </table>
         </template>
+        <h6> <b>Nom et prénom : {{getorder[0].Nom_prenom}} </b> </h6>
+        <h6> <b>Piéce d'identité / Permis : {{getorder[0].ID_seyed}} </b></h6>
     </main>
     
         </div>

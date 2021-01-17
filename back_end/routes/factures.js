@@ -28,7 +28,7 @@ Router.get('/',(req,res)=>{
  });
 // Renvoyer la liste une seule facture
 Router.get('/:id',(req,res)=>{
-    mysqlConnection.query('SELECT devis_facture.TTConly as TTConly, devis_facture.TVAonly as TVAonly, devis_facture.Remiseonly as Remiseonly,  devis_facture.Wilaya as Wilayaa,devis_facture.Caisse as Caissee,devis_facture.Numsecsocial as Numsecsocial,devis_facture.montant_TTC as montant_TTC,devis_facture.Cash as Cash,devis_facture.Tva as Tva, devis_facture.etat as etat, devis_facture.ID as idfact,devis_facture.Annee as factyear,devis_facture.montant_total as montants,devis_facture.remise as remise, patient_nom,patient_prenom,patient_datenaiss,patient_lieunaiss, dossier.*, achat.*,produits.*, achat.quantity as quantities  FROM devis_facture,dossier,achat,produits WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact AND devis_facture.ID = ? AND produits.NumRef = achat.id_produit',[req.params.id],(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.ID_seyed as ID_seyed, devis_facture.Nom_Prenom as Nom_prenom,  devis_facture.TTConly as TTConly, devis_facture.TVAonly as TVAonly, devis_facture.Remiseonly as Remiseonly,  devis_facture.Wilaya as Wilayaa,devis_facture.Caisse as Caissee,devis_facture.Numsecsocial as Numsecsocial,devis_facture.montant_TTC as montant_TTC,devis_facture.Cash as Cash,devis_facture.Tva as Tva, devis_facture.etat as etat, devis_facture.ID as idfact,devis_facture.Annee as factyear,devis_facture.montant_total as montants,devis_facture.remise as remise, patient_nom,patient_prenom,patient_datenaiss,patient_lieunaiss, dossier.*, achat.*,produits.*, achat.quantity as quantities  FROM devis_facture,dossier,achat,produits WHERE dossier.ID = devis_facture.foreignID AND devis_facture.ID = achat.id_fact AND devis_facture.ID = ? AND produits.NumRef = achat.id_produit',[req.params.id],(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
@@ -163,7 +163,7 @@ Router.post('/',(req,res)=>{
  });
   // finaliser le devis
 Router.patch('/finaliser',(req,res)=>{
-    mysqlConnection.query('UPDATE devis_facture SET etat=?  WHERE ID=?',['finalisé',req.body.Id],(err,rows,fields)=>{
+    mysqlConnection.query('UPDATE devis_facture SET etat=?, ID_seyed= ?, Nom_Prenom = ?    WHERE ID=?',['finalisé',req.body.ID_seyed,req.body.Nom_Prenom,req.body.Id],(err,rows,fields)=>{
         if(!err)
         res.json(rows);
         else
