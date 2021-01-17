@@ -56,7 +56,7 @@ export default {
   methods: {
     ...mapActions('product', ['getallproductsforgestion']),
     formatthis(x){
-      return numberFormatter("### ### ###.##", x)
+      return numberFormatter("### ### ###.00", x)
     }
   },
   created(){

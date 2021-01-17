@@ -535,7 +535,7 @@ export default {
         this.neworder.caisse = this.getuser[0].Caisse
     },
     formatthis(x){
-      return numberFormatter("### ### ###.##", x)
+      return numberFormatter("### ### ###.00", x)
     },
       calculatefinal(){
         var montanttotal = 0
