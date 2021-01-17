@@ -31,7 +31,7 @@
       </td>
     <td>{{devis.etat}}</td>
     <td v-if="devis.etat === 'non-finalisé'"  class="text-center">
-      <finaliserdevis :id="devis.idfact"/>
+      <finaliserdevis :caisse="devis.Caissee" :id="devis.idfact"/>
       </td>
       <td v-else></td>
   </tr>
