@@ -7,8 +7,8 @@
         <img src="../../../public/logo.png">
       </div>
       <div id="company">
-        <h3 style="font-size:30px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b><br>
-        <i style="font-size:20px">Agrément ministère de la santé N°332 du 02-02-2020</i></h3>
+        <h3 style="font-size:33px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b><br>
+        <i style="font-size:15px">Agrément ministère de la santé N°332 du 02-02-2020</i></h3>
       </div>
       <!-- <div id="company">
         <h3 style="font-size:30px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b></h3>
@@ -87,9 +87,9 @@
           <tr >
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
-            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price)}} DA</b></td>
+            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price)}} </b></td>
             <td class="qty" style="text-align:center"><b>{{produit.quantities}}</b></td>
-            <td class="total" style="width:140px;text-align:center"><b>{{formatthis(produit.quantities * produit.price) }} DA</b></td>
+            <td class="total" style="width:140px;text-align:center"><b>{{formatthis(produit.quantities * produit.price) }} </b></td>
           </tr>
 
         </tbody>
@@ -328,8 +328,8 @@ body {
 }
 
 #logo img {
-  height: 100px;
-  margin-right: 50px;
+  height: 140px;
+  margin-right: 15px;
 }
 
 .img{
