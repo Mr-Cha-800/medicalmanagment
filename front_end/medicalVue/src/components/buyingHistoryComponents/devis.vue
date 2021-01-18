@@ -86,9 +86,9 @@
           <tr >
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
-            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price.toFixed(2))}}</b></td>
+            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price.toFixed(2))}} </b></td>
             <td class="qty"><b>{{produit.quantities}}</b></td>
-            <td class="total" style="width:140px;text-align:center"><b>{{formatthis((produit.quantities * produit.price).toFixed(2)) }}</b></td>
+            <td class="total" style="width:140px;text-align:center"><b>{{formatthis((produit.quantities * produit.price).toFixed(2)) }} </b></td>
           </tr>
 
         </tbody>
@@ -96,23 +96,23 @@
         <table style="width:40%;float:right"  :key="produit.id">
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT H.T</b></td>
-            <td style="width:140px"><b>{{formatthis((getorder[0].montants).toFixed(2))}}</b></td>
+            <td style="width:140px"><b>{{formatthis((getorder[0].montants).toFixed(2))}} </b></td>
           </tr>
           <tr v-if="getorder[0].remise > 0">
             <td style="text-align:left" colspan="2"><b>REMISE {{getorder[0].remise}} %</b></td>
-            <td style="width:140px"><b> {{formatthis((getorder[0].Remiseonly).toFixed(2))}}</b></td>
+            <td style="width:140px"><b> {{formatthis((getorder[0].Remiseonly).toFixed(2))}} </b></td>
           </tr>
           <tr v-if="produit.tax === 1">
             <td style="text-align:left" colspan="2"><b>TVA {{getorder[0].Tva}} %</b></td>
-            <td><b>{{formatthis((getorder[0].TVAonly).toFixed(2))}}</b></td>
+            <td><b>{{formatthis((getorder[0].TVAonly).toFixed(2))}} </b></td>
           </tr>
           <tr v-else-if="produit.tax === 0">
             <td  style="text-align:left" colspan="2"><b>TVA 0 %</b></td>
-            <td style="width:140px"><b>0 </b></td>
+            <td style="width:140px"><b>0.00 </b></td>
           </tr>
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT T.T.C</b></td>
-            <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
+            <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}}  </b></td> -->
             <td style="width:140px"><b>{{formatthis( ((getorder[0].montants - getorder[0].Remiseonly)+ (getorder[0].TVAonly)).toFixed(2) )}} </b></td>
           </tr>
         </table>
@@ -143,9 +143,9 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
-            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price)}}</b></td>
+            <td class="unit" style="width:140px;text-align:center"><b>{{formatthis(produit.price)}} </b></td>
             <td class="qty"><b>{{produit.quantities}}</b></td>
-            <td class="total" style="width:140px;text-align:center"><b>{{formatthis((produit.quantities* produit.price).toFixed(2))   }}</b></td>
+            <td class="total" style="width:140px;text-align:center"><b>{{formatthis((produit.quantities* produit.price).toFixed(2))   }} </b></td>
           </tr>
 
         </tbody>
@@ -161,12 +161,12 @@
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
-            <td>{{(getorder[0].montants * getorder[0].Tva)/100}} DA</td>
+            <td>{{(getorder[0].montants * getorder[0].Tva)/100}} </td>
           </tr> -->  
          <!--   <tr>
             <td colspan="2"> <b>MONTANT T.T.C</b> </td>
-             <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td>
-            <td><b>{{(getorder[0].montant_TTC).toFixed(2)}} DA </b></td>
+             <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}}  </b></td>
+            <td><b>{{(getorder[0].montant_TTC).toFixed(2)}}  </b></td>
           </tr>  -->
         </table>
         <table>

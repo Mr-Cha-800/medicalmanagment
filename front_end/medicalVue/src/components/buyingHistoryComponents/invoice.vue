@@ -96,6 +96,7 @@
         <table style="width:40%;float:right"  :key="produit.id">
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT H.T</b></td>
+<<<<<<< HEAD
             <td style="width:140px"><b>{{formatthis((getorder[0].montants).toFixed(2))}}</b></td>
           </tr>
           <tr v-if="getorder[0].remise > 0">
@@ -114,11 +115,31 @@
             <td style="text-align:left" colspan="2"><b>MONTANT T.T.C</b></td>
             <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
             <td style="width:140px"><b>{{formatthis( ((getorder[0].montants - getorder[0].Remiseonly)+ (getorder[0].TVAonly)).toFixed(2) )}}</b></td>
+=======
+            <td style="width:140px"><b>{{formatthis((getorder[0].montants).toFixed(2))}} </b></td>
+          </tr>
+          <tr v-if="getorder[0].remise > 0">
+            <td style="text-align:left" colspan="2"><b>REMISE {{getorder[0].remise}} %</b></td>
+            <td style="width:140px"><b> {{formatthis((getorder[0].Remiseonly).toFixed(2))}} </b></td>
+          </tr>
+          <tr v-if="produit.tax === 1">
+            <td style="text-align:left" colspan="2"><b>TVA {{getorder[0].Tva}} %</b></td>
+            <td><b>{{formatthis((getorder[0].TVAonly).toFixed(2))}}  </b></td>
+          </tr>
+          <tr v-else-if="produit.tax === 0">
+            <td  style="text-align:left" colspan="2"><b>TVA 0 %</b></td>
+            <td style="width:140px"><b>0.00  </b></td>
+          </tr>
+          <tr>
+            <td style="text-align:left" colspan="2"><b>MONTANT T.T.C</b></td>
+            <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}}  </b></td> -->
+            <td style="width:140px"><b>{{formatthis( ((getorder[0].montants - getorder[0].Remiseonly)+ (getorder[0].TVAonly)).toFixed(2) )}}  </b></td>
+>>>>>>> 7a4f11bee110c7650f0c53da57074b1d752991ef
           </tr>
         </table>
         <table  :key="produit.id">
           <tr>
-      <div id="thanks">Arrété la présente facture à la somme</div>
+      <div id="thanks">Arrêté la présente facture à la somme</div>
           </tr>
        <div v-if="getorder[0].Caissee !== 'CASH'" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CTS</template></b></div>
         </table>
@@ -143,9 +164,15 @@
           <tr v-for="produit in getorder" :key="produit.id">
             <td class="totale"><b>{{produit.NumRef}}</b></td>
             <td class="desc"><b>{{produit.Designation}}</b></td>
+<<<<<<< HEAD
             <td class="unit" style="width:140px"><b>{{formatthis(produit.price)}}</b></td>
             <td class="qty"><b>{{produit.quantities}}</b></td>
             <td class="total" style="width:140px"><b>{{formatthis((produit.quantities* produit.price).toFixed(2))   }}</b></td>
+=======
+            <td class="unit" style="width:140px"><b>{{formatthis(produit.price)}} </b></td>
+            <td class="qty"><b>{{produit.quantities}}</b></td>
+            <td class="total" style="width:140px"><b>{{formatthis((produit.quantities* produit.price).toFixed(2))   }} </b></td>
+>>>>>>> 7a4f11bee110c7650f0c53da57074b1d752991ef
           </tr>
 
         </tbody>
@@ -153,25 +180,33 @@
         <table style="width:30%;float:right">
           <tr v-if="getorder[0].remise > 0">
             <td style="width:140px;text-align:left" colspan="2"><b> REMISE {{getorder[0].remise}} %</b></td>
+<<<<<<< HEAD
             <td style="text-align:left" colspan="2"><b> {{formatthis(getorder[0].Remiseonly)}}</b></td>
           </tr>
           <tr  v-if="getorder[0].Caissee === 'CASH'" >
             <td style="width:140px;text-align:left" colspan="2"><b>MONTANT H.T</b></td>
             <td><b>{{formatthis((getorder[0].montants - getorder[0].Remiseonly).toFixed(2) )}}</b></td>
+=======
+            <td style="text-align:left" colspan="2"><b> {{formatthis(getorder[0].Remiseonly)}} </b></td>
+          </tr>
+          <tr  v-if="getorder[0].Caissee === 'CASH'" >
+            <td style="width:140px;text-align:left" colspan="2"><b>MONTANT H.T</b></td>
+            <td><b>{{formatthis((getorder[0].montants - getorder[0].Remiseonly).toFixed(2) )}} </b></td>
+>>>>>>> 7a4f11bee110c7650f0c53da57074b1d752991ef
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
-            <td>{{(getorder[0].montants * getorder[0].Tva)/100}} DA</td>
+            <td>{{(getorder[0].montants * getorder[0].Tva)/100}} </td>
           </tr> -->  
          <!--   <tr>
             <td colspan="2"> <b>MONTANT T.T.C</b> </td>
-             <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td>
-            <td><b>{{(getorder[0].montant_TTC).toFixed(2)}} DA </b></td>
+             <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}}  </b></td>
+            <td><b>{{(getorder[0].montant_TTC).toFixed(2)}}  </b></td>
           </tr>  -->
         </table>
         <table>
           <tr>
-      <div id="thanks">Arrété la présente facture à la somme</div>
+      <div id="thanks">Arrêté la présente facture à la somme</div>
           </tr>
        <div class="text-h6"><b> {{(nummm).toUpperCase()}} DINARS<template v-if="nummmm !== 'zéro'"> ET  {{nummmm.toUpperCase()}} CTS</template></b></div>
         </table>
