@@ -49,7 +49,7 @@ Router.patch('/modify',(req,res)=>{
 // Remiseonly TVAonly
  // Ajouter un devis 
 Router.post('/',(req,res)=>{
-    var montanttotal = 0;
+    var montanttotal = 0.00;
     var montantttc = 0;
     for(var k=0; k < req.body.commande.length; k++) {
         montanttotal = montanttotal + (req.body.commande[k].PrixU * req.body.commande[k].quantity)
