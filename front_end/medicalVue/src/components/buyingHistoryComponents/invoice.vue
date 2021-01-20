@@ -8,7 +8,7 @@
       </div>
       <div id="company">
         <h3 style="font-size:33px;margin-top:5px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b><br style="line-height:2px">
-        <i style="margin-left:100px;margin;font-size:17px">Agrément ministère de la santé N°332 du 02-02-2020</i></h3>
+        <i style="margin-left:100px;margin;font-size:19px">Agrément ministère de la santé N°332 du 02-02-2020</i></h3>
       </div>
       <!-- <div id="company">
         <h3 style="font-size:30px"><b>CENTRE D'APPAREILLAGE ORTHOPEDIQUE</b></h3>
@@ -108,17 +108,17 @@
           </tr>
           <tr v-else-if="getorder[0].tax === 0">
             <td  style="text-align:left" colspan="2"><b>TVA 0 %</b></td>
-            <td style="width:140px"><b>0.00  </b></td>
+            <td style="width:140px"><b>0 </b></td>
           </tr>
           <tr>
             <td style="text-align:left" colspan="2"><b>MONTANT T.T.C</b></td>
-            <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}}  </b></td> -->
-            <td style="width:140px"><b>{{formatthis( ((getorder[0].montants - getorder[0].Remiseonly)+ (getorder[0].TVAonly)).toFixed(2) )}}  </b></td>
+            <!--   <td><b>{{(((getorder[0].montants* getorder[0].Tva)/100)+getorder[0].montants).toFixed(2)}} DA </b></td> -->
+            <td style="width:140px"><b>{{formatthis( ((getorder[0].montants - getorder[0].Remiseonly)+ (getorder[0].TVAonly)).toFixed(2) )}}</b></td>
           </tr>
         </table>
         <table>
           <tr>
-      <div id="thanks">Arrété la présente facture à la somme</div>
+      <div id="thanks">Arrêté la présente facture à la somme</div>
           </tr>
        <div v-if="getorder[0].Caissee !== 'CASH'" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CTS</template></b></div>
         </table>
@@ -153,11 +153,11 @@
         <table style="width:30%;float:right">
           <tr v-if="getorder[0].remise > 0">
             <td style="width:140px;text-align:left" colspan="2"><b> REMISE {{getorder[0].remise}} %</b></td>
-            <td style="text-align:left" colspan="2"><b> {{formatthis(getorder[0].Remiseonly)}} </b></td>
+            <td style="text-align:left" colspan="2"><b> {{formatthis(getorder[0].Remiseonly)}}</b></td>
           </tr>
           <tr  v-if="getorder[0].Caissee === 'CASH'" >
             <td style="width:140px;text-align:left" colspan="2"><b>MONTANT H.T</b></td>
-            <td><b>{{formatthis((getorder[0].montants - getorder[0].Remiseonly).toFixed(2) )}} </b></td>
+            <td><b>{{formatthis((getorder[0].montants - getorder[0].Remiseonly).toFixed(2) )}}</b></td>
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
@@ -171,7 +171,7 @@
         </table>
         <table>
           <tr>
-      <div id="thanks">Arrété la présente facture à la somme</div>
+      <div id="thanks">Arrêté la présente facture à la somme</div>
           </tr>
        <div class="text-h6"><b> {{(nummm).toUpperCase()}} DINARS<template v-if="nummmm !== 'zéro'"> ET  {{nummmm.toUpperCase()}} CTS</template></b></div>
         </table>

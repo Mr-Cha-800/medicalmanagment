@@ -1,7 +1,7 @@
 <template>
     <q-card class="my-card">
         <q-card-section class="bg-blue-grey-5 text-white">
-            <div class="text-h6">Recherche Utilisateur</div>
+            <div class="text-h6">Rechercher un utilisateur</div>
         </q-card-section>
         <q-card-section class="">
     <form @submit.prevent="onSubmit">

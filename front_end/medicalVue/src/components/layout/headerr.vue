@@ -9,15 +9,15 @@
             <choosing/>
             <q-btn no-caps @click="$router.push({name: 'ProductManagment'})" flat>Gestion des produits</q-btn>
             <q-btn no-caps @click="$router.push({name: 'InvoiceHistory'})" flat>Historique des achats</q-btn>
-            <q-btn no-caps @click="$router.push({name: 'Gestiondevis'})" flat>Gestion de devis</q-btn>
-            <q-btn no-caps @click="$router.push({name: 'ListUsers'})" flat>Gestion de client</q-btn>
+            <q-btn no-caps @click="$router.push({name: 'Gestiondevis'})" flat>Gestion des devis</q-btn>
+            <q-btn no-caps @click="$router.push({name: 'ListUsers'})" flat>Gestion des clients</q-btn>
           <!--<search/>-->
           <q-space ></q-space>
           <q-btn flat round dense icon="settings" @click="$router.push({name: 'Settings'})" class="q-mr-sm" >
-            <q-tooltip>Reglage</q-tooltip>
+            <q-tooltip>Paramètres</q-tooltip>
           </q-btn>
           <q-btn flat round dense icon="info" @click="$router.push({name: 'About'})" class="q-mr-sm" >
-            <q-tooltip>A propos des dévloppeurs</q-tooltip>
+            <q-tooltip>À propos des développeurs</q-tooltip>
           </q-btn>
         </q-toolbar>
       </q-header>
