@@ -29,14 +29,17 @@
           </p> </div></div>
         </div>
         <div id="invoice">
-          <div><b style="font-size:23px">Sidi Bel Abbès le {{dateme()}}</b></div>
+          <div><b v-if="getorder[0].etat === 'finalisé'" style="font-size:23px">Sidi Bel Abbès le {{getorder[0].date_delivery}}</b>
+          <b v-else style="font-size:23px">Sidi Bel Abbès le {{getorder[0].date_cree}}</b>
+          </div>
         </div>
       </div>
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
             <th style="font-size:16px" class="facture">
-              <b class="columnn">DEVIS N°: {{getorder[0].idfact}}/{{getorder[0].factyear}}</b> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
+            <b v-if="getorder[0].Caissee === 'CASH'" class="columnn">DEVIS</b> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
+            <b v-else class="columnn">DEVIS N°: {{getorder[0].idfact}}/{{getorder[0].factyear}}</b> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
             <b class="columnn">DOSSIER : {{getorder[0].ID}}/{{getorder[0].year}}</b></th><!--la meme chose hnaya pour le dossier-->
           </tr>
         </thead>

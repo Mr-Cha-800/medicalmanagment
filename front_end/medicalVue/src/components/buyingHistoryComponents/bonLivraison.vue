@@ -29,7 +29,8 @@
           </p> </div></div>
         </div>
         <div id="invoice">
-          <div><b style="font-size:23px">Sidi Bel Abbès le {{dateme() }}</b></div>
+          <div><b v-if="getorder[0].etat === 'finalisé'" style="font-size:23px">Sidi Bel Abbès le {{getorder[0].date_delivery}}</b>
+          <b v-else style="font-size:23px">Sidi Bel Abbès le {{getorder[0].date_cree}}</b></div>
         </div>
       </div>
       <table border="0" cellspacing="0" cellpadding="0">
