@@ -107,7 +107,7 @@ const routes = [
     component: Gestiondevis
   },
   {
-    path: '/Gestiondevis/devis/:id',
+    path: '/Gestiondevis/devis/:id/:caisse',
     name: 'devisshow',
     component: devisshow ,
     meta: {
@@ -115,7 +115,7 @@ const routes = [
     }
   },
   {
-    path: '/InvoiceHistory/invoice/:id',
+    path: '/InvoiceHistory/invoice/:id/:caisse',
     name: 'Invoiceshow',
     component: Invoiceshow,
     meta: {
@@ -123,7 +123,7 @@ const routes = [
     }
   },
   {
-    path: '/InvoiceHistory/bonlivraison/:id',
+    path: '/InvoiceHistory/bonlivraison/:id/:caisse',
     name: 'bonlivraison',
     component: bonlivraison ,
     meta: {

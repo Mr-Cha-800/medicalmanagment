@@ -35,6 +35,10 @@ export default {
          type: Number,
          required: true
         },
+        caisse: {
+          type: String,
+          required: true
+        }
     },
     methods: {
         ...mapActions('devis', ['deletedevis']),
@@ -42,7 +46,10 @@ export default {
             this.dialog = true
             },
             deletees(){
-                this.deletedevis(this.id)
+                this.deletedevis({
+                  id: this.id,
+                  caisse: this.caisse
+                })
                 .then(Response => {
                 if(Response){
                     this.$q.notify({

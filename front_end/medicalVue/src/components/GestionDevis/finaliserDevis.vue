@@ -3,9 +3,25 @@
       <q-dialog v-model="dialog" persistent transition-show="flip-down" transition-hide="flip-up">
       <q-card class="bg-blue-grey-8 text-white">
         <q-card-section>
-          <div class="text-h6">Alerte</div>
+          <div class="text-h6">Veuillez choisir</div>
         </q-card-section>
 
+
+        <q-card-section class="q-pt-none">
+        <q-input dense standout dark v-model="order.date_delivery" :rules="['date']">
+      <template v-slot:append>
+        <q-icon name="event" class="cursor-pointer">
+          <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+            <q-date v-model="order.date_delivery" mask="DD-MM-YYYY">
+              <div class="row items-center justify-end">
+                <q-btn v-close-popup label="Close" color="blue-grey-8" flat />
+              </div>
+            </q-date>
+          </q-popup-proxy>
+        </q-icon>
+      </template>
+    </q-input>
+    </q-card-section>
         <q-card-section class="q-pt-none">
           Voulez vous vraiment finaliser ?
         </q-card-section>
@@ -51,6 +67,25 @@
           <q-input dense standout dark v-model="order.ID_seyed" />
         </q-card-section>
 
+        <q-card-section>
+          <div class="text-h6 text-white">La date de livraison</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <q-input dense standout dark v-model="order.date_delivery" :rules="['date']">
+      <template v-slot:append>
+        <q-icon name="event" class="cursor-pointer">
+          <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+            <q-date v-model="order.date_delivery"  mask="DD-MM-YYYY">
+              <div class="row items-center justify-end">
+                <q-btn v-close-popup label="Close" color="blue-grey-8" flat />
+              </div>
+            </q-date>
+          </q-popup-proxy>
+        </q-icon>
+      </template>
+    </q-input>
+        </q-card-section>
         <q-card-actions align="right" class="text-primary">
           <q-btn no-caps color="white" flat label="Annuler" v-close-popup />
           <q-btn no-caps color="white" @click="finaliser" flat label="Valider" v-close-popup />
@@ -69,7 +104,8 @@ export default {
             dialog: false,
             order:{
                 ID_seyed: '',
-                Nom_Prenom: ''
+                Nom_Prenom: '',
+                date_delivery: ''
             }
         }
     },
@@ -79,8 +115,8 @@ export default {
          required: true
         },
         caisse: {
-        type: String,
-        required: true
+         type: String,
+         required: true
         }
     },
     methods: {
@@ -92,7 +128,9 @@ export default {
                 this.finaliserdevis({
                     Id: this.id,
                     ID_seyed:  this.order.ID_seyed,
-                    Nom_Prenom: this.order.Nom_Prenom
+                    Nom_Prenom: this.order.Nom_Prenom,
+                    caisse: this.caisse,
+                    date_delivery: this.order.date_delivery
                 })
                 .then(Response => {
                 if(Response){

@@ -273,7 +273,10 @@ export default {
     },
     created(){
       this.setinfo()
-      this.setoneorder(this.$route.params.id)
+      this.setoneorder({
+        id: this.$route.params.id,
+        caisse: this.$route.params.caisse
+      })
       // this.nummm = NumberToLetter(Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants))
       // this.nummmm = NumberToLetter((((((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants) - (Math.trunc(((this.getorder[0].montants* this.getorder[0].Tva)/100)+this.getorder[0].montants))).toFixed(2))*100);
     

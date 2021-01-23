@@ -77,9 +77,9 @@ export default {
               })
         },
         // recuperer une seule commande
-        async setoneorder({ commit },id){
+        async setoneorder({ commit },payload){
             return new Promise((resolve, reject) => {
-                axios.get('/factures/'+ id)
+                axios.get('/factures/'+ payload.id + '/'+ payload.caisse)
                   .then(response => {
                       commit('setorder', response.data)
                     resolve(response)

@@ -18,7 +18,7 @@
     <th>etat</th>
     <th></th>
   </tr>
-  <template  v-for="devis in getalldevis" >
+  <template  v-for="devis in getalldevisberk" >
   <tr v-if="(deviss === 'Non-Payé' && devis.etat === 'non-finalisé') || (deviss === 'Payé' && devis.etat === 'finalisé' && devis.Caissee === 'CASH') " :key="devis.id">
     <td>{{devis.idfact}}/{{devis.Annee}}</td>
     <td>{{devis.nom}}</td>
@@ -59,7 +59,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('devis', ['setdevis','finaliserdevis']),
+    ...mapActions('devis', ['setdevisberk','finaliserdevis']),
     deletee(){
       this.dialog = true
     },
@@ -76,10 +76,10 @@ export default {
     }
   },
   created(){
-    this.setdevis()
+    this.setdevisberk()
   },
   computed:{
-    ...mapGetters('devis',['getalldevis'])
+    ...mapGetters('devis',['getalldevisberk'])
   }
 }
 </script>

@@ -3,6 +3,7 @@ export default {
     namespaced: true,
     state:{
       devis: [],
+      devisberk: [],
       dossier: [],
       user: {},
       profile: {}
@@ -10,6 +11,9 @@ export default {
     getters:{
       getalldevis(state){
         return state.devis
+      },
+      getalldevisberk(state){
+        return state.devisberk
       },
       getallusers(state){
         return state.dossier
@@ -25,6 +29,9 @@ export default {
     mutations:{
       setalldevis(state, devis){
         state.devis = devis
+      },
+      setalldevisberk(state,devis){
+        state.devisberk = devis
       },
       setallusers(state, users){
         state.dossier = users
@@ -51,12 +58,31 @@ export default {
                 })
             })
       },
+      // recuperer tous les devis cash
+      async setdevisberk({ commit }){
+          return new Promise((resolve, reject) => {
+              axios.get('/factures/devis/cash')
+                .then(response => {
+                    commit('setalldevisberk', response.data)
+                  resolve(response)
+                  // console.log(response)
+                })
+                .catch(error => {
+                  reject(error)
+                })
+            })
+      },
       // supprimer un devis
-        async deletedevis({dispatch},id){
+        async deletedevis({dispatch},payload){
             return new Promise((resolve, reject) => {
-                axios.delete('/factures/devis/'+ id)
+                axios.delete('/factures/devis/'+ payload.id+'/'+ payload.caisse)
                   .then(response => {
-                    dispatch('setdevis')
+                    if(payload.caisse === 'CASH'){
+                      dispatch('setdevisberk')
+                    }else{
+                      dispatch('setdevis')
+
+                    }
                     dispatch('order/setorders', null , { root:true })
                     resolve(response)
                     // console.log(response)
@@ -89,10 +115,15 @@ export default {
                 axios.patch('/factures/finaliser', {
                     Id: order.Id,
                     ID_seyed:  order.ID_seyed,
-                    Nom_Prenom: order.Nom_Prenom
+                    Nom_Prenom: order.Nom_Prenom,
+                    caisse: order.caisse,
+                    date_delivery: order.date_delivery
                 })
                   .then(response => {
-                    dispatch('setdevis')
+                    if(order.caisse === 'CASH'){
+                      dispatch('setdevisberk')
+                    }else{
+                      dispatch('setdevis')}
                     resolve(response)
                     // console.log(response)
                   })
