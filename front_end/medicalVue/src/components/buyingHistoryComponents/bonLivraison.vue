@@ -29,8 +29,8 @@
           </p> </div></div>
         </div>
         <div id="invoice">
-          <div><b v-if="getorder[0].etat === 'finalisé'" style="font-size:23px">Sidi Bel Abbès le {{getorder[0].date_delivery}}</b>
-          <b v-else style="font-size:23px">Sidi Bel Abbès le {{getorder[0].date_cree}}</b></div>
+          <div><b v-if="getorder[0].etat === 'finalisé'" style="font-size:23px">Sidi Bel Abbès le {{dateme(getorder[0].date_delivery)}}</b>
+          <b v-else style="font-size:23px">Sidi Bel Abbès le {{dateme(getorder[0].date_cree)}}</b></div>
         </div>
       </div>
       <table border="0" cellspacing="0" cellpadding="0">
@@ -173,8 +173,8 @@ export default {
         printili(){
           window.print()
         },
-    dateme(){
-      return date.formatDate(Date.now(), 'DD - MM - YYYY')
+    dateme(datee){
+      return date.formatDate(datee, 'DD - MM - YYYY')
     },
         
         saveme(year,id){
