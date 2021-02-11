@@ -121,7 +121,7 @@
           <tr>
       <div id="thanks">Arrêté la présente facture à la somme</div>
           </tr>
-       <div v-if="getorder[0].Caissee !== 'CASH'" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CTS</template></b></div>
+       <div v-if="getorder[0].Caissee !== 'CASH'" class="text-h6"><b> {{(nummmTTC).toUpperCase()}} DINARS<template v-if="nummmmTTC !== 'zéro'"> ET  {{nummmmTTC.toUpperCase()}} CENTIMES</template></b></div>
         </table>
         </template>
         
@@ -174,7 +174,7 @@
           <tr>
       <div id="thanks">Arrêté la présente facture à la somme</div>
           </tr>
-       <div class="text-h6"><b> {{(nummm).toUpperCase()}} DINARS<template v-if="nummmm !== 'zéro'"> ET  {{nummmm.toUpperCase()}} CTS</template></b></div>
+       <div class="text-h6"><b> {{(nummm).toUpperCase()}} DINARS<template v-if="nummmm !== 'zéro'"> ET  {{nummmm.toUpperCase()}} CENTIMES</template></b></div>
         </table>
         </template>
     </main>
