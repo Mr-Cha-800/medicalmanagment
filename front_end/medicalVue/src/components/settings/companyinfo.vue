@@ -75,9 +75,9 @@
        <q-input
         v-model="info.TelOne"
         label="Téléphone"
-        mask="(##) ## ## ## ##"
+        mask="## ## ## ## ##"
         fill-mask
-        hint="Aide: (##) ## ## ## ##"
+        hint="Aide: ## ## ## ## ##"
         :rules="[val => !!val || 'Obligatoire']"
       >
       </q-input>
@@ -86,9 +86,9 @@
        <q-input
         v-model="info.TelTwo"
         label="Téléphone"
-        mask="(##) ## ## ## ##"
+        mask="## ## ## ## ##"
         fill-mask
-        hint="Aide: (##) ## ## ## ##"
+        hint="Aide: ## ## ## ## ##"
         :rules="[val => !!val || 'Obligatoire']"
       >
       </q-input>

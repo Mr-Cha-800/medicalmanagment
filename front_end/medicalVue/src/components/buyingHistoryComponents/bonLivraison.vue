@@ -36,7 +36,7 @@
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th style="font-size:25px" class="facture">
+            <th style="font-size:23px" class="facture">
               <b class="columnn">BON DE LIVRAISON </b> <!--hnaya dir variable beh ndiro numéro de facture incrémentable-->
             </th><!--la meme chose hnaya pour le dossier-->
           </tr>
@@ -122,8 +122,8 @@
         </tbody>
       </table>
         </template>
-        <h6> <b>Nom et prénom : {{getorder[0].Nom_prenom}} </b> </h6>
-        <h6> <b>N° CIN / PC : {{getorder[0].ID_seyed}} </b></h6>
+        <p style="font-size:18px"> <b>Nom et prénom : {{getorder[0].Nom_prenom}} </b> </p>
+        <p style="font-size:18px"> <b>N° CIN / PC : {{getorder[0].ID_seyed}} </b></p>
     </main>
     
         </div>
