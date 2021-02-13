@@ -235,6 +235,15 @@ Router.post('/',(req,res)=>{
         console.log(err);
     })
  });
+ // Rechercher un devisberk
+ Router.post('/recherche/devisberk',(req,res)=>{
+   mysqlConnection.query('SELECT devis_berk.Tva as Tva,devis_berk.datee as datee, devis_berk.Annee as Annee,devis_berk.etat as etat,devis_berk.ID as idfact,devis_berk.montant_total as montant, dossier.*  FROM devis_berk,dossier  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_berk.foreignID AND devis_berk.Caisse = ? limit 20',[req.body.Search,req.body.Search,req.body.Search, 'CASH'],(err,rows,fields)=>{
+       if(!err)
+       res.send(rows);
+       else
+       console.log(err);
+   })
+});
   // finaliser le devis tbadlet
 Router.patch('/finaliser',(req,res)=>{
     if(req.body.caisse === 'CASH'){

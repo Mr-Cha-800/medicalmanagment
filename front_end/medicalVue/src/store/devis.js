@@ -107,6 +107,34 @@ export default {
                   .catch(error => {
                     reject(error)
                   })
+                  axios.post('/factures/recherche/devisberk', {
+                  Search : search
+                })
+                  .then(response => {
+                    commit('setalldevisberk', response.data)
+                    resolve(response)
+                    // console.log(response)
+                  })
+                  .catch(error => {
+                    reject(error)
+                  })
+              })
+        },
+        // chercher un devis
+        async searchdevisberk({ commit }, search){
+          search = '%'+search+'%'
+            return new Promise((resolve, reject) => {
+                axios.post('/factures/recherche/devisberk', {
+                  Search : search
+                })
+                  .then(response => {
+                    commit('setalldevisberk', response.data)
+                    resolve(response)
+                    // console.log(response)
+                  })
+                  .catch(error => {
+                    reject(error)
+                  })
               })
         },
         // finaliser un devis

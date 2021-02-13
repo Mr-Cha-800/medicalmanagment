@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-xl q-gutter-xl">
+  <div class="q-pa-xl q-gutter-lg">
     <SearchDevis/>
 
     <q-toggle

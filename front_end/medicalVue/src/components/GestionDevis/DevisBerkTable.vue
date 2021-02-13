@@ -6,7 +6,7 @@
 
         <q-separator />
 
-        <q-card-actions class="q-pa-xl">
+        <q-card-actions class="q-pa-md">
 <table>
   <tr>
     <th>N° Devis</th>
