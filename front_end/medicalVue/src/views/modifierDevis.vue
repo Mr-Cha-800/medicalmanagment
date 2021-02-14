@@ -48,8 +48,15 @@
         </q-card-section>
         
         
+        <q-card-section>
+          <div class="text-h6">Date de création</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <q-input type="date"  v-model="devis[0].date_cree" autofocus />
+        </q-card-section>
         <q-card-section class="q-pt-none float-right">
-          <q-btn flat label="Annuler" v-close-popup />
+          <q-btn flat label="Annuler" @click="goback" v-close-popup />
           <q-btn no-caps type="submit" push color="blue-grey-5" :loading="loading" :disabled="loading"  icon-right="send" label="Modifier" >
       <template v-slot:loading>
         <q-spinner-hourglass class="on-left" />
@@ -92,6 +99,9 @@ export default {
                 console.log(err)
                 })
         },
+        goback(){
+          this.$router.go(-1)
+        },
         updatefact(){
           this.loading = true
           axios.patch('/factures/updatelast/'+this.$route.params.id+'/'+this.$route.params.caisse,{
@@ -99,7 +109,8 @@ export default {
             patient_nom: this.devis[0].patient_nom,
             patient_prenom: this.devis[0].patient_prenom,
             patient_datenaiss: this.devis[0].patient_datenaiss,
-            patient_lieunaiss: this.devis[0].patient_lieunaiss
+            patient_lieunaiss: this.devis[0].patient_lieunaiss,
+            date_cree: this.devis[0].date_cree
           }).then(response =>{
             if(response){
               this.loading = false
