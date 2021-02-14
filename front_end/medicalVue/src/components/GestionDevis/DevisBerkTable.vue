@@ -28,6 +28,7 @@
     <td class="text-center">
       <q-btn round flat @click="$router.push({name: 'devisshow', params: { id: devis.idfact, caisse:devis.Caissee }})" ><q-icon color="green" name="remove_red_eye"/><q-tooltip>Visualiser</q-tooltip></q-btn>
       <supprimerDevis :id="devis.idfact" :caisse="devis.Caissee" />
+      <q-btn round flat @click="$router.push({name: 'modifierDevis', params: { id: devis.idfact, caisse:devis.Caissee }})" ><q-icon color="blue-grey-8" name="edit"/><q-tooltip>Modifier</q-tooltip></q-btn>
       </td>
     <td>{{devis.etat}}</td>
     <td v-if="devis.etat === 'non-finalisé'"  class="text-center">

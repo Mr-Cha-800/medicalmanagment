@@ -261,4 +261,20 @@ Router.patch('/finaliser',(req,res)=>{
             console.log(err);
         })}
 });
+Router.patch('/updatelast/:id/:caisse',(req,res)=>{
+    if(req.params.caisse === 'CASH'){
+        mysqlConnection.query('UPDATE devis_berk SET Numsecsocial=? ,  patient_nom=? , patient_prenom = ? ,  patient_datenaiss = ? ,  patient_lieunaiss = ?  WHERE ID=?',[req.body.Numsecsocial ,req.body.patient_nom ,req.body.patient_prenom ,req.body.patient_datenaiss ,req.body.patient_lieunaiss ,req.params.id],(err,rows,fields)=>{
+            if(!err)
+            res.json(rows);
+            else
+            console.log(err);
+        })
+    }else{
+        mysqlConnection.query('UPDATE devis_facture SET Numsecsocial=? ,  patient_nom=? , patient_prenom = ? ,  patient_datenaiss = ? ,  patient_lieunaiss = ?   WHERE ID=?',[req.body.Numsecsocial ,req.body.patient_nom ,req.body.patient_prenom ,req.body.patient_datenaiss ,req.body.patient_lieunaiss ,req.params.id],(err,rows,fields)=>{
+            if(!err)
+            res.json(rows);
+            else
+            console.log(err);
+        })}
+});
 module.exports = Router;

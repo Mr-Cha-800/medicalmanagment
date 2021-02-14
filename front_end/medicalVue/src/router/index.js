@@ -22,6 +22,7 @@ import Invoiceshow from '../components/buyingHistoryComponents/invoice.vue'
 
 // Gestiondevis
 import Gestiondevis from '../views/Gestiondevis.vue'
+import modifierDevis from '../views/modifierDevis.vue'
 import devisshow from '../components/buyingHistoryComponents/devis.vue'
 import bonlivraison from '../components/buyingHistoryComponents/bonLivraison.vue'
 import test from '../components/settings/test'
@@ -105,6 +106,11 @@ const routes = [
     path: '/Gestiondevis',
     name: 'Gestiondevis',
     component: Gestiondevis
+  },
+  {
+    path: '/modifierDevis/:id/:caisse',
+    name: 'modifierDevis',
+    component: modifierDevis
   },
   {
     path: '/Gestiondevis/devis/:id/:caisse',
