@@ -1,5 +1,6 @@
 <template>
-  <div class="q-pa-xl">
+  <div class="q-pa-xl q-gutter-xl">
+  <q-card class="my-card">
       <q-card class="bg-white">
             <q-form
       @submit.prevent="updatefact"
@@ -67,6 +68,7 @@
       
     </q-form>
       </q-card>
+  </q-card>
   </div>
     
 </template>
