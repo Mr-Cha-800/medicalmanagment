@@ -36,10 +36,7 @@
         mask="## ## ## ## ##"
         fill-mask
         lazy-rules
-        hint="Aide: XX XX XX XX XX"
-        :rules="[val => !!val || 'Obligatoire',
-          val => val && val.length > 0  || 'veuillez remplir correctement']"
-      >
+        hint="Aide: XX XX XX XX XX" >
       </q-input>
     </div>
     <div class="q-gutter-xl row justify-between q-pa-md">

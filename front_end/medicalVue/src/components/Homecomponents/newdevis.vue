@@ -155,7 +155,7 @@
         <td>{{product.ref}}</td>
         <td style="width:80%">{{product.nom}}  </td>
         <td>{{product.price}} Da</td>
-        <td style="width:20%"><q-input type="number" step="any" min="1" lazy-rules :rules="[ val => val >= 1 || '1 ou plus' ]" v-model="product.quantity"/></td>
+        <td style="width:20%"><q-input type="number" step="any" min="1" v-model="product.quantity"/></td>
         <td>{{product.quantity*product.price}} Da</td>
       </tr>
     </table>

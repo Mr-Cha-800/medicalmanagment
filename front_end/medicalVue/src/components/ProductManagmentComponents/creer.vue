@@ -36,7 +36,6 @@
         step="any"
         v-model="produit.montantProduit"
         label="Prix unitaire"
-        :rules="[ val => val >= 1 || '1 ou plus' ]"
       >
       </q-input>
     </div>

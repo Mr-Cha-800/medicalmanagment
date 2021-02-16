@@ -89,7 +89,6 @@
         mask="## ## ## ## ##"
         fill-mask
         hint="Aide: ## ## ## ## ##"
-        :rules="[val => !!val || 'Obligatoire']"
       >
       </q-input>
     </div>
