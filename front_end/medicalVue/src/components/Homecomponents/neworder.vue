@@ -495,6 +495,7 @@ export default {
       this.order(this.neworder)
       .then(response => {
         if(response){
+            this.neworder = {},
             this.$router.replace({
             name: 'Gestiondevis'
           })
@@ -507,7 +508,7 @@ export default {
           }
       }).catch(error => {
           if(error.response.status === 406){
-              
+          this.neworder = {},
           this.$q.notify({
               color: 'red-4',
               textColor: 'white',

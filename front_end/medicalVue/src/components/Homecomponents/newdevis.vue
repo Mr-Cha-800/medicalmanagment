@@ -487,6 +487,7 @@ export default {
       this.order(this.neworder)
       .then(response => {
         if(response){
+          this.neworder = {},
           this.$q.notify({
               color: 'green-4',
               textColor: 'white',
@@ -496,6 +497,7 @@ export default {
           }
       }).catch(error => {
         console.log(error)
+        this.neworder = {}
       })
     }
   },
