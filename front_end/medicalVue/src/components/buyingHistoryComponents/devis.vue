@@ -153,14 +153,14 @@
         </tbody>
       </table>
       
-        <table style="width:30%;float:right">
+        <table style="width:40%;float:right">
           <tr v-if="getorder[0].remise > 0">
             <td style="width:140px;text-align:left" colspan="2"><b> REMISE {{getorder[0].remise}} %</b></td>
-            <td style="text-align:left" colspan="2"><b> {{formatthis(getorder[0].Remiseonly)}} </b></td>
+            <td style="width:140px;text-align:center"><b> {{formatthis(getorder[0].Remiseonly)}} </b></td>
           </tr>
           <tr  v-if="getorder[0].Caissee === 'CASH'" >
             <td style="width:140px;text-align:left" colspan="2"><b>MONTANT H.T</b></td>
-            <td><b>{{formatthis((getorder[0].montants - getorder[0].Remiseonly).toFixed(2) )}} </b></td>
+            <td style="width:140px;text-align:center"><b>{{formatthis((getorder[0].montants - getorder[0].Remiseonly).toFixed(2) )}} </b></td>
           </tr>
          <!-- <tr>
             <td colspan="2">TVA {{getorder[0].Tva}}%</td>
