@@ -115,7 +115,6 @@ export default {
          required: true
         },
         caisse: {
-         type: String,
          required: true
         }
     },

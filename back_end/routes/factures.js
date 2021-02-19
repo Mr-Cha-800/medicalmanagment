@@ -84,16 +84,6 @@ Router.post('/',(req,res)=>{
     
     var yearr  = new Date().getFullYear()
                 if(req.body.id === 1){
-    mysqlConnection.query('SELECT * from dossier WHERE NumTel = ? AND NumTel != ?',[req.body.numtel, ''],(err,rows,fields)=>{
-        if(err){
-            console.log(err);
-        }else {
-
-            if (rows && rows.length ) {
-                
-                return res.status('406').send({ message: 'numero kayen deja' });
-                // do something with your row variable
-        }else { // 
             mysqlConnection.query('INSERT INTO dossier (nom, prenom, NumSecSocial, NumTel, Caisse, Wilaya, year,identifier) VALUES(?,?,?,?,?,?,?,?)',[req.body.nom,req.body.prenom,req.body.numsecsocial,req.body.numtel,req.body.caisse,req.body.wilaya,yearr,x],(err,rows,fields)=>{
                 if(!err) {
                     if(req.body.caisse === 'CASH'){
@@ -147,9 +137,7 @@ Router.post('/',(req,res)=>{
                 else
                 console.log(err);
             })
-        }
-            } 
-        });
+        
         
                 }else {
                     mysqlConnection.query('UPDATE dossier SET NumTel=?, NumSecSocial=?,Caisse=?, Wilaya=?  WHERE ID=?',[req.body.numtel,req.body.numsecsocial,req.body.caisse,req.body.wilaya,req.body.id],(err,rows,fields)=>{
@@ -228,7 +216,7 @@ Router.post('/',(req,res)=>{
  });
   // Rechercher un devis
   Router.post('/recherche/devis',(req,res)=>{
-    mysqlConnection.query('SELECT devis_facture.Tva as Tva,devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID limit 20',[req.body.Search,req.body.Search,req.body.Search],(err,rows,fields)=>{
+    mysqlConnection.query('SELECT devis_facture.Caisse as Caissee,devis_facture.Tva as Tva,devis_facture.datee as datee, devis_facture.Annee as Annee,devis_facture.etat as etat,devis_facture.ID as idfact,devis_facture.montant_total as montant, dossier.*  FROM devis_facture,dossier  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_facture.foreignID limit 20',[req.body.Search,req.body.Search,req.body.Search],(err,rows,fields)=>{
         if(!err)
         res.send(rows);
         else
@@ -237,7 +225,7 @@ Router.post('/',(req,res)=>{
  });
  // Rechercher un devisberk
  Router.post('/recherche/devisberk',(req,res)=>{
-   mysqlConnection.query('SELECT devis_berk.Tva as Tva,devis_berk.datee as datee, devis_berk.Annee as Annee,devis_berk.etat as etat,devis_berk.ID as idfact,devis_berk.montant_total as montant, dossier.*  FROM devis_berk,dossier  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_berk.foreignID AND devis_berk.Caisse = ? limit 20',[req.body.Search,req.body.Search,req.body.Search, 'CASH'],(err,rows,fields)=>{
+   mysqlConnection.query('SELECT devis_berk.Caisse as Caissee, devis_berk.Tva as Tva,devis_berk.datee as datee, devis_berk.Annee as Annee,devis_berk.etat as etat,devis_berk.ID as idfact,devis_berk.montant_total as montant, dossier.*  FROM devis_berk,dossier  WHERE (dossier.nom LIKE ? OR dossier.prenom LIKE ? OR dossier.NumTel LIKE ? ) AND dossier.ID = devis_berk.foreignID AND devis_berk.Caisse = ? limit 20',[req.body.Search,req.body.Search,req.body.Search, 'CASH'],(err,rows,fields)=>{
        if(!err)
        res.send(rows);
        else

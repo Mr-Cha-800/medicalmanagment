@@ -41,12 +41,13 @@ export default {
     }
   },
   methods:{
-  ...mapActions('company',['setinfo']),
+  ...mapActions('company',['setinfo','setusers']),
   },
   computed:{
   },
   created() {
     this.setinfo()
+    this.setusers()
   }
 }
 </script>

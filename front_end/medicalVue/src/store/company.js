@@ -2,11 +2,15 @@ import axios from 'axios'
 export default {
     namespaced: true,
     state:{
-        info: {}
+        info: {},
+        users: {}
     },
     getters:{
         getinfo(state){
             return state.info
+        },
+        getusers(state){
+            return state.users
         }
     },
     mutations:{
@@ -15,6 +19,9 @@ export default {
         },
         setinfo(state, info){
             state.info = info
+        },
+        setusers(state, users){
+            state.users = users
         }
     },     
     actions:{
@@ -44,6 +51,19 @@ export default {
                 axios.get('/info')
                   .then(response => {
                       commit('setinfo', response.data)
+                    resolve(response)
+                    // console.log(response)
+                  })
+                  .catch(error => {
+                    reject(error)
+                  })
+              })
+        },
+        async setusers({ commit }){
+            return new Promise((resolve, reject) => {
+                axios.get('/info/getusers')
+                  .then(response => {
+                      commit('setusers', response.data)
                     resolve(response)
                     // console.log(response)
                   })

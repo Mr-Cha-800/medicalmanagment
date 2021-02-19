@@ -64,6 +64,16 @@ Router.patch('/modify',(req,res)=>{
         console.log(err);
     })
 });
+ // /getusers
+ Router.get('/getusers',(req,res)=>{
+    mysqlConnection.query('SELECT nom, prenom, NumTel FROM dossier',(err,rows,fields)=>{
+        if(!err)
+        res.send(rows);
+        else
+        console.log(err);
+    })
+});
+
  // modifier un utilisateur
 
  // /profile/modify

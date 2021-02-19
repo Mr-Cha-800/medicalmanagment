@@ -215,6 +215,25 @@
     </q-btn>
       </div>
     </q-form>
+    <q-dialog v-model="alertexiste" persistent transition-show="flip-down" transition-hide="flip-up">
+      <q-card class="bg-blue-grey-8 text-white">
+        <q-card-section>
+          <div class="text-h6">Alerte</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          Ce Numéro existe déja <br>
+          <b>Nom : </b> {{existedeja.nom}}  <br>
+          <b>Prenom : </b> {{existedeja.prenom}} <br>
+          <b>Numéro :</b> {{existedeja.NumTel}}
+        </q-card-section>
+
+        <q-card-section class="q-pt-none float-right">
+          <q-btn flat label="Annuler" v-close-popup />
+          <q-btn flat label="Générer devis" v-close-popup @click="sendilo()"  />
+          </q-card-section>
+      </q-card>
+    </q-dialog>
         </q-card>
 </template>
 
@@ -224,6 +243,7 @@ var numberFormatter = require("number-formatter")
 export default {
   data(){
     return {
+      existedeja: {},
       ttctaux:0,
       remisetaux: 0,
       finalprice: 0,
@@ -463,6 +483,7 @@ export default {
         remise: null
       },
       model: null,
+      alertexiste: false,
       filterOptions: this.getproducts
     }
   },
@@ -492,6 +513,23 @@ export default {
       })
     },
     onSubmit(){
+      var kayen = '';
+      for(var x = 0; x< this.getusers.length; x++){
+         if(this.neworder.tel === this.getusers[x].NumTel && this.getusers[x].NumTel!== '') {
+           kayen = this.getusers[x]
+           x = this.getusers.length
+         }
+      }
+      if(kayen !== ''){
+        this.existedeja = kayen
+        this.alertexiste = true
+        console.log(kayen.NumTel)
+        console.log('there is tachaboh')
+      }else{
+        this.sendilo()
+      }
+    },
+    sendilo(){
       this.order(this.neworder)
       .then(response => {
         if(response){
@@ -583,7 +621,7 @@ export default {
   },
   computed:{
     ...mapGetters('product', ['getproducts']),
-    ...mapGetters('company', ['getinfo'])
+    ...mapGetters('company', ['getinfo', 'getusers'])
   },
   created(){
     this.getallproducts()
