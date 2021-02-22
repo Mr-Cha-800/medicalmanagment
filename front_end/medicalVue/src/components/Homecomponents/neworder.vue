@@ -520,7 +520,7 @@ export default {
            x = this.getusers.length
          }
       }
-      if(kayen !== ''){
+      if(kayen !== '' && kayen !== '__ __ __ __ __'){
         this.existedeja = kayen
         this.alertexiste = true
         console.log(kayen.NumTel)
